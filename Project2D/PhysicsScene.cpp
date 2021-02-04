@@ -1,6 +1,7 @@
 #include <algorithm>
 #include "PhysicsScene.h"
 #include "Sphere.h"
+#include "Plane.h"
 
 typedef bool(*fn)(PhysicsObject*, PhysicsObject*);
 
@@ -93,7 +94,7 @@ bool PhysicsScene::Sphere2Sphere(PhysicsObject* obj1, PhysicsObject* obj2)
 		float dist = glm::distance(sphere1->GetPosition(), sphere2->GetPosition());
 		//If the distance is less than the combined radius, they are colliding
 		if (dist < sphere1->GetRadius() + sphere2->GetRadius())
-		{	//Make them not move
+		{	//Make them not move. This is temporary
 			sphere1->ApplyForce(-(sphere1->GetVelocity() * sphere1->GetMass()));
 			sphere2->ApplyForce(-(sphere2->GetVelocity() * sphere2->GetMass()));
 
@@ -104,8 +105,28 @@ bool PhysicsScene::Sphere2Sphere(PhysicsObject* obj1, PhysicsObject* obj2)
 	return false;
 }
 
-bool PhysicsScene::Sphere2Plane(PhysicsObject*, PhysicsObject*)
+bool PhysicsScene::Sphere2Plane(PhysicsObject* obj1, PhysicsObject* obj2)
 {
+	Sphere* sphere = dynamic_cast<Sphere*>(obj1);
+	Plane* plane = dynamic_cast<Plane*>(obj2);
+
+	if (sphere != nullptr && plane != nullptr)
+	{	//Get the dot product to check if we are travelling into the plane
+		float d = glm::dot(sphere->GetVelocity(), plane->GetNormal());
+		//If the dot is < 0 then they are moving into eachother
+		if (d < 0)
+		{
+			//Do the math from the tutorial. We re-use d to reduce memory usage
+			d = glm::dot(sphere->GetPosition(), plane->GetNormal()) - plane->GetDistance() - sphere->GetRadius();
+
+			if (d < 0)
+			{	//Cancel the spheres movement temporarily
+				sphere->ApplyForce(-(sphere->GetVelocity() * sphere->GetMass()));
+
+				return true;
+			}
+		}
+	}
 	return false;
 }
 
