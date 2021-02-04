@@ -1,9 +1,13 @@
+#pragma once
+
 #include <Gizmos.h>
 #include <glm\ext.hpp>
 #include "PhysicsApp.h"
 #include "Texture.h"
 #include "Font.h"
 #include "Input.h"
+#include "Sphere.h"
+#include "Plane.h"
 
 PhysicsApp::PhysicsApp()  : m_physicsScene(nullptr), m_2dRenderer(nullptr), m_font(nullptr), m_timer(0)
 {
@@ -23,7 +27,16 @@ bool PhysicsApp::startup() {
 	m_timer = 0;
 
 	m_physicsScene = new PhysicsScene();
+	m_physicsScene->SetGravity(glm::vec2(0, -10));
 	m_physicsScene->SetTimeStep(0.01f);
+
+	Sphere* ball1 = new Sphere(glm::vec2(-40, 0), glm::vec2(10, 30), 3.0f, 10, glm::vec4(1, 0, 0, 1));
+	Sphere* ball2 = new Sphere(glm::vec2(40, 0), glm::vec2(-10, 30), 3.0f, 10, glm::vec4(0, 1, 0, 1));
+	Plane* plane1 = new Plane(glm::vec2(0, 1), -30, glm::vec4(0, 0, 1, 1));
+
+	m_physicsScene->AddActor(ball1);
+	m_physicsScene->AddActor(ball2);
+	m_physicsScene->AddActor(plane1);
 
 	return true;
 }
@@ -32,6 +45,7 @@ void PhysicsApp::shutdown() {
 	
 	delete m_font;
 	delete m_2dRenderer;
+	delete m_physicsScene;
 }
 
 void PhysicsApp::update(float deltaTime) {
@@ -59,7 +73,7 @@ void PhysicsApp::draw() {
 	// begin drawing sprites
 	m_2dRenderer->begin();
 
-	static float aspectRation = 16 / 9;
+	static float aspectRation = 16 / 9.f;
 	aie::Gizmos::draw2D(glm::ortho<float>(-100, 100, -100 / aspectRation, 100 / aspectRation, -1, 1));
 	// output some text, uses the last used colour
 	char fps[32];

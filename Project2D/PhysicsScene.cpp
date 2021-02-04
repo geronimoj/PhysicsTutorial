@@ -1,5 +1,15 @@
 #include <algorithm>
 #include "PhysicsScene.h"
+#include "Sphere.h"
+
+typedef bool(*fn)(PhysicsObject*, PhysicsObject*);
+
+static fn collisionFunctionArray[] =
+{	//Plane						//Sphere					//Box
+	PhysicsScene::Plane2Plane, PhysicsScene::Plane2Sphere, PhysicsScene::Plane2Box,
+	PhysicsScene::Sphere2Plane, PhysicsScene::Sphere2Sphere, PhysicsScene::Sphere2Box,
+	PhysicsScene::Box2Plane, PhysicsScene::Box2Sphere, PhysicsScene::Box2Box
+};
 
 PhysicsScene::PhysicsScene() : m_gravity(glm::vec2(0,0)), m_timeStep(0.01f)
 {
@@ -43,6 +53,8 @@ void PhysicsScene::Update(float dt)
 			m_actors[i]->FixedUpdate(m_gravity, m_timeStep);
 
 		accumulartedTime -= m_timeStep;
+
+		CheckForCollision();
 	}
 }
 
@@ -50,4 +62,84 @@ void PhysicsScene::Draw()
 {	//Loop through the actors and call their draw function
 	for (int i = 0; i < m_actors.size(); i++)
 		m_actors[i]->Draw();
+}
+
+void PhysicsScene::CheckForCollision()
+{
+	int actorCount = m_actors.size();
+	//Check for collisions
+	for (int outer = 0; outer < actorCount - 1; outer++)
+		for (int inner = outer + 1; inner < actorCount; inner++)
+		{
+			PhysicsObject* object1 = m_actors[outer];
+			PhysicsObject* object2 = m_actors[inner];
+
+			int functionIdx = ((int)object1->GetShapeID() * SHAPE_COUNT) + (int)object2->GetShapeID();
+			fn collisionFunctionPtr = collisionFunctionArray[functionIdx];
+
+			if (collisionFunctionPtr != nullptr)
+				//Check for the collision
+				collisionFunctionPtr(object1, object2);
+		}
+}
+
+bool PhysicsScene::Sphere2Sphere(PhysicsObject* obj1, PhysicsObject* obj2)
+{	//Cast our physicsobjects to sphere types
+	Sphere* sphere1 = dynamic_cast<Sphere*>(obj1); 
+	Sphere* sphere2 = dynamic_cast<Sphere*>(obj2);
+	//If they failed, one of them isn't a sphere
+	if (sphere1 != nullptr && sphere2 != nullptr)
+	{	//Get the distance between the spheres origins
+		float dist = glm::distance(sphere1->GetPosition(), sphere2->GetPosition());
+		//If the distance is less than the combined radius, they are colliding
+		if (dist < sphere1->GetRadius() + sphere2->GetRadius())
+		{	//Make them not move
+			sphere1->ApplyForce(-(sphere1->GetVelocity() * sphere1->GetMass()));
+			sphere2->ApplyForce(-(sphere2->GetVelocity() * sphere2->GetMass()));
+
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool PhysicsScene::Sphere2Plane(PhysicsObject*, PhysicsObject*)
+{
+	return false;
+}
+
+bool PhysicsScene::Sphere2Box(PhysicsObject*, PhysicsObject*)
+{
+	return false;
+}
+
+bool PhysicsScene::Plane2Sphere(PhysicsObject* obj1, PhysicsObject* obj2)
+{
+	return Sphere2Plane(obj2, obj1);
+}
+
+bool PhysicsScene::Plane2Plane(PhysicsObject*, PhysicsObject*)
+{
+	return false;
+}
+
+bool PhysicsScene::Plane2Box(PhysicsObject* obj1, PhysicsObject* obj2)
+{
+	return Box2Plane(obj2, obj1);
+}
+
+bool PhysicsScene::Box2Plane(PhysicsObject*, PhysicsObject*)
+{
+	return false;
+}
+
+bool PhysicsScene::Box2Sphere(PhysicsObject* obj1, PhysicsObject* obj2)
+{
+	return Sphere2Box(obj2, obj1);
+}
+
+bool PhysicsScene::Box2Box(PhysicsObject*, PhysicsObject*)
+{
+	return false;
 }

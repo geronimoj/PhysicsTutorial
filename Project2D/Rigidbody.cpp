@@ -15,3 +15,10 @@ void Rigidbody::ApplyForce(glm::vec2 force)
 {
 	m_velocity += force / m_mass;
 }
+
+void Rigidbody::ApplyForceToActor(Rigidbody* actor2, glm::vec2 force)
+{
+	m_velocity += force / m_mass;
+
+	actor2->ApplyForce(-force);
+}
