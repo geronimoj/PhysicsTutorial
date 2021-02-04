@@ -44,17 +44,17 @@ void PhysicsScene::RemoveActor(PhysicsObject* actor, bool doDelete)
 }
 
 void PhysicsScene::Update(float dt)
-{
+{	//We store it as a static float because then it only initializes the memory once and said memory is re-used between calls
 	static float accumulartedTime = 0.01f;
 	accumulartedTime += dt;
-
+	//While we can still simulate time, simulate it
 	while (accumulartedTime >= m_timeStep)
-	{
+	{	//Call update/move all the actors
 		for (int i = 0; i < m_actors.size(); i++)
 			m_actors[i]->FixedUpdate(m_gravity, m_timeStep);
-
+		//Reduce the remaining time
 		accumulartedTime -= m_timeStep;
-
+		//Check for any collisions after this update loop
 		CheckForCollision();
 	}
 }
@@ -67,17 +67,18 @@ void PhysicsScene::Draw()
 
 void PhysicsScene::CheckForCollision()
 {
-	int actorCount = m_actors.size();
+	int actorCount = (int)m_actors.size();
 	//Check for collisions
+	//We loop through every actor and compare them with each other. Extremely innefficient
 	for (int outer = 0; outer < actorCount - 1; outer++)
 		for (int inner = outer + 1; inner < actorCount; inner++)
-		{
+		{	//Get pointers to the objects
 			PhysicsObject* object1 = m_actors[outer];
 			PhysicsObject* object2 = m_actors[inner];
-
-			int functionIdx = ((int)object1->GetShapeID() * SHAPE_COUNT) + (int)object2->GetShapeID();
+			//Using the function pointer array, we move our index forward and down the 1D array
+			int functionIdx = ((int)object1->GetShapeID() * (int)ShapeType::SHAPE_COUNT) + (int)object2->GetShapeID();
 			fn collisionFunctionPtr = collisionFunctionArray[functionIdx];
-
+			//If the function is nullptr, then don't bother otherwise check the collision
 			if (collisionFunctionPtr != nullptr)
 				//Check for the collision
 				collisionFunctionPtr(object1, object2);
@@ -94,14 +95,12 @@ bool PhysicsScene::Sphere2Sphere(PhysicsObject* obj1, PhysicsObject* obj2)
 		float dist = glm::distance(sphere1->GetPosition(), sphere2->GetPosition());
 		//If the distance is less than the combined radius, they are colliding
 		if (dist < sphere1->GetRadius() + sphere2->GetRadius())
-		{	//Make them not move. This is temporary
-			sphere1->ApplyForce(-(sphere1->GetVelocity() * sphere1->GetMass()));
-			sphere2->ApplyForce(-(sphere2->GetVelocity() * sphere2->GetMass()));
-
+		{	//Perform collision response algorythm
+			sphere1->ResolveCollision(sphere2);
 			return true;
 		}
 	}
-
+	//No collision was performed
 	return false;
 }
 
@@ -120,8 +119,8 @@ bool PhysicsScene::Sphere2Plane(PhysicsObject* obj1, PhysicsObject* obj2)
 			d = glm::dot(sphere->GetPosition(), plane->GetNormal()) - plane->GetDistance() - sphere->GetRadius();
 
 			if (d < 0)
-			{	//Cancel the spheres movement temporarily
-				sphere->ApplyForce(-(sphere->GetVelocity() * sphere->GetMass()));
+			{	//Do propper collision
+				plane->ResolveCollision(sphere);
 
 				return true;
 			}
@@ -141,7 +140,7 @@ bool PhysicsScene::Plane2Sphere(PhysicsObject* obj1, PhysicsObject* obj2)
 }
 
 bool PhysicsScene::Plane2Plane(PhysicsObject*, PhysicsObject*)
-{
+{	//Planes can't collide so don't do anything
 	return false;
 }
 

@@ -25,16 +25,16 @@ bool PhysicsApp::startup() {
 	m_font = new aie::Font("./font/consolas.ttf", 32);
 	
 	m_timer = 0;
-
+	//Create the Physics Scene and set up its default values
 	m_physicsScene = new PhysicsScene();
-	m_physicsScene->SetGravity(glm::vec2(0, -10));
+	m_physicsScene->SetGravity(glm::vec2(0, -100));
 	m_physicsScene->SetTimeStep(0.01f);
 
-	//Sphere* ball1 = new Sphere(glm::vec2(-40, 0), glm::vec2(10, 30), 3.0f, 10, glm::vec4(1, 0, 0, 1));
-	Sphere* ball2 = new Sphere(glm::vec2(40, 0), glm::vec2(-10, 30), 3.0f, 10, glm::vec4(0, 1, 0, 1));
-	Plane* plane1 = new Plane(glm::vec2(0.7, 0.7), -50, glm::vec4(0, 0, 1, 1));
+	Sphere* ball1 = new Sphere(glm::vec2(-40, 0), glm::vec2(0, 0), 3.0f, 10, glm::vec4(1, 0, 0, 1));
+	Sphere* ball2 = new Sphere(glm::vec2(40, 0), glm::vec2(-40, 0), 6.0f, 10, glm::vec4(0, 1, 0, 1));
+	Plane* plane1 = new Plane(glm::vec2(0, 1), -50, glm::vec4(0, 0, 1, 1));
 
-	//m_physicsScene->AddActor(ball1);
+	m_physicsScene->AddActor(ball1);
 	m_physicsScene->AddActor(ball2);
 	m_physicsScene->AddActor(plane1);
 
@@ -56,7 +56,7 @@ void PhysicsApp::update(float deltaTime) {
 	aie::Input* input = aie::Input::getInstance();
 
 	aie::Gizmos::clear();
-
+	//Let the PhysicsScene do its thing
 	m_physicsScene->Update(deltaTime);
 	m_physicsScene->Draw();
 

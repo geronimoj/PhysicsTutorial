@@ -20,3 +20,15 @@ void Plane::Draw()
 	aie::Gizmos::add2DTri(start, end, start - m_normal * 10.f, m_colour, m_colour, colourFade);
 	aie::Gizmos::add2DTri(end, end - m_normal * 10.f, start - m_normal * 10.f, m_colour, colourFade, colourFade);
 }
+
+void Plane::ResolveCollision(Rigidbody* actor2)
+{
+	glm::vec2 relativeVelocity = actor2->GetVelocity();
+
+	float elasticity = 0.9;
+	float j = glm::dot(-(1 + elasticity) * (relativeVelocity), m_normal) / ((1 / actor2->GetMass()));
+
+	glm::vec2 force = m_normal * j;
+
+	actor2->ApplyForce(force);
+}

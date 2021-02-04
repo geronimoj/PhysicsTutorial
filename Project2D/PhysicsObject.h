@@ -1,7 +1,7 @@
 #pragma once
 #include <glm/glm.hpp>
 
-enum ShapeType
+enum class ShapeType
 {
 	PLANE = 0,
 	SPHERE = 1,
