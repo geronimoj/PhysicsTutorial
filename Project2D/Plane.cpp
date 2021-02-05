@@ -1,7 +1,7 @@
 #include <Gizmos.h>
 #include "Plane.h"
 
-Plane::Plane(glm::vec2 normal, float distance, glm::vec4 colour) : PhysicsObject(ShapeType::PLANE), m_normal(normal), m_distanceToOrigin(distance), m_colour(colour)
+Plane::Plane(glm::vec2 normal, float distance, glm::vec4 colour) : PhysicsObject(ShapeType::PLANE), m_normal(glm::normalize(normal)), m_distanceToOrigin(distance), m_colour(colour)
 {
 }
 
@@ -21,14 +21,14 @@ void Plane::Draw()
 	aie::Gizmos::add2DTri(end, end - m_normal * 10.f, start - m_normal * 10.f, m_colour, colourFade, colourFade);
 }
 
-void Plane::ResolveCollision(Rigidbody* actor2)
+void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 {
 	glm::vec2 relativeVelocity = actor2->GetVelocity();
 
-	float elasticity = 0.9;
+	float elasticity = 0.9f;
 	float j = glm::dot(-(1 + elasticity) * (relativeVelocity), m_normal) / ((1 / actor2->GetMass()));
 
 	glm::vec2 force = m_normal * j;
 
-	actor2->ApplyForce(force);
+	actor2->ApplyForce(force, contact - actor2->GetPosition());
 }

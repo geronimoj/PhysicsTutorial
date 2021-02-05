@@ -5,18 +5,18 @@
 class Rigidbody : public PhysicsObject
 {
 public:
-	Rigidbody(ShapeType shapeID, glm::vec2 position, glm::vec2 velocity, float orientation, float mass);
+	Rigidbody(ShapeType shapeID, glm::vec2 position, glm::vec2 velocity, float orientation, float mass, float angularVelocity);
 	~Rigidbody();
 
 	virtual void FixedUpdate(glm::vec2 gravity, float timeStep);
-	void ApplyForce(glm::vec2 force);
-	void ApplyForceToActor(Rigidbody* actor2, glm::vec2 force);
-	void ResolveCollision(Rigidbody* actor2);
+	void ApplyForce(glm::vec2 force, glm::vec2 pos);
+	void ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2 * collisionNormal = nullptr);
 
 	glm::vec2 GetPosition() { return m_position; }
 	glm::vec2 GetVelocity() { return m_velocity; }
 	float GetOrientation() { return m_orientation; }
 	float GetMass() { return m_mass; }
+	float GetMoment() { return m_moment; }
 	float GetKineticEnergy();
 
 protected:
@@ -24,5 +24,7 @@ protected:
 	glm::vec2 m_velocity;
 	float m_mass;
 	float m_orientation;
+	float m_angularVelocity;
+	float m_moment;
 };
 

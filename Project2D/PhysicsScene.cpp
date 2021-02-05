@@ -96,7 +96,7 @@ bool PhysicsScene::Sphere2Sphere(PhysicsObject* obj1, PhysicsObject* obj2)
 		//If the distance is less than the combined radius, they are colliding
 		if (dist < sphere1->GetRadius() + sphere2->GetRadius())
 		{	//Perform collision response algorythm
-			sphere1->ResolveCollision(sphere2);
+			sphere1->ResolveCollision(sphere2, 0.5f * (sphere1->GetPosition() + sphere2->GetPosition()));
 			return true;
 		}
 	}
@@ -120,7 +120,7 @@ bool PhysicsScene::Sphere2Plane(PhysicsObject* obj1, PhysicsObject* obj2)
 
 			if (d < 0)
 			{	//Do propper collision
-				plane->ResolveCollision(sphere);
+				plane->ResolveCollision(sphere, sphere->GetPosition() - sphere->GetRadius() * plane->GetNormal());
 
 				return true;
 			}
