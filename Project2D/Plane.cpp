@@ -23,10 +23,19 @@ void Plane::Draw()
 
 void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 {
-	glm::vec2 relativeVelocity = actor2->GetVelocity();
+	glm::vec2 localContact = contact - actor2->GetPosition();
 
-	float elasticity = 0.9f;
-	float j = glm::dot(-(1 + elasticity) * (relativeVelocity), m_normal) / ((1 / actor2->GetMass()));
+	glm::vec2 relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
+
+	float velocityIntoPlane = glm::dot(relativeVelocity, m_normal);
+
+	float elasticity = 0.5f;
+
+	float r = glm::dot(localContact, glm::vec2(m_normal.y, -m_normal.x));
+
+	float mass0 = 1.0f / (1.0f / actor2->GetMass() + (r * r) / actor2->GetMoment());
+
+	float j = -(1 + elasticity) * velocityIntoPlane * mass0;
 
 	glm::vec2 force = m_normal * j;
 
