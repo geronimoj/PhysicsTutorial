@@ -1,7 +1,8 @@
 #include <Gizmos.h>
 #include "Plane.h"
+#include "PhysicsScene.h"
 
-Plane::Plane(glm::vec2 normal, float distance, glm::vec4 colour) : PhysicsObject(ShapeType::PLANE), m_normal(glm::normalize(normal)), m_distanceToOrigin(distance), m_colour(colour)
+Plane::Plane(glm::vec2 normal, float distance, glm::vec4 colour, float elasticity) : PhysicsObject(ShapeType::PLANE, elasticity), m_normal(glm::normalize(normal)), m_distanceToOrigin(distance), m_colour(colour)
 {
 }
 
@@ -29,7 +30,7 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 
 	float velocityIntoPlane = glm::dot(relativeVelocity, m_normal);
 
-	float elasticity = 0.8f;
+	float elasticity = (GetElasticity() + actor2->GetElasticity()) / 2.0f;
 
 	float r = glm::dot(localContact, glm::vec2(m_normal.y, -m_normal.x));
 
@@ -40,4 +41,7 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	glm::vec2 force = m_normal * j;
 
 	actor2->ApplyForce(force, contact - actor2->GetPosition());
+
+	float pen = glm::dot(contact, m_normal) - m_distanceToOrigin;
+	PhysicsScene::ApplyContactForces(actor2, nullptr, m_normal, pen);
 }

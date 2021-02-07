@@ -3,8 +3,8 @@
 #include "Box.h"
 #include "Rigidbody.h"
 
-Box::Box(glm::vec2 position, glm::vec2 velocity, float mass, glm::vec4 colour, glm::vec2 extents, float orientation, float angularVelocity, float linearDrag, float angularDrag) 
-	: Rigidbody(ShapeType::BOX, position, velocity, orientation, mass, angularVelocity, linearDrag, angularDrag), m_colour(colour), m_extents(extents)
+Box::Box(glm::vec2 position, glm::vec2 velocity, float mass, glm::vec4 colour, glm::vec2 extents, float orientation, float angularVelocity, float linearDrag, float angularDrag, float elasticity)
+	: Rigidbody(ShapeType::BOX, position, velocity, orientation, mass, elasticity, angularVelocity, linearDrag, angularDrag), m_colour(colour), m_extents(extents)
 {
 	m_localX = glm::vec2(0, 0);
 	m_localY = glm::vec2(0, 0);
@@ -35,16 +35,16 @@ void Box::Draw()
 bool Box::CheckBoxCorners(const Box& box, glm::vec2& contact, int& numContacts, float& pen, glm::vec2& edgeNormal)
 {
 	float minX = 0, maxX = 0, minY = 0, maxY = 0;
-	float boxW = box.m_extents.x * 2;
-	float boxH = box.m_extents.y * 2;
+	float boxW = box.GetWidth();
+	float boxH = box.GetHeight();
 	int numLocalContacts = 0;
 	glm::vec2 localContact(0, 0);
 	bool first = true;
 
-	for (float x = -box.m_extents.x; x < boxW; x += boxW)
-		for (float y = -box.m_extents.y; y < boxH; y += boxH)
+	for (float x = -box.GetExtents().x; x < boxW; x += boxW)
+		for (float y = -box.GetExtents().y; y < boxH; y += boxH)
 		{
-			glm::vec2 p = box.m_position + x * box.m_localX + y * box.m_localY;
+			glm::vec2 p = box.GetPosition() + x * box.GetLocalX() + y * box.GetLocalY();
 
 			glm::vec2 p0(glm::dot(p - m_position, m_localX), glm::dot(p - m_position, m_localY));
 

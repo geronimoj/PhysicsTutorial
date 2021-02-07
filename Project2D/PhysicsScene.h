@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 #include <vector>
 #include "PhysicsObject.h"
+#include "Rigidbody.h"
 
 class PhysicsScene
 {
@@ -22,6 +23,8 @@ public:
 	float GetTimeStep() const { return m_timeStep; }
 
 	void CheckForCollision();
+
+	static void ApplyContactForces(Rigidbody* actor1, Rigidbody* actor2, glm::vec2 norm, float pen);
 
 	static bool Sphere2Sphere(PhysicsObject*, PhysicsObject*);
 	static bool Sphere2Plane(PhysicsObject*, PhysicsObject*);

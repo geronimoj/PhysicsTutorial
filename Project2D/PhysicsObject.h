@@ -12,7 +12,7 @@ enum class ShapeType
 class PhysicsObject
 {
 protected:
-	PhysicsObject(ShapeType shapeID) : m_shapeID(shapeID) {}
+	PhysicsObject(ShapeType shapeID, float elasticity) : m_shapeID(shapeID), m_elasticity(elasticity) {}
 
 public:
 	virtual void FixedUpdate(glm::vec2 gravity, float timeStep) = 0;
@@ -21,9 +21,12 @@ public:
 
 	ShapeType GetShapeID() { return m_shapeID; }
 
+	float GetElasticity() { return m_elasticity; }
+
 	static const float MIN_LINEAR_THRESHOLD;
 	static const float MIN_ANGULAR_THRESHOLD;
 protected:
 	ShapeType m_shapeID;
+	float m_elasticity;
 };
 
