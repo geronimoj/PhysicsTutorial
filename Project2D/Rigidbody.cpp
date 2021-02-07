@@ -12,9 +12,21 @@ Rigidbody::~Rigidbody()
 
 void Rigidbody::FixedUpdate(glm::vec2 gravity, float timeStep)
 {
+	//Apply drag
+	m_velocity -= m_velocity * m_linearDrag * timeStep;
+	//Ensure we don't end up flipping the vectors or negative numbers
+	std::cout << m_velocity.y << std::endl;
+	if (glm::length(m_velocity) < MIN_LINEAR_THRESHOLD)
+		m_velocity = glm::vec2(0, 0);
+	//Move the object
 	m_position += m_velocity * timeStep;
 	//Multiply gravity by mass to hand it in as a force. This is then accounted for in ApplyForce
 	ApplyForce(gravity * m_mass * timeStep, glm::vec2(0,0));
+
+	m_angularVelocity -= m_angularVelocity * m_angularDrag * timeStep;
+
+	if (glm::abs(m_angularVelocity) < MIN_ANGULAR_THRESHOLD)
+		m_angularVelocity = 0;
 
 	m_orientation += m_angularVelocity * timeStep;
 }

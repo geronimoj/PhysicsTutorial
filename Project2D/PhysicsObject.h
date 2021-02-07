@@ -20,6 +20,9 @@ public:
 	virtual void ResetPosition() {};
 
 	ShapeType GetShapeID() { return m_shapeID; }
+
+	static const float MIN_LINEAR_THRESHOLD;
+	static const float MIN_ANGULAR_THRESHOLD;
 protected:
 	ShapeType m_shapeID;
 };

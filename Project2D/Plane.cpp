@@ -29,7 +29,7 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 
 	float velocityIntoPlane = glm::dot(relativeVelocity, m_normal);
 
-	float elasticity = 0.5f;
+	float elasticity = 0.8f;
 
 	float r = glm::dot(localContact, glm::vec2(m_normal.y, -m_normal.x));
 
