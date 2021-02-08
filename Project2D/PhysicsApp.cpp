@@ -31,13 +31,13 @@ bool PhysicsApp::startup() {
 	m_physicsScene->SetGravity(glm::vec2(0, -100));
 	m_physicsScene->SetTimeStep(0.01f);
 
-//	Sphere* ball1 = new Sphere(glm::vec2(-40, 0), glm::vec2(10, 30), 3.0f, 10, glm::vec4(1, 0, 0, 1), 0, 1, 0);
-//	Sphere* ball2 = new Sphere(glm::vec2(40, 0), glm::vec2(-10, 30), 6.0f, 20, glm::vec4(0, 1, 0, 1));
+//	Sphere* ball1 = new Sphere(glm::vec2(-40, 0), false, glm::vec2(10, 30), 3.0f, 10, glm::vec4(1, 0, 0, 1), 0, 1, 0);
+//	Sphere* ball2 = new Sphere(glm::vec2(40, 0), false, glm::vec2(-10, 30), 6.0f, 20, glm::vec4(0, 1, 0, 1));
 	Plane* plane1 = new Plane(glm::vec2(0, 1), -50, glm::vec4(0, 0, 1, 1), 0.5f);
 	Plane* plane2 = new Plane(glm::vec2(1, 0), -100, glm::vec4(0, 0, 1, 1));
 	Plane* plane3 = new Plane(glm::vec2(-1, 0), -100, glm::vec4(0, 0, 1, 1));
-	Box* box1 = new Box(glm::vec2(0, 0), glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 0, 0, 0, 0.5f);
-	Box* box2 = new Box(glm::vec2(0, 50), glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 0, 0, 0, 0.5f);
+	Box* box1 = new Box(glm::vec2(0, 0), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 0, 0, 0, 0.5f);
+	Box* box2 = new Box(glm::vec2(0, 50), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 0, 0, 0, 0.5f);
 
 //	m_physicsScene->AddActor(ball1);
 //	m_physicsScene->AddActor(ball2);

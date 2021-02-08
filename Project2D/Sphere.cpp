@@ -1,8 +1,8 @@
 #include <Gizmos.h>
 #include "Sphere.h"
 
-Sphere::Sphere(glm::vec2 position, glm::vec2 velocity, float mass, float radius, glm::vec4 colour, float angularVelocity, float linearDrag, float angularDrag, float elasticity)
-	: Rigidbody(ShapeType::SPHERE, position, velocity, 0, mass, elasticity, angularVelocity, linearDrag, angularDrag), m_radius(radius), m_colour(colour)
+Sphere::Sphere(glm::vec2 position, bool isKinematic, glm::vec2 velocity, float mass, float radius, glm::vec4 colour, float angularVelocity, float linearDrag, float angularDrag, float elasticity)
+	: Rigidbody(ShapeType::SPHERE, position, isKinematic, velocity, 0, mass, elasticity, angularVelocity, linearDrag, angularDrag), m_radius(radius), m_colour(colour)
 {
 	m_moment = 0.5f * m_mass * m_radius * m_radius;
 }

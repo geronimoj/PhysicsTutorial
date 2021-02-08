@@ -3,11 +3,9 @@
 #include "Box.h"
 #include "Rigidbody.h"
 
-Box::Box(glm::vec2 position, glm::vec2 velocity, float mass, glm::vec4 colour, glm::vec2 extents, float orientation, float angularVelocity, float linearDrag, float angularDrag, float elasticity)
-	: Rigidbody(ShapeType::BOX, position, velocity, orientation, mass, elasticity, angularVelocity, linearDrag, angularDrag), m_colour(colour), m_extents(extents)
+Box::Box(glm::vec2 position, bool isKinematic, glm::vec2 velocity, float mass, glm::vec4 colour, glm::vec2 extents, float orientation, float angularVelocity, float linearDrag, float angularDrag, float elasticity)
+	: Rigidbody(ShapeType::BOX, position, isKinematic, velocity, orientation, mass, elasticity, angularVelocity, linearDrag, angularDrag), m_colour(colour), m_extents(extents), m_localX(glm::vec2(0,0)), m_localY(glm::vec2(0,0))
 {
-	m_localX = glm::vec2(0, 0);
-	m_localY = glm::vec2(0, 0);
 	m_moment = 1.0f / 12.0f * m_mass * GetWidth() * GetHeight();
 }
 

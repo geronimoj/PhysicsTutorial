@@ -2,8 +2,8 @@
 #include "Rigidbody.h"
 #include "PhysicsScene.h"
 
-Rigidbody::Rigidbody(ShapeType shapeID, glm::vec2 position, glm::vec2 velocity, float orientation, float mass, float elasticity, float angularVelocity, float linearDrag, float angularDrag) 
-	: PhysicsObject(shapeID, elasticity), m_position(position), m_velocity(velocity), m_orientation(orientation), m_mass(mass), m_angularVelocity(angularVelocity), m_moment(0), m_linearDrag(linearDrag), m_angularDrag(angularDrag)
+Rigidbody::Rigidbody(ShapeType shapeID, glm::vec2 position, bool isKinematic, glm::vec2 velocity, float orientation, float mass, float elasticity, float angularVelocity, float linearDrag, float angularDrag) 
+	: PhysicsObject(shapeID, elasticity), m_position(position), m_isKinematic(isKinematic), m_velocity(velocity), m_orientation(orientation), m_mass(mass), m_angularVelocity(angularVelocity), m_moment(0), m_linearDrag(linearDrag), m_angularDrag(angularDrag)
 {
 }
 
@@ -13,13 +13,21 @@ Rigidbody::~Rigidbody()
 
 void Rigidbody::FixedUpdate(glm::vec2 gravity, float timeStep)
 {
+	if (m_isKinematic)
+	{
+		m_velocity = glm::vec2(0, 0);
+		m_angularVelocity = 0;
+		return;
+	}
 	//Apply drag before moving
 	m_velocity -= m_velocity * m_linearDrag * timeStep;
 	m_angularVelocity -= m_angularVelocity * m_angularDrag * timeStep;
 
 	//Ensure we don't end up flipping the vectors or negative numbers
 	if (glm::length(m_velocity) < MIN_LINEAR_THRESHOLD)
-		m_velocity = glm::vec2(0, 0);
+		if (glm::length(m_velocity) < glm::length(gravity) * m_linearDrag * timeStep)
+			m_velocity = glm::vec2(0, 0);
+
 	if (glm::abs(m_angularVelocity) < MIN_ANGULAR_THRESHOLD)
 		m_angularVelocity = 0;
 
