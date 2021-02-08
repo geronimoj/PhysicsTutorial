@@ -11,6 +11,7 @@ public:
 
 	bool CheckBoxCorners(const Box& box, glm::vec2& contact, int& numContacts, float& pen, glm::vec2& edgeNormal);
 
+	virtual glm::vec2 ToWorld(glm::vec2 offset) { return GetPosition() + GetLocalX() * offset.x + GetLocalY() * offset.y; }
 	glm::vec2 GetExtents() const { return m_extents; }
 	glm::vec2 GetLocalX() const { return m_localX; }
 	glm::vec2 GetLocalY() const { return m_localY; }

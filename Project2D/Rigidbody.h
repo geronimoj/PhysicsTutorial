@@ -17,6 +17,7 @@ public:
 
 	glm::vec2 GetPosition() const { return m_position; }
 	glm::vec2 GetVelocity() const { return m_velocity; }
+	virtual glm::vec2 ToWorld(glm::vec2 offset) { return GetPosition() + offset; }
 	float GetOrientation() const { return m_orientation; }
 	float GetMass() const { return m_isKinematic ? INT_MAX : m_mass; }
 	float GetMoment() const { return m_isKinematic ? INT_MAX : m_moment; }

@@ -76,6 +76,10 @@ void PhysicsScene::CheckForCollision()
 		{	//Get pointers to the objects
 			PhysicsObject* object1 = m_actors[outer];
 			PhysicsObject* object2 = m_actors[inner];
+
+			if ((int)object1->GetShapeID() < 0 || (int)object2->GetShapeID() < 0)
+				continue;
+
 			//Using the function pointer array, we move our index forward and down the 1D array
 			int functionIdx = ((int)object1->GetShapeID() * (int)ShapeType::SHAPE_COUNT) + (int)object2->GetShapeID();
 			fn collisionFunctionPtr = collisionFunctionArray[functionIdx];
