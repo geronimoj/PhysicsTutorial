@@ -7,6 +7,7 @@ public:
 	Spring(Rigidbody* body1, Rigidbody* body2, float restLength, glm::vec4 colour,
 		float springCoefficient, float damping = 0.1f, 
 		glm::vec2 body1Contact = glm::vec2(0,0), glm::vec2 body2Contact = glm::vec2(0,0));
+	Spring(Rigidbody* body1, Rigidbody* body2, float damping, float springCoefficient);
 	~Spring();
 
 	virtual void FixedUpdate(glm::vec2 gravity, float timeStep);

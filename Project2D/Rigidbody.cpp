@@ -63,6 +63,12 @@ void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2
 		float mass1 = 1.0f / (1.0f / GetMass() + (r1 * r1) / GetMoment());
 		float mass2 = 1.0f / (1.0f / actor2->GetMass() + (r2 * r2) / actor2->GetMoment());
 
+		float friction = 1; //ToDo setup fiction coefficients
+		glm::vec2 perpForce1 = perp * glm::dot(GetVelocity() + GetAngularVelocity() * perp, perp);
+		glm::vec2 perpForce2 = perp * glm::dot(actor2->GetVelocity() + actor2->GetAngularVelocity() * perp, perp);
+
+		ApplyForce(-friction * perpForce1, contact - GetPosition());
+		actor2->ApplyForce(-friction * perpForce2, contact - actor2->GetPosition());
 
 		float elasticity = (GetElasticity() + actor2->GetElasticity()) / 2.0f;
 		 
