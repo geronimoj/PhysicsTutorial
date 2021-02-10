@@ -1,4 +1,5 @@
 #include <Gizmos.h>
+#include <iostream>
 #include "Plane.h"
 #include "PhysicsScene.h"
 
@@ -31,10 +32,8 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	float velocityIntoPlane = glm::dot(relativeVelocity, m_normal);
 
 	glm::vec2 perp(m_normal.y, -m_normal.x);
+	glm::vec2 contactDirection = glm::normalize(glm::vec2(localContact.y, -localContact.x));
 	glm::vec2 velocityAlongPlane = perp * glm::dot(relativeVelocity, perp);
-
-	float friction = 1; //todo setup fiction co-efficients
-	actor2->ApplyForce(-friction * velocityAlongPlane, localContact);
 
 	float elasticity = (GetElasticity() + actor2->GetElasticity()) / 2.0f;
 
@@ -46,7 +45,20 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 
 	glm::vec2 force = m_normal * j;
 
-	actor2->ApplyForce(force, contact - actor2->GetPosition());
+	float preVel = glm::length(actor2->GetVelocity());
+	float kePre = 0.5f * actor2->GetMass() * (preVel * preVel) + 0.5f * actor2->GetMoment() * (actor2->GetAngularVelocity() * actor2->GetAngularVelocity());
+
+	float friction = 1.0f; //todo setup fiction co-efficients
+	//Issues, boxes gain rotation and speed allowing them to gain infinite velocity from collisions
+	actor2->ApplyForce(-friction * velocityAlongPlane, localContact);
+
+	actor2->ApplyForce(force, localContact);
+
+	float postVel = glm::length(actor2->GetVelocity());
+	float kePost = 0.5f * actor2->GetMass() * (postVel * postVel) + 0.5f * actor2->GetMoment() * (actor2->GetAngularVelocity() * actor2->GetAngularVelocity());
+	float delta = kePost - kePre;
+	if (delta > kePost * 0.01f)
+		std::cout << "Kinetic Energy discrepancy greather than 1%. Difference is:" << delta <<  "	Velocity Gain: " << (((delta * 2) / actor2->GetMass()) / postVel) - preVel << std::endl;
 
 	float pen = glm::dot(contact, m_normal) - m_distanceToOrigin;
 	PhysicsScene::ApplyContactForces(actor2, nullptr, m_normal, pen);

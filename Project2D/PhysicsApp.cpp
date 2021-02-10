@@ -51,7 +51,7 @@ bool PhysicsApp::startup() {
 	//Sphere* ball7 = new Sphere(glm::vec2(0, -20), false, glm::vec2(10, -50), 3.0f, 5, glm::vec4(0, 1, 0, 1));
 	//Sphere* ball8 = new Sphere(glm::vec2(0, -30), false, glm::vec2(10, -50), 3.0f, 5, glm::vec4(0, 1, 0, 1));
 	//Sphere* ball9 = new Sphere(glm::vec2(0, -40), false, glm::vec2(10, -50), 3.0f, 5, glm::vec4(0, 1, 0, 1));*/
-	Box* box1 = new Box(glm::vec2(0, 0), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 0);
+	Box* box1 = new Box(glm::vec2(0, 0), false, glm::vec2(0, 50), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 1.5f);
 	//Box* box2 = new Box(glm::vec2(10, 20), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 0, 0, 0, 1);
 	////Spring* spring1 = new Spring(ball1, ball2, 15, glm::vec4(1,1,1,1), 10, 0.1f);
 	///*Spring* spring2 = new Spring(ball2, ball3, 15, glm::vec4(1, 1, 1, 1), 10, 0.1f);
@@ -143,6 +143,6 @@ void PhysicsApp::draw() {
 
 void PhysicsApp::SphereTest()
 {
-	m_physicsScene->AddActor(new Sphere(glm::vec2(-30, 30), false, glm::vec2(100, 0), 3.0f, 15, glm::vec4(0, 1, 0, 1)));
+	//m_physicsScene->AddActor(new Sphere(glm::vec2(-30, 30), false, glm::vec2(10, 0), 3.0f, 15, glm::vec4(0, 1, 0, 1)));
 	//m_physicsScene->AddActor(new Sphere(glm::vec2(30, 5), false, glm::vec2(-100, 0), 3.0f, 15, glm::vec4(0, 1, 0, 1)));
 }
