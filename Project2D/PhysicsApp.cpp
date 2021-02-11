@@ -42,7 +42,7 @@ bool PhysicsApp::startup() {
 
 	SphereTest();
 
-	Box* box1 = new Box(glm::vec2(-30, 0), false, glm::vec2(0, 0), 30.0f, glm::vec4(1, 1, 1, 1), glm::vec2(40, 10), 1, 0, 0, 0, 1);
+	Box* box1 = new Box(glm::vec2(-30, 0), false, glm::vec2(0, 0), 30.0f, glm::vec4(1, 1, 1, 1), glm::vec2(40, 10), 1, 2, 0, 0);
 	//Box* box2 = new Box(glm::vec2(10, 20), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 0, 0, 0, 1);
 
 	m_physicsScene->AddActor(box1);
@@ -69,7 +69,7 @@ void PhysicsApp::shutdown() {
 
 void PhysicsApp::update(float deltaTime) {
 
-	///deltaTime /= 10;
+	//deltaTime /= 10;
 	m_timer += deltaTime;
 
 	// input example

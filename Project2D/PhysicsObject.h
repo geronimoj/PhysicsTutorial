@@ -28,6 +28,8 @@ public:
 
 	static const float MIN_LINEAR_THRESHOLD;
 	static const float MIN_ANGULAR_THRESHOLD;
+	virtual float getEnergy() { return 0; }
+
 protected:
 	ShapeType m_shapeID;
 	float m_elasticity;

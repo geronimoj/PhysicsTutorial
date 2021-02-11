@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <iostream>
 #include "PhysicsScene.h"
 #include "Sphere.h"
 #include "Plane.h"
@@ -57,6 +58,8 @@ void PhysicsScene::Update(float dt)
 		accumulartedTime -= m_timeStep;
 		//Check for any collisions after this update loop
 		CheckForCollision();
+
+		std::cout << getTotalEnergy() << std::endl;
 	}
 }
 
@@ -283,4 +286,15 @@ bool PhysicsScene::Box2Box(PhysicsObject* obj1, PhysicsObject* obj2)
 	}
 
 	return false;
+}
+
+float PhysicsScene::getTotalEnergy()
+{
+	float total = 0.0f;
+	for (auto it = m_actors.begin(); it != m_actors.end(); it++)
+	{
+		PhysicsObject* obj = *it;
+		total += obj->getEnergy();
+	}
+	return total;
 }

@@ -25,6 +25,10 @@ public:
 	float GetKineticEnergy();
 	bool IsKinematic() { return m_isKinematic; }
 
+	virtual float getEnergy() {
+		return 0.5f * GetMass() * glm::dot(m_velocity, m_velocity) + 0.5f * GetMoment() * m_angularVelocity * m_angularVelocity + GetMass() * 100.0f * m_position.y;
+	}
+
 protected:
 	glm::vec2 m_position;
 	glm::vec2 m_velocity;
