@@ -3,6 +3,11 @@
 #include "Plane.h"
 #include "PhysicsScene.h"
 
+float GetMass0(const Rigidbody& actor, float r)
+{
+	return 1.0f / (1.0f / actor.GetMass() + (r * r) / actor.GetMoment());
+}
+
 Plane::Plane(glm::vec2 normal, float distance, glm::vec4 colour, float elasticity) : PhysicsObject(ShapeType::PLANE, elasticity), m_normal(glm::normalize(normal)), m_distanceToOrigin(distance), m_colour(colour)
 {
 }
@@ -27,19 +32,19 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 {
 	glm::vec2 localContact = contact - actor2->GetPosition();
 
+	glm::vec2 perp(m_normal.y, -m_normal.x);
+
 	glm::vec2 relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
 
 	float velocityIntoPlane = glm::dot(relativeVelocity, m_normal);
 
-	glm::vec2 perp(m_normal.y, -m_normal.x);
-	glm::vec2 contactDirection = glm::normalize(glm::vec2(localContact.y, -localContact.x));
-	glm::vec2 velocityAlongPlane = perp * glm::dot(relativeVelocity, perp);
+	float friction = 1.0f; //todo setup fiction co-efficients
 
 	float elasticity = (GetElasticity() + actor2->GetElasticity()) / 2.0f;
 
 	float r = glm::dot(localContact, perp);
 
-	float mass0 = 1.0f / (1.0f / actor2->GetMass() + (r * r) / actor2->GetMoment());
+	float mass0 = GetMass0(*actor2, r);
 
 	float j = -(1 + elasticity) * velocityIntoPlane * mass0;
 
@@ -47,12 +52,23 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 
 	float preVel = glm::length(actor2->GetVelocity());
 	float kePre = 0.5f * actor2->GetMass() * (preVel * preVel) + 0.5f * actor2->GetMoment() * (actor2->GetAngularVelocity() * actor2->GetAngularVelocity());
-
-	float friction = 1.0f; //todo setup fiction co-efficients
-	//Issues, boxes gain rotation and speed allowing them to gain infinite velocity from collisions
-	actor2->ApplyForce(-friction * velocityAlongPlane, localContact);
-
+	//Apply the vertical bounce force off of the plane
 	actor2->ApplyForce(force, localContact);
+	relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
+
+	glm::vec2 velocityAlongPlane = perp * glm::dot(relativeVelocity, perp);
+	glm::vec2 normalForce = -m_normal * (actor2->GetMass() * glm::vec2(0, -100));
+	//Stored as a float because friction force will always be opposed to objects motion
+	float frictionForce = friction * glm::length(normalForce);
+	//Recalculate the mass0 for the frictional force
+	r = glm::dot(localContact, m_normal);
+	mass0 = GetMass0(*actor2, r);
+	//Issues, boxes gain rotation and speed allowing them to gain infinite velocity from collisions
+	actor2->ApplyForce(frictionForce < glm::length(relativeVelocity) ? 
+		//If friction is smaller use frictionForce
+		frictionForce * -glm::normalize(velocityAlongPlane) * mass0
+		//If velocity is smaller use velocity
+		: -velocityAlongPlane * mass0, localContact);
 
 	float postVel = glm::length(actor2->GetVelocity());
 	float kePost = 0.5f * actor2->GetMass() * (postVel * postVel) + 0.5f * actor2->GetMoment() * (actor2->GetAngularVelocity() * actor2->GetAngularVelocity());
