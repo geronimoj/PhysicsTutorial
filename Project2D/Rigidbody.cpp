@@ -2,8 +2,8 @@
 #include "Rigidbody.h"
 #include "PhysicsScene.h"
 
-Rigidbody::Rigidbody(ShapeType shapeID, glm::vec2 position, bool isKinematic, glm::vec2 velocity, float orientation, float mass, float elasticity, float angularVelocity, float linearDrag, float angularDrag) 
-	: PhysicsObject(shapeID, elasticity), m_position(position), m_isKinematic(isKinematic), m_velocity(velocity), m_orientation(orientation), m_mass(mass), m_angularVelocity(angularVelocity), m_moment(0), m_linearDrag(linearDrag), m_angularDrag(angularDrag)
+Rigidbody::Rigidbody(ShapeType shapeID, glm::vec2 position, bool isKinematic, glm::vec2 velocity, float orientation, float mass, float elasticity, float angularVelocity, float linearDrag, float angularDrag, float staticFriction, float kinematicFriction)
+	: PhysicsObject(shapeID, elasticity, staticFriction, kinematicFriction), m_position(position), m_isKinematic(isKinematic), m_velocity(velocity), m_orientation(orientation), m_mass(mass), m_angularVelocity(angularVelocity), m_moment(0), m_linearDrag(linearDrag), m_angularDrag(angularDrag)
 {
 }
 
@@ -60,22 +60,46 @@ void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2
 
 	if (v1 > v2)
 	{
-		float mass1 = 1.0f / (1.0f / GetMass() + (r1 * r1) / GetMoment());
-		float mass2 = 1.0f / (1.0f / actor2->GetMass() + (r2 * r2) / actor2->GetMoment());
+		float mass1 = PhysicsScene::GetMass0(*this, r1);
+		float mass2 = PhysicsScene::GetMass0(*actor2, r2);
 
-		float friction = 1; //ToDo setup fiction coefficients
-		glm::vec2 perpForce1 = perp * glm::dot(GetVelocity() + GetAngularVelocity() * perp, perp);
-		glm::vec2 perpForce2 = perp * glm::dot(actor2->GetVelocity() + actor2->GetAngularVelocity() * perp, perp);
-
-		ApplyForce(-friction * perpForce1, contact - GetPosition());
-		actor2->ApplyForce(-friction * perpForce2, contact - actor2->GetPosition());
+		glm::vec2 preVel1 = GetVelocity();
+		glm::vec2 preVel2 = actor2->GetVelocity();
 
 		float elasticity = (GetElasticity() + actor2->GetElasticity()) / 2.0f;
-		 
-		glm::vec2 force = (1 + elasticity) * mass1 * mass2 / (mass1 + mass2) * (v1 - v2) * normal;
 
+		glm::vec2 force = (1 + elasticity) * mass1 * mass2 / (mass1 + mass2) * (v1 - v2) * normal;
+		//Apply elastic force
 		ApplyForce(-force, contact - m_position);
 		actor2->ApplyForce(force, contact - actor2->GetPosition());
+
+		//FRICTION
+		r1 = glm::dot(contact - GetPosition(), normal);
+		r2 = glm::dot(contact - actor2->GetPosition(), normal);
+		//Recalculate the mass at the point of collision
+		mass1 = PhysicsScene::GetMass0(*this, r1);
+		mass2 = PhysicsScene::GetMass0(*actor2, r2);
+		//If neither of us are moving, then use static friction otherwise use kinematic friction
+		float friction = actor2->GetVelocity() == glm::vec2(0, 0) && GetVelocity() == glm::vec2(0,0) ? m_staticFrictionCo + actor2->GetStaticFriction() : m_kinematicFrictionCo + actor2->GetKinematicFriction();
+		glm::vec2 perpForce1 = perp * glm::dot(GetVelocity() + GetAngularVelocity() * perp, perp);
+		glm::vec2 perpForce2 = perp * glm::dot(actor2->GetVelocity() + actor2->GetAngularVelocity() * perp, perp);
+		//The normal force will be their combined forces pushing into each other
+		glm::vec2 normalForce = -normal * (GetMass() * glm::length(GetVelocity() - preVel1));
+		normalForce += -normal * (actor2->GetMass() * glm::length(actor2->GetVelocity() - preVel2));
+		float frictionForce = friction * glm::length(normalForce);
+		//Apply frictional forces
+		ApplyForce(frictionForce < glm::length(perpForce1) ?
+			//If friction is smaller use frictionForce
+			frictionForce * -glm::normalize(perpForce1) * mass1
+			//If velocity is smaller use velocity
+			: -perpForce1 * mass1, contact - GetPosition());
+
+		actor2->ApplyForce(frictionForce < glm::length(perpForce2) ?
+			//If friction is smaller use frictionForce
+			frictionForce * -glm::normalize(perpForce2) * mass2
+			//If velocity is smaller use velocity
+			: -perpForce2 * mass2, contact - actor2->GetPosition());
+
 		
 		if (pen > 0)
 			PhysicsScene::ApplyContactForces(this, actor2, normal, pen);

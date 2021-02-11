@@ -2,13 +2,13 @@
 #include "Spring.h"
 
 Spring::Spring(Rigidbody* body1, Rigidbody* body2, float restLength, glm::vec4 colour, float springCoefficient, float damping, glm::vec2 body1Contact, glm::vec2 body2Contact) 
-	: PhysicsObject(ShapeType::SPRING, 0), m_body1(body1), m_body2(body2), m_contact1(body1Contact), m_contact2(body2Contact), m_restLength(restLength),
+	: PhysicsObject(ShapeType::SPRING, 0, 0, 0), m_body1(body1), m_body2(body2), m_contact1(body1Contact), m_contact2(body2Contact), m_restLength(restLength),
 m_damping(damping), m_springCoefficient(springCoefficient), m_colour(colour)
 {
 }
 
 Spring::Spring(Rigidbody* body1, Rigidbody* body2, float damping, float springCoefficient)
-	: PhysicsObject(ShapeType::SPRING, 0), m_body1(body1), m_body2(body2), m_contact1(glm::vec2(0, 0)), m_contact2(glm::vec2(0,0)), m_damping(damping), m_springCoefficient(springCoefficient), m_colour(glm::vec4(1,1,1,1))
+	: PhysicsObject(ShapeType::SPRING, 0, 0, 0), m_body1(body1), m_body2(body2), m_contact1(glm::vec2(0, 0)), m_contact2(glm::vec2(0,0)), m_damping(damping), m_springCoefficient(springCoefficient), m_colour(glm::vec4(1,1,1,1))
 {
 	m_restLength = glm::length(m_body1->ToWorld(m_contact1) - m_body2->ToWorld(m_contact2));
 }

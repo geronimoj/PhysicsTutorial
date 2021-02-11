@@ -3,12 +3,8 @@
 #include "Plane.h"
 #include "PhysicsScene.h"
 
-float GetMass0(const Rigidbody& actor, float r)
-{
-	return 1.0f / (1.0f / actor.GetMass() + (r * r) / actor.GetMoment());
-}
-
-Plane::Plane(glm::vec2 normal, float distance, glm::vec4 colour, float elasticity) : PhysicsObject(ShapeType::PLANE, elasticity), m_normal(glm::normalize(normal)), m_distanceToOrigin(distance), m_colour(colour)
+Plane::Plane(glm::vec2 normal, float distance, glm::vec4 colour, float elasticity, float staticFriction, float kinematicFriction)
+	: PhysicsObject(ShapeType::PLANE, elasticity, staticFriction, kinematicFriction), m_normal(glm::normalize(normal)), m_distanceToOrigin(distance), m_colour(colour)
 {
 }
 
@@ -38,33 +34,35 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 
 	float velocityIntoPlane = glm::dot(relativeVelocity, m_normal);
 
-	float friction = 1.0f; //todo setup fiction co-efficients
+	float friction = actor2->GetVelocity() == glm::vec2(0,0) ? m_staticFrictionCo + actor2->GetStaticFriction() : m_kinematicFrictionCo + actor2->GetKinematicFriction(); //todo setup fiction co-efficients
 
 	float elasticity = (GetElasticity() + actor2->GetElasticity()) / 2.0f;
 
 	float r = glm::dot(localContact, perp);
 
-	float mass0 = GetMass0(*actor2, r);
+	float mass0 = PhysicsScene::GetMass0(*actor2, r);
 
 	float j = -(1 + elasticity) * velocityIntoPlane * mass0;
 
 	glm::vec2 force = m_normal * j;
 
-	float preVel = glm::length(actor2->GetVelocity());
-	float kePre = 0.5f * actor2->GetMass() * (preVel * preVel) + 0.5f * actor2->GetMoment() * (actor2->GetAngularVelocity() * actor2->GetAngularVelocity());
+	glm::vec2 preVel = actor2->GetVelocity();
+	float kePre = 0.5f * actor2->GetMass() * (glm::length(preVel) * glm::length(preVel)) + 0.5f * actor2->GetMoment() * (actor2->GetAngularVelocity() * actor2->GetAngularVelocity());
 	//Apply the vertical bounce force off of the plane
 	actor2->ApplyForce(force, localContact);
 	relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
+	//Get the acceleration over this time skip
+	float accel = glm::length(actor2->GetVelocity() - preVel);
 
 	glm::vec2 velocityAlongPlane = perp * glm::dot(relativeVelocity, perp);
-	glm::vec2 normalForce = -m_normal * (actor2->GetMass() * glm::vec2(0, -100));
+	glm::vec2 normalForce = -m_normal * (actor2->GetMass() * accel);
 	//Stored as a float because friction force will always be opposed to objects motion
 	float frictionForce = friction * glm::length(normalForce);
 	//Recalculate the mass0 for the frictional force
 	r = glm::dot(localContact, m_normal);
-	mass0 = GetMass0(*actor2, r);
-	//Issues, boxes gain rotation and speed allowing them to gain infinite velocity from collisions
-	actor2->ApplyForce(frictionForce < glm::length(relativeVelocity) ? 
+	mass0 = PhysicsScene::GetMass0(*actor2, r);
+
+	actor2->ApplyForce(frictionForce < glm::length(velocityAlongPlane) ? 
 		//If friction is smaller use frictionForce
 		frictionForce * -glm::normalize(velocityAlongPlane) * mass0
 		//If velocity is smaller use velocity
@@ -74,7 +72,7 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	float kePost = 0.5f * actor2->GetMass() * (postVel * postVel) + 0.5f * actor2->GetMoment() * (actor2->GetAngularVelocity() * actor2->GetAngularVelocity());
 	float delta = kePost - kePre;
 	if (delta > kePost * 0.01f)
-		std::cout << "Kinetic Energy discrepancy greather than 1%. Difference is:" << delta <<  "	Velocity Gain: " << (((delta * 2) / actor2->GetMass()) / postVel) - preVel << std::endl;
+		std::cout << "Kinetic Energy discrepancy greather than 1%. Difference is:" << std::endl;
 
 	float pen = glm::dot(contact, m_normal) - m_distanceToOrigin;
 	PhysicsScene::ApplyContactForces(actor2, nullptr, m_normal, pen);

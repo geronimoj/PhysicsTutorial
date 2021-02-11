@@ -25,6 +25,7 @@ public:
 	void CheckForCollision();
 
 	static void ApplyContactForces(Rigidbody* actor1, Rigidbody* actor2, glm::vec2 norm, float pen);
+	static float GetMass0(const Rigidbody& actor, float r);
 
 	static bool Sphere2Sphere(PhysicsObject*, PhysicsObject*);
 	static bool Sphere2Plane(PhysicsObject*, PhysicsObject*);

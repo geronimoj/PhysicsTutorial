@@ -107,6 +107,11 @@ void PhysicsScene::ApplyContactForces(Rigidbody* actor1, Rigidbody* actor2, glm:
 		actor2->SetPosition(actor2->GetPosition() + (1 - body1Factor) * norm * pen);
 }
 
+float PhysicsScene::GetMass0(const Rigidbody& actor, float r)
+{
+	return 1.0f / (1.0f / actor.GetMass() + (r * r) / actor.GetMoment());
+}
+
 bool PhysicsScene::Sphere2Sphere(PhysicsObject* obj1, PhysicsObject* obj2)
 {	//Cast our physicsobjects to sphere types
 	Sphere* sphere1 = dynamic_cast<Sphere*>(obj1); 
