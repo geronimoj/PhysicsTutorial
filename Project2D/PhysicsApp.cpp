@@ -42,47 +42,10 @@ bool PhysicsApp::startup() {
 
 	SphereTest();
 
-	////Sphere* ball1 = new Sphere(glm::vec2(0, 100), true, glm::vec2(50, 30), 3.0f, 5, glm::vec4(1, 0, 0, 1));
-	////Sphere* ball2 = new Sphere(glm::vec2(0, 30), false, glm::vec2(10, -50), 3.0f, 5, glm::vec4(0, 1, 0, 1));
-	///*Sphere* ball3 = new Sphere(glm::vec2(0, 20), false, glm::vec2(10, -50), 3.0f, 5, glm::vec4(0, 1, 0, 1));
-	//Sphere* ball4 = new Sphere(glm::vec2(0, 10), false, glm::vec2(10, -50), 3.0f, 5, glm::vec4(0, 1, 0, 1));
-	//Sphere* ball5 = new Sphere(glm::vec2(0, 0), false, glm::vec2(10, -50), 3.0f, 5, glm::vec4(0, 1, 0, 1));
-	//Sphere* ball6 = new Sphere(glm::vec2(0, -10), false, glm::vec2(10, -50), 3.0f, 5, glm::vec4(0, 1, 0, 1));
-	//Sphere* ball7 = new Sphere(glm::vec2(0, -20), false, glm::vec2(10, -50), 3.0f, 5, glm::vec4(0, 1, 0, 1));
-	//Sphere* ball8 = new Sphere(glm::vec2(0, -30), false, glm::vec2(10, -50), 3.0f, 5, glm::vec4(0, 1, 0, 1));
-	//Sphere* ball9 = new Sphere(glm::vec2(0, -40), false, glm::vec2(10, -50), 3.0f, 5, glm::vec4(0, 1, 0, 1));*/
-	//Box* box1 = new Box(glm::vec2(0, 0), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 20), 0, 0, 0, 0, 0.5f);
+	Box* box1 = new Box(glm::vec2(-30, 0), false, glm::vec2(0, 0), 30.0f, glm::vec4(1, 1, 1, 1), glm::vec2(40, 10), 1, 0, 0, 0, 1);
 	//Box* box2 = new Box(glm::vec2(10, 20), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 0, 0, 0, 1);
-	////Spring* spring1 = new Spring(ball1, ball2, 15, glm::vec4(1,1,1,1), 10, 0.1f);
-	///*Spring* spring2 = new Spring(ball2, ball3, 15, glm::vec4(1, 1, 1, 1), 10, 0.1f);
-	//Spring* spring3 = new Spring(ball3, ball4, 15, glm::vec4(1, 1, 1, 1), 10, 0.1f);
-	//Spring* spring4 = new Spring(ball4, ball5, 15, glm::vec4(1, 1, 1, 1), 10, 0.1f);
-	//Spring* spring5 = new Spring(ball5, ball6, 15, glm::vec4(1, 1, 1, 1), 10, 0.1f);
-	//Spring* spring6 = new Spring(ball6, ball7, 15, glm::vec4(1, 1, 1, 1), 10, 0.1f);
-	//Spring* spring7 = new Spring(ball7, ball8, 15, glm::vec4(1, 1, 1, 1), 10, 0.1f);
-	//Spring* spring8 = new Spring(ball8, ball9, 15, glm::vec4(1, 1, 1, 1), 10, 0.1f);*/
 
-	////m_physicsScene->AddActor(ball1);
-	////m_physicsScene->AddActor(ball2);
-	///*m_physicsScene->AddActor(ball3);
-	//m_physicsScene->AddActor(ball4);
-	//m_physicsScene->AddActor(ball5);
-	//m_physicsScene->AddActor(ball6);
-	//m_physicsScene->AddActor(ball7);
-	//m_physicsScene->AddActor(ball8);
-	//m_physicsScene->AddActor(ball9);*/
-	///*m_physicsScene->AddActor(spring1);
-	//m_physicsScene->AddActor(spring2);
-	//m_physicsScene->AddActor(spring3);
-	//m_physicsScene->AddActor(spring4);
-	//m_physicsScene->AddActor(spring5);
-	//m_physicsScene->AddActor(spring6);
-	//m_physicsScene->AddActor(spring7);
-	//m_physicsScene->AddActor(spring8);*/
-	//m_physicsScene->AddActor(plane1);
-	//m_physicsScene->AddActor(plane2);
-	//m_physicsScene->AddActor(plane3);
-	//m_physicsScene->AddActor(box1);
+	m_physicsScene->AddActor(box1);
 	//m_physicsScene->AddActor(box2);
 
 	//std::vector<std::string> sb;
@@ -106,6 +69,7 @@ void PhysicsApp::shutdown() {
 
 void PhysicsApp::update(float deltaTime) {
 
+	///deltaTime /= 10;
 	m_timer += deltaTime;
 
 	// input example
@@ -143,6 +107,6 @@ void PhysicsApp::draw() {
 
 void PhysicsApp::SphereTest()
 {
-	//m_physicsScene->AddActor(new Sphere(glm::vec2(-30, 30), false, glm::vec2(0, 20), 3.0f, 15, glm::vec4(0, 1, 0, 1), -10));
-	m_physicsScene->AddActor(new Sphere(glm::vec2(50, -35), false, glm::vec2(0, 0), 3.0f, 15, glm::vec4(0, 1, 0, 1), 200));
+	//m_physicsScene->AddActor(new Sphere(glm::vec2(-10, 30), false, glm::vec2(0, 20), 3.0f, 15, glm::vec4(0, 1, 0, 1)));
+	//m_physicsScene->AddActor(new Sphere(glm::vec2(50, -35), false, glm::vec2(0, 0), 3.0f, 15, glm::vec4(0, 1, 0, 1), 0, 1));
 }

@@ -34,7 +34,8 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 
 	float velocityIntoPlane = glm::dot(relativeVelocity, m_normal);
 
-	float friction = actor2->GetVelocity() == glm::vec2(0,0) ? m_staticFrictionCo + actor2->GetStaticFriction() : m_kinematicFrictionCo + actor2->GetKinematicFriction(); //todo setup fiction co-efficients
+	float friction = actor2->GetVelocity() == glm::vec2(0,0) ? m_staticFrictionCo + actor2->GetStaticFriction() : m_kinematicFrictionCo + actor2->GetKinematicFriction();
+	friction /= 2;
 
 	float elasticity = (GetElasticity() + actor2->GetElasticity()) / 2.0f;
 

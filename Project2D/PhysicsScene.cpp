@@ -148,7 +148,7 @@ bool PhysicsScene::Sphere2Plane(PhysicsObject* obj1, PhysicsObject* obj2)
 			//Do the math from the tutorial. We re-use d to reduce memory usage
 			d = glm::dot(sphere->GetPosition(), plane->GetNormal()) - plane->GetDistance() - sphere->GetRadius();
 
-			if (d <= 0)
+			if (d < 0)
 			{	//Do propper collision
 				plane->ResolveCollision(sphere, sphere->GetPosition() - sphere->GetRadius() * plane->GetNormal());
 

@@ -81,6 +81,8 @@ void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2
 		mass2 = PhysicsScene::GetMass0(*actor2, r2);
 		//If neither of us are moving, then use static friction otherwise use kinematic friction
 		float friction = actor2->GetVelocity() == glm::vec2(0, 0) && GetVelocity() == glm::vec2(0,0) ? m_staticFrictionCo + actor2->GetStaticFriction() : m_kinematicFrictionCo + actor2->GetKinematicFriction();
+		friction /= 2;
+		
 		glm::vec2 perpForce1 = perp * glm::dot(GetVelocity() + GetAngularVelocity() * perp, perp);
 		glm::vec2 perpForce2 = perp * glm::dot(actor2->GetVelocity() + actor2->GetAngularVelocity() * perp, perp);
 		//The normal force will be their combined forces pushing into each other
