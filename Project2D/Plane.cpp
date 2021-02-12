@@ -36,7 +36,11 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	glm::vec2 expectedVelocity(relativeVelocity);
 
 	glm::vec2 preVel = actor2->GetVelocity();
-	float kePre = getEnergy();
+	float kePre = actor2->getEnergy();
+	float lKePre = actor2->GetLinearEnergy();
+	float aKePre = actor2->GetAngularEnergy();
+	glm::vec2 velocityDueToRotation = actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
+
 	float velocityIntoPlane = glm::dot(relativeVelocity, m_normal);
 
 	float friction = actor2->GetVelocity() == glm::vec2(0,0) ? m_staticFrictionCo + actor2->GetStaticFriction() : m_kinematicFrictionCo + actor2->GetKinematicFriction();
@@ -44,8 +48,13 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 
 	float r = 0;
 	float mass0 = 0;
+	float lossToFriction = 0;
+	float lossToElasticity = 0;
 
 	float elasticity = (GetElasticity() + actor2->GetElasticity()) / 2.0f;
+
+	relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
+
 
 	//Elasticity
 	//Get the effective mass of the contact point
@@ -60,18 +69,14 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	expectedVelocity += force / mass0;
 #endif
 #ifdef INFERIOR
-	actor2->ApplyForce(force, localContact);
-#endif // 
-
 	//Apply the vertical bounce force off of the plane
-	//actor2->ApplyForce(force, localContact);
-
-	//Friction
-#ifdef INFERIOR
-	relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
+	actor2->ApplyForce(force, localContact);
 #endif
+
+	relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
+	//Friction
 	//Get the acceleration over this time skip
-	float accel = glm::length(preVel);
+	float accel = glm::dot(relativeVelocity + actor2->GetMass() * glm::vec2(0, -100), m_normal);
 
 	glm::vec2 velocityAlongPlane = perp * glm::dot(relativeVelocity, perp);
 	glm::vec2 normalForce = -m_normal * (actor2->GetMass() * accel);
@@ -87,10 +92,16 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 		//If velocity is smaller use velocity
 		: -velocityAlongPlane * mass0;
 
+	//Get the loss due to friction. W = Ffriction * distance. Distance in this case is the players movement along their horizontal plane at the start of this update cycle
+	//lossToFriction = glm::length(fForce) * glm::dot(expectedVelocity, perp) * PhysicsScene::GetTimeStep();
+
 #ifdef INFERIOR
 	actor2->ApplyForce(fForce, localContact);
-#endif // 
+#endif 
 
+	
+
+	relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
 #ifdef INSTANT
 	expectedVelocity += fForce / mass0;
 	//Calculate the finalVelocity, basically how much we need to accelerate the point to be equal to expectedVelocity
@@ -102,18 +113,11 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	actor2->ApplyForce(finalVelocity * mass0, localContact);
 #endif
 
-	//actor2->ApplyForce(frictionForce < glm::length(velocityAlongPlane) ? 
-	//	//If friction is smaller use frictionForce
-	//	frictionForce * -glm::normalize(velocityAlongPlane) * mass0
-	//	//If velocity is smaller use velocity
-	//	: -velocityAlongPlane * mass0, localContact);
-	relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
-
-	float postVel = glm::length(actor2->GetVelocity());
-	float kePost = getEnergy();
+	float kePost = actor2->getEnergy() + lossToFriction + lossToElasticity;
 	float delta = kePost - kePre;
-	if (delta > kePost * 0.01f)
-		std::cout << "Kinetic Energy discrepancy greather than 1%. Difference is:" << std::endl;
+	std::cout << "Total Energy Change: " << delta << std::endl;
+	if (glm::abs(delta) > glm::abs(kePost) * 0.01f)
+		std::cout << "Kinetic Energy discrepancy greather than 1%." << std::endl << "Linear Energy Dif:" << actor2->GetLinearEnergy() - lKePre << "	Angular Energy Dif: " << actor2->GetAngularEnergy() - aKePre << std::endl;
 
 	float pen = glm::dot(contact, m_normal) - m_distanceToOrigin;
 	PhysicsScene::ApplyContactForces(actor2, nullptr, m_normal, pen);

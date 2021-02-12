@@ -5,6 +5,8 @@
 #include "Plane.h"
 #include "Box.h"
 
+float PhysicsScene::m_timeStep = 0;
+
 typedef bool(*fn)(PhysicsObject*, PhysicsObject*);
 
 static fn collisionFunctionArray[] =
@@ -14,8 +16,9 @@ static fn collisionFunctionArray[] =
 	PhysicsScene::Box2Plane, PhysicsScene::Box2Sphere, PhysicsScene::Box2Box
 };
 
-PhysicsScene::PhysicsScene() : m_gravity(glm::vec2(0,0)), m_timeStep(0.01f)
+PhysicsScene::PhysicsScene() : m_gravity(glm::vec2(0,0))
 {
+	m_timeStep = 0.01f;
 }
 
 PhysicsScene::~PhysicsScene()
@@ -59,7 +62,7 @@ void PhysicsScene::Update(float dt)
 		//Check for any collisions after this update loop
 		CheckForCollision();
 
-		std::cout << getTotalEnergy() << std::endl;
+		//std::cout << "Total Energy Of Simulation: " << getTotalEnergy() << std::endl;
 	}
 }
 

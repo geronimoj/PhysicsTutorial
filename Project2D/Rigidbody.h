@@ -14,6 +14,7 @@ public:
 
 	void SetPosition(glm::vec2 position) { m_position = position; }
 	void SetKinematic(bool state) { m_isKinematic = state; }
+	void SetAngularVelocity(float velocity) { m_angularVelocity = velocity; }
 
 	glm::vec2 GetPosition() const { return m_position; }
 	glm::vec2 GetVelocity() const { return m_velocity; }
@@ -26,8 +27,12 @@ public:
 	bool IsKinematic() { return m_isKinematic; }
 
 	virtual float getEnergy() {
-		return 0.5f * GetMass() * glm::dot(m_velocity, m_velocity) + 0.5f * GetMoment() * m_angularVelocity * m_angularVelocity + GetMass() * 100.0f * m_position.y;
+		return GetLinearEnergy() + GetAngularEnergy() + GetPotentialEnergy();
 	}
+
+	float GetLinearEnergy() { return 0.5f * GetMass() * glm::dot(m_velocity, m_velocity); }
+	float GetAngularEnergy() { return 0.5f * GetMoment() * (m_angularVelocity * m_angularVelocity); }
+	float GetPotentialEnergy() { return GetMass() * 100.0f * m_position.y;}
 
 protected:
 	glm::vec2 m_position;
