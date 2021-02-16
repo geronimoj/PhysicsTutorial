@@ -4,7 +4,6 @@
 #include "PhysicsScene.h"
 #define INFERIOR
 
-
 Plane::Plane(glm::vec2 normal, float distance, glm::vec4 colour, float elasticity, float staticFriction, float kinematicFriction)
 	: PhysicsObject(ShapeType::PLANE, elasticity, staticFriction, kinematicFriction), m_normal(glm::normalize(normal)), m_distanceToOrigin(distance), m_colour(colour)
 {
@@ -28,6 +27,10 @@ void Plane::Draw()
 
 void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 {
+	if (contact.x > 0)
+	{
+		contact = contact;
+	}
 	glm::vec2 localContact = contact - actor2->GetPosition();
 
 	glm::vec2 perp(m_normal.y, -m_normal.x);
@@ -41,7 +44,6 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	float aKePre = actor2->GetAngularEnergy();
 	glm::vec2 velocityDueToRotation = actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
 
-	float velocityIntoPlane = glm::dot(relativeVelocity, m_normal);
 
 	float friction = actor2->GetVelocity() == glm::vec2(0,0) ? m_staticFrictionCo + actor2->GetStaticFriction() : m_kinematicFrictionCo + actor2->GetKinematicFriction();
 	friction /= 2;
@@ -53,9 +55,8 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 
 	float elasticity = (GetElasticity() + actor2->GetElasticity()) / 2.0f;
 
-	relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
 
-
+	float velocityIntoPlane = glm::dot(relativeVelocity, m_normal);
 	//Elasticity
 	//Get the effective mass of the contact point
 	r = glm::dot(localContact, perp);
@@ -72,11 +73,17 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	//Apply the vertical bounce force off of the plane
 	actor2->ApplyForce(force, localContact);
 #endif
-
+	//Since we know, from previous tests, that the elasticity part does not gain or lose energy (except for floating point errors)
+	//We can just cheat to calculate the loss due to elasticity.
+	lossToElasticity = kePre - actor2->getEnergy();
+	//Update our debugging values
+	lKePre = actor2->GetLinearEnergy();
+	aKePre = actor2->GetAngularEnergy();
 	relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
 	//Friction
-	//Get the acceleration over this time skip
-	float accel = glm::dot(relativeVelocity + actor2->GetMass() * glm::vec2(0, -100), m_normal);
+	//Get the acceleration over this time skip. Since this is a plane, the expectedVelocity (inital relative velocity)
+	//Would be equal to the acceleration the plane puts onto it to stop it from intersecting it
+	float accel = glm::dot(expectedVelocity + actor2->GetMass() * glm::vec2(0, -100), -m_normal);
 
 	glm::vec2 velocityAlongPlane = perp * glm::dot(relativeVelocity, perp);
 	glm::vec2 normalForce = -m_normal * (actor2->GetMass() * accel);
@@ -92,16 +99,34 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 		//If velocity is smaller use velocity
 		: -velocityAlongPlane * mass0;
 
-	//Get the loss due to friction. W = Ffriction * distance. Distance in this case is the players movement along their horizontal plane at the start of this update cycle
-	//lossToFriction = glm::length(fForce) * glm::dot(expectedVelocity, perp) * PhysicsScene::GetTimeStep();
+	//Calculate torque
+	float torque = fForce.y * localContact.x - localContact.y * fForce.x;
+	//From torque, we can calculate the angularAcceleration caused by the torque
+	//R - Torque
+	//I - Moment
+	//a - Angular Acceleration
+	//R = Ia
+	//a = R / I
+	float angularAcceleration = torque / actor2->GetMoment();
+	//Now we know the final angular velocity, we can calculate the rotational kinetic energy at this moment in time.
+	float expectedAngularVelocity = actor2->GetAngularVelocity() + angularAcceleration;
+	//We have now calculated the final energy from friction but we need the change
+	lossToFriction = 0.5f * actor2->GetMoment() * (expectedAngularVelocity * expectedAngularVelocity);
+	//aKePre is the angular kinetic energy before friction. It was re-calculated after elasticity.
+	//Now we know the change in rotational kinetic energy. I should probably rename those functions.
+	lossToFriction = aKePre - lossToFriction;
+	//Calculate the change in linear velocity from this force
+	glm::vec2 linearVelocity = fForce / actor2->GetMass();
+	//Calculate the final linear velocity and thus, final linear kinetic energy. And then get the change in energy and done
+	linearVelocity = actor2->GetVelocity() + linearVelocity;
+	lossToFriction += lKePre - (0.5f * actor2->GetMass() * glm::dot(linearVelocity, linearVelocity));
 
 #ifdef INFERIOR
 	actor2->ApplyForce(fForce, localContact);
 #endif 
-
-	
-
+#ifdef DEBUG
 	relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
+#endif
 #ifdef INSTANT
 	expectedVelocity += fForce / mass0;
 	//Calculate the finalVelocity, basically how much we need to accelerate the point to be equal to expectedVelocity

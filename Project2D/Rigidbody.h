@@ -31,15 +31,16 @@ public:
 	}
 
 	float GetLinearEnergy() { return 0.5f * GetMass() * glm::dot(m_velocity, m_velocity); }
+	//Rename to RotationalKineticEnergy. Do the same for linear energy
 	float GetAngularEnergy() { return 0.5f * GetMoment() * (m_angularVelocity * m_angularVelocity); }
-	float GetPotentialEnergy() { return GetMass() * 100.0f * m_position.y;}
+	float GetPotentialEnergy() { return GetMass() * 100.0f * m_position.y; }
 
 protected:
 	glm::vec2 m_position;
 	glm::vec2 m_velocity;
+	float m_angularVelocity;
 	float m_mass;
 	float m_orientation;
-	float m_angularVelocity;
 	float m_moment;
 	float m_linearDrag;
 	float m_angularDrag;
