@@ -4,8 +4,8 @@
 
 void Softbody::Build(PhysicsScene* scene, glm::vec2 position, float spacing, float springForce, float damping, std::vector<std::string>& strings)
 {
-	int numOfColumns = strings.size();
-	int numOfRows = strings[0].length();
+	size_t numOfColumns = strings.size();
+	size_t numOfRows = strings[0].length();
 									//We have to static cast to get rid of a warning
 	Sphere** spheres = new Sphere* [static_cast<unsigned __int64>(numOfRows) * static_cast<unsigned __int64>(numOfColumns)];
 	//Create the spheres
@@ -32,10 +32,10 @@ void Softbody::Build(PhysicsScene* scene, glm::vec2 position, float spacing, flo
 	for (int row = 1; row < numOfRows; row++)
 		for (int column = 1; column < numOfColumns; column++)
 		{
-			Sphere* s11 = spheres[row * numOfColumns + column];
-			Sphere* s01 = spheres[(row - 1) * numOfColumns + column];
-			Sphere* s10 = spheres[row * numOfColumns + column - 1];
-			Sphere* s00 = spheres[(row - 1) * numOfColumns + column - 1];
+			Sphere* s11 = spheres[row * (int)numOfColumns + column];
+			Sphere* s01 = spheres[(row - 1) * (int)numOfColumns + column];
+			Sphere* s10 = spheres[row * (int)numOfColumns + column - 1];
+			Sphere* s00 = spheres[(row - 1) * (int)numOfColumns + column - 1];
 
 			if (s11 && s01)
 				scene->AddActor(new Spring(s11, s01, damping, springForce));
