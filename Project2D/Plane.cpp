@@ -120,6 +120,25 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	//Calculate the final linear velocity and thus, final linear kinetic energy. And then get the change in energy and done
 	linearVelocity = actor2->GetVelocity() + linearVelocity;
 	lossToFriction += lKePre - (0.5f * actor2->GetMass() * glm::dot(linearVelocity, linearVelocity));
+	
+	//We also need to acount for the velocity of the body assuming assuming the contact point is the new pivot point
+	//Apply the velocity of the center of mass as a force to the center of mass 
+	//but assuming that the contact point (pivot point) is the center of the object.
+	//This will apply a rotation and we will need to adjust the velocity of the CoM so
+	//the pivot point does not move as well as applying upwards velocity so the pivot point
+	//Does not get forced into the ground.
+	//This force also needs to be affected by the angle between the force and the radius.
+	//This force should also account for the velocity after elasticity so that value is conserved.
+
+	//The friction calculations need to retain elasticity and account for 
+	//1.inital perp velocity of CoM and 
+	//2.perp after and before elasticity of relative velocity.
+
+	//Notes:
+	// - The initial perp velocity should determine if friction is kinetic or static
+	// - The perp vector of the CoM won't change from elasticity
+	// - We might be able to use the sum of the relative velocity before & after elasticity to determine the direction of friction.
+	// - Friction should be applied in two phases. 1. Apply friction force to slow down point. 2. Apply rotation forces based on the velocity of the CoM
 
 #ifdef INFERIOR
 	actor2->ApplyForce(fForce, localContact);
