@@ -28,6 +28,7 @@ void Box::Draw()
 
 	aie::Gizmos::add2DTri(p1, p2, p4, m_colour);
 	aie::Gizmos::add2DTri(p1, p4, p3, m_colour);
+	aie::Gizmos::add2DCircle(m_position, 1, 8, glm::vec4(0, 0, 0, 1));
 }
 
 bool Box::CheckBoxCorners(const Box& box, glm::vec2& contact, int& numContacts, float& pen, glm::vec2& edgeNormal)

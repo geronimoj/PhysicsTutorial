@@ -15,6 +15,7 @@ public:
 	void SetPosition(glm::vec2 position) { m_position = position; }
 	void SetKinematic(bool state) { m_isKinematic = state; }
 	void SetAngularVelocity(float velocity) { m_angularVelocity = velocity; }
+	void SetVelocity(glm::vec2 velocity) { m_velocity = velocity; }
 
 	glm::vec2 GetPosition() const { return m_position; }
 	glm::vec2 GetVelocity() const { return m_velocity; }

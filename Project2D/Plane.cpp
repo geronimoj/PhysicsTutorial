@@ -3,6 +3,7 @@
 #include "Plane.h"
 #include "PhysicsScene.h"
 #define INFERIOR
+#define DEBUG
 
 Plane::Plane(glm::vec2 normal, float distance, glm::vec4 colour, float elasticity, float staticFriction, float kinematicFriction)
 	: PhysicsObject(ShapeType::PLANE, elasticity, staticFriction, kinematicFriction), m_normal(glm::normalize(normal)), m_distanceToOrigin(distance), m_colour(colour)
@@ -27,10 +28,6 @@ void Plane::Draw()
 
 void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 {
-	if (contact.x > 0)
-	{
-		contact = contact;
-	}
 	glm::vec2 localContact = contact - actor2->GetPosition();
 
 	glm::vec2 perp(m_normal.y, -m_normal.x);
@@ -45,41 +42,16 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	glm::vec2 velocityDueToRotation = actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
 
 
-	float friction = actor2->GetVelocity() == glm::vec2(0,0) ? m_staticFrictionCo + actor2->GetStaticFriction() : m_kinematicFrictionCo + actor2->GetKinematicFriction();
+	float friction = glm::abs(glm::dot(relativeVelocity, perp)) <= 0.0001f ? m_staticFrictionCo + actor2->GetStaticFriction() : m_kinematicFrictionCo + actor2->GetKinematicFriction();
 	friction /= 2;
 
 	float r = 0;
 	float mass0 = 0;
 	float lossToFriction = 0;
 	float lossToElasticity = 0;
-
-	float elasticity = (GetElasticity() + actor2->GetElasticity()) / 2.0f;
-
-
-	float velocityIntoPlane = glm::dot(relativeVelocity, m_normal);
-	//Elasticity
-	//Get the effective mass of the contact point
-	r = glm::dot(localContact, perp);
-	mass0 = PhysicsScene::GetMass0(*actor2, r);
-	//Calculate the magnitude of force to apply
-	float j = -(1 + elasticity) * velocityIntoPlane * mass0;
-	//Give the force a direction
-	glm::vec2 force = m_normal * j;
-
-#ifdef INSTANT
-	expectedVelocity += force / mass0;
-#endif
-#ifdef INFERIOR
-	//Apply the vertical bounce force off of the plane
-	actor2->ApplyForce(force, localContact);
-#endif
-	//Since we know, from previous tests, that the elasticity part does not gain or lose energy (except for floating point errors)
-	//We can just cheat to calculate the loss due to elasticity.
-	lossToElasticity = kePre - actor2->getEnergy();
 	//Update our debugging values
 	lKePre = actor2->GetLinearEnergy();
 	aKePre = actor2->GetAngularEnergy();
-	relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
 	//Friction
 	//Get the acceleration over this time skip. Since this is a plane, the expectedVelocity (inital relative velocity)
 	//Would be equal to the acceleration the plane puts onto it to stop it from intersecting it
@@ -120,31 +92,66 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	//Calculate the final linear velocity and thus, final linear kinetic energy. And then get the change in energy and done
 	linearVelocity = actor2->GetVelocity() + linearVelocity;
 	lossToFriction += lKePre - (0.5f * actor2->GetMass() * glm::dot(linearVelocity, linearVelocity));
-	
-	//We also need to acount for the velocity of the body assuming assuming the contact point is the new pivot point
-	//Apply the velocity of the center of mass as a force to the center of mass 
-	//but assuming that the contact point (pivot point) is the center of the object.
-	//This will apply a rotation and we will need to adjust the velocity of the CoM so
-	//the pivot point does not move as well as applying upwards velocity so the pivot point
-	//Does not get forced into the ground.
-	//This force also needs to be affected by the angle between the force and the radius.
-	//This force should also account for the velocity after elasticity so that value is conserved.
-
-	//The friction calculations need to retain elasticity and account for 
-	//1.inital perp velocity of CoM and 
-	//2.perp after and before elasticity of relative velocity.
-
-	//Notes:
-	// - The initial perp velocity should determine if friction is kinetic or static
-	// - The perp vector of the CoM won't change from elasticity
-	// - We might be able to use the sum of the relative velocity before & after elasticity to determine the direction of friction.
-	// - Friction should be applied in two phases. 1. Apply friction force to slow down point. 2. Apply rotation forces based on the velocity of the CoM
 
 #ifdef INFERIOR
 	actor2->ApplyForce(fForce, localContact);
 #endif 
+	//Apply velocity of CoM as force assuming the point of contact is the CoM
+	//Reguardless as to whether the point of contact is stationary, it cannot go down and thus, will act as the pivot point instead of the CoM
+	//1. Get velocity of CoM as force
+	//We only want ot do this for the vector along the normal. The perp should be ignored
+	glm::vec2 coMForce = m_normal * glm::dot(actor2->GetVelocity(), m_normal) * actor2->GetMass();
+	//2. Get a sphere assuming its CoM is the contact point
+	//Get the moment of a point mass. mr^2
+	r = glm::length(localContact);
+	float pointMoment = actor2->GetMass() * (r * r);
+	//3. Apply the force to the sphere at an equal point to where the original CoM was. The CoM of this sphere is not allowed to gain velocity
+	torque = coMForce.y * -localContact.x - coMForce.x * -localContact.y;
+	//If we don't have any torque, there is no point in continuing
+	if (torque != 0)
+	{
+		//4. Calculate the resultant relative velocity and set the velocity of the CoM to be that.
+		angularAcceleration = torque / pointMoment;
+		linearVelocity = angularAcceleration * glm::vec2(localContact.y, -localContact.x);
+		//We need to make sure the horizontal component is untouched.
+		actor2->SetVelocity(linearVelocity + actor2->GetVelocity() - m_normal * glm::dot(actor2->GetVelocity(), m_normal));
+		//5. Update angular velocity to retain all expected.
+		actor2->SetAngularVelocity(actor2->GetAngularVelocity() + angularAcceleration);
+	}
+	glm::vec2 velocityChange = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);;
+	velocityChange -= relativeVelocity;
+	float reboundAccountedFor = glm::dot(velocityChange, m_normal);
+
 #ifdef DEBUG
-	relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
+	expectedVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
+#endif
+
+	//Elasticity
+	float elasticity = (GetElasticity() + actor2->GetElasticity()) / 2.0f;
+
+
+	float velocityIntoPlane = glm::dot(relativeVelocity, m_normal);
+	//Elasticity
+	//Get the effective mass of the contact point
+	r = glm::dot(localContact, perp);
+	mass0 = PhysicsScene::GetMass0(*actor2, r);
+	//Calculate the magnitude of force to apply
+	float j = -(1 + elasticity) * velocityIntoPlane * mass0;
+	//Give the force a direction
+	glm::vec2 force = m_normal * (j - (reboundAccountedFor * mass0));
+
+#ifdef INSTANT
+	expectedVelocity += force / mass0;
+#endif
+#ifdef INFERIOR
+	//Apply the vertical bounce force off of the plane
+	actor2->ApplyForce(force, localContact);
+#endif
+	//Since we know, from previous tests, that the elasticity part does not gain or lose energy (except for floating point errors)
+	//We can just cheat to calculate the loss due to elasticity.
+	lossToElasticity = kePre - actor2->getEnergy() - lossToFriction;
+#ifdef DEBUG
+	expectedVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
 #endif
 #ifdef INSTANT
 	expectedVelocity += fForce / mass0;
@@ -159,7 +166,6 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 
 	float kePost = actor2->getEnergy() + lossToFriction + lossToElasticity;
 	float delta = kePost - kePre;
-	std::cout << "Total Energy Change: " << delta << std::endl;
 	if (glm::abs(delta) > glm::abs(kePost) * 0.01f)
 		std::cout << "Kinetic Energy discrepancy greather than 1%." << std::endl << "Linear Energy Dif:" << actor2->GetLinearEnergy() - lKePre << "	Angular Energy Dif: " << actor2->GetAngularEnergy() - aKePre << std::endl;
 
