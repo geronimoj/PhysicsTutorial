@@ -92,15 +92,12 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	//Calculate the final linear velocity and thus, final linear kinetic energy. And then get the change in energy and done
 	linearVelocity = actor2->GetVelocity() + linearVelocity;
 	lossToFriction += lKePre - (0.5f * actor2->GetMass() * glm::dot(linearVelocity, linearVelocity));
-
-#ifdef INFERIOR
-	actor2->ApplyForce(fForce, localContact);
-#endif 
 	//Apply velocity of CoM as force assuming the point of contact is the CoM
 	//Reguardless as to whether the point of contact is stationary, it cannot go down and thus, will act as the pivot point instead of the CoM
 	//1. Get velocity of CoM as force
+	glm::vec2 coMForce = actor2->GetVelocity() * actor2->GetMass();
+	expectedVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
 	//We only want ot do this for the vector along the normal. The perp should be ignored
-	glm::vec2 coMForce = m_normal * glm::dot(actor2->GetVelocity(), m_normal) * actor2->GetMass();
 	//2. Get a sphere assuming its CoM is the contact point
 	//Get the moment of a point mass. mr^2
 	r = glm::length(localContact);
@@ -113,12 +110,17 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 		//4. Calculate the resultant relative velocity and set the velocity of the CoM to be that.
 		angularAcceleration = torque / pointMoment;
 		linearVelocity = angularAcceleration * glm::vec2(localContact.y, -localContact.x);
-		//We need to make sure the horizontal component is untouched.
-		actor2->SetVelocity(linearVelocity + actor2->GetVelocity() - m_normal * glm::dot(actor2->GetVelocity(), m_normal));
+		actor2->SetVelocity(linearVelocity);
+
 		//5. Update angular velocity to retain all expected.
-		actor2->SetAngularVelocity(actor2->GetAngularVelocity() + angularAcceleration);
+		//actor2->SetAngularVelocity(actor2->GetAngularVelocity() + angularAcceleration);
 	}
-	glm::vec2 velocityChange = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);;
+	//Apply the force now we have the force of the CoM
+#ifdef INFERIOR
+	actor2->ApplyForce(fForce, localContact);
+#endif 
+	glm::vec2 velocityChange = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
+
 	velocityChange -= relativeVelocity;
 	float reboundAccountedFor = glm::dot(velocityChange, m_normal);
 
