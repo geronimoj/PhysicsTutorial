@@ -37,6 +37,13 @@ void Softbody::Build(PhysicsScene* scene, glm::vec2 position, float spacing, flo
 			Sphere* s10 = spheres[row * (int)numOfColumns + column - 1];
 			Sphere* s00 = spheres[(row - 1) * (int)numOfColumns + column - 1];
 
+			bool endOjJ = column == numOfColumns - 1;
+			bool endOfI = row == numOfRows - 1;
+
+			Sphere* s22 = (!endOfI && !endOjJ) ? spheres[(row + 1) * numOfColumns + (column + 1)] : nullptr;
+			Sphere* s02 = !endOjJ ? spheres[(row - 1) * numOfColumns + (column + 1)] : nullptr;
+			Sphere* s20 = !endOfI ? spheres[(row + 1) * numOfColumns + (column - 1)] : nullptr;
+
 			if (s11 && s01)
 				scene->AddActor(new Spring(s11, s01, damping, springForce));
 			if (s11 && s10)
@@ -45,5 +52,19 @@ void Softbody::Build(PhysicsScene* scene, glm::vec2 position, float spacing, flo
 				scene->AddActor(new Spring(s10, s00, damping, springForce));
 			if (s01 && s00)
 				scene->AddActor(new Spring(s01, s00, damping, springForce));
+
+			if (s22 && s02)
+				scene->AddActor(new Spring(s22, s02, damping, springForce));
+			if (s22 && s20)
+				scene->AddActor(new Spring(s22, s20, damping, springForce));
+			if (s20 && s00)
+				scene->AddActor(new Spring(s20, s00, damping, springForce));
+			if (s02 && s00)
+				scene->AddActor(new Spring(s02, s00, damping, springForce));
+
+			if (s00 && s11)
+				scene->AddActor(new Spring(s00, s11, damping, springForce));
+			if (s01 && s10)
+				scene->AddActor(new Spring(s01, s10, damping, springForce));
 		}
 }

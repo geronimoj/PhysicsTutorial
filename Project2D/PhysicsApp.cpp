@@ -42,19 +42,20 @@ bool PhysicsApp::startup() {
 
 	SphereTest();
 
-	m_physicsScene->AddActor(new Box(glm::vec2(0, 0), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(40, 10), 1, 10, 0, 0, 1));
+	//m_physicsScene->AddActor(new Box(glm::vec2(0, 0), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(40, 10), 1, 10, 0, 0, 1));
 	//Box* box2 = new Box(glm::vec2(10, 20), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 0, 0, 0, 1);
 
 	//m_physicsScene->AddActor(box2);
 
-	//std::vector<std::string> sb;
-	//sb.push_back("00..00");
-	//sb.push_back("00..00");
-	//sb.push_back("00..00");
-	//sb.push_back("00..00");
-	//sb.push_back("00..00");
+	std::vector<std::string> sb;
+	sb.push_back("..00..");
+	sb.push_back("..00..");
+	sb.push_back("000000");
+	sb.push_back("000000");
+	sb.push_back("..00..");
+	sb.push_back("..00..");
 
-	////Softbody::Build(m_physicsScene,glm::vec2(50,-20), 5, 10, 10, sb);
+	Softbody::Build(m_physicsScene,glm::vec2(50,-20), 5, 1000, 50, sb);
 
 	return true;
 }
@@ -106,6 +107,6 @@ void PhysicsApp::draw() {
 
 void PhysicsApp::SphereTest()
 {
-	//m_physicsScene->AddActor(new Sphere(glm::vec2(-10, 30), false, glm::vec2(0, 20), 3.0f, 15, glm::vec4(0, 1, 0, 1)));
-	//m_physicsScene->AddActor(new Sphere(glm::vec2(50, 0), false, glm::vec2(0, 0), 1.0f, 15, glm::vec4(0, 1, 0, 1), 30, 0, 0, 0));
+	m_physicsScene->AddActor(new Sphere(glm::vec2(-10, 30), false, glm::vec2(0, 20), 3.0f, 15, glm::vec4(0, 1, 0, 1)));
+	m_physicsScene->AddActor(new Sphere(glm::vec2(20, 0), false, glm::vec2(0, 0), 3.0f, 15, glm::vec4(0, 1, 0, 1), 30, 0, 0, 0));
 }
