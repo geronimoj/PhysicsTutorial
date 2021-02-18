@@ -40,9 +40,9 @@ void Softbody::Build(PhysicsScene* scene, glm::vec2 position, float spacing, flo
 			bool endOjJ = column == numOfColumns - 1;
 			bool endOfI = row == numOfRows - 1;
 
-			Sphere* s22 = (!endOfI && !endOjJ) ? spheres[(row + 1) * numOfColumns + (column + 1)] : nullptr;
-			Sphere* s02 = !endOjJ ? spheres[(row - 1) * numOfColumns + (column + 1)] : nullptr;
-			Sphere* s20 = !endOfI ? spheres[(row + 1) * numOfColumns + (column - 1)] : nullptr;
+			Sphere* s22 = (!endOfI && !endOjJ) ? spheres[(row + 1) * (int)numOfColumns + (column + 1)] : nullptr;
+			Sphere* s02 = !endOjJ ? spheres[(row - 1) * (int)numOfColumns + (column + 1)] : nullptr;
+			Sphere* s20 = !endOfI ? spheres[(row + 1) * (int)numOfColumns + (column - 1)] : nullptr;
 
 			if (s11 && s01)
 				scene->AddActor(new Spring(s11, s01, damping, springForce));

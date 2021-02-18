@@ -40,9 +40,9 @@ bool PhysicsApp::startup() {
 	m_physicsScene->AddActor(plane2);
 	m_physicsScene->AddActor(plane3);
 
-	SphereTest();
+	//SphereTest();
 
-	//m_physicsScene->AddActor(new Box(glm::vec2(0, 0), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(40, 10), 1, 10, 0, 0, 1));
+	m_physicsScene->AddActor(new Box(glm::vec2(0, 0), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(40, 10), 0, 1000, 0, 0, 1));
 	//Box* box2 = new Box(glm::vec2(10, 20), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 0, 0, 0, 1);
 
 	//m_physicsScene->AddActor(box2);
@@ -55,7 +55,7 @@ bool PhysicsApp::startup() {
 	sb.push_back("..00..");
 	sb.push_back("..00..");
 
-	Softbody::Build(m_physicsScene,glm::vec2(50,-20), 5, 1000, 50, sb);
+	//Softbody::Build(m_physicsScene,glm::vec2(50,-20), 5, 1000, 50, sb);
 
 	return true;
 }

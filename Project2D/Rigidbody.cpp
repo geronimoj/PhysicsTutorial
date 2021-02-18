@@ -52,57 +52,27 @@ void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2
 	glm::vec2 normal = glm::normalize(collisionNormal ? *collisionNormal : actor2->GetPosition() - GetPosition());
 	glm::vec2 perp(normal.y, -normal.x);
 
-	float r1 = glm::dot(contact - GetPosition(), -perp);
-	float r2 = glm::dot(contact - actor2->GetPosition(), perp);
+	glm::vec2 lC1 = contact - m_position;
+	glm::vec2 lC2 = contact - actor2->GetPosition();
 
-	float v1 = glm::dot(GetVelocity(), normal) - r1 * GetAngularVelocity();
+	float r1 = glm::dot(lC1, -perp);
+	float r2 = glm::dot(lC2, perp);
+
+	float v1 = glm::dot(m_velocity, normal) - r1 * GetAngularVelocity();
 	float v2 = glm::dot(actor2->GetVelocity(), normal) + r2 * actor2->GetAngularVelocity();
 
 	if (v1 > v2)
 	{
+		float elasticity = (GetElasticity() + actor2->GetElasticity()) / 2.0f;
+
 		float mass1 = PhysicsScene::GetMass0(*this, r1);
 		float mass2 = PhysicsScene::GetMass0(*actor2, r2);
 
-		glm::vec2 preVel1 = GetVelocity();
-		glm::vec2 preVel2 = actor2->GetVelocity();
-
-		float elasticity = (GetElasticity() + actor2->GetElasticity()) / 2.0f;
-
 		glm::vec2 force = (1 + elasticity) * mass1 * mass2 / (mass1 + mass2) * (v1 - v2) * normal;
 		//Apply elastic force
-		ApplyForce(-force, contact - m_position);
-		actor2->ApplyForce(force, contact - actor2->GetPosition());
+		ApplyForce(-force, lC1);
+		actor2->ApplyForce(force, lC2);
 
-		//FRICTION
-		r1 = glm::dot(contact - GetPosition(), normal);
-		r2 = glm::dot(contact - actor2->GetPosition(), normal);
-		//Recalculate the mass at the point of collision
-		mass1 = PhysicsScene::GetMass0(*this, r1);
-		mass2 = PhysicsScene::GetMass0(*actor2, r2);
-		//If neither of us are moving, then use static friction otherwise use kinematic friction
-		float friction = actor2->GetVelocity() == glm::vec2(0, 0) && GetVelocity() == glm::vec2(0,0) ? m_staticFrictionCo + actor2->GetStaticFriction() : m_kinematicFrictionCo + actor2->GetKinematicFriction();
-		friction /= 2;
-		
-		glm::vec2 perpForce1 = perp * glm::dot(GetVelocity() + GetAngularVelocity() * perp, perp);
-		glm::vec2 perpForce2 = perp * glm::dot(actor2->GetVelocity() + actor2->GetAngularVelocity() * perp, perp);
-		//The normal force will be their combined forces pushing into each other
-		glm::vec2 normalForce = -normal * (GetMass() * glm::length(GetVelocity() - preVel1));
-		normalForce += -normal * (actor2->GetMass() * glm::length(actor2->GetVelocity() - preVel2));
-		float frictionForce = friction * glm::length(normalForce);
-		//Apply frictional forces
-		ApplyForce(frictionForce < glm::length(perpForce1) ?
-			//If friction is smaller use frictionForce
-			frictionForce * -glm::normalize(perpForce1) * mass1
-			//If velocity is smaller use velocity
-			: -perpForce1 * mass1, contact - GetPosition());
-
-		actor2->ApplyForce(frictionForce < glm::length(perpForce2) ?
-			//If friction is smaller use frictionForce
-			frictionForce * -glm::normalize(perpForce2) * mass2
-			//If velocity is smaller use velocity
-			: -perpForce2 * mass2, contact - actor2->GetPosition());
-
-		
 		if (pen > 0)
 			PhysicsScene::ApplyContactForces(this, actor2, normal, pen);
 	}
