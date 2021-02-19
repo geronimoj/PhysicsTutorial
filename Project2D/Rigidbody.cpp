@@ -111,14 +111,17 @@ void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2
 			force2 = fForce * (1 + (1 - ratio));
 			force1 = fForce * ratio;
 		}
-		if (force1 + force2 != fForce * 2)
-			std::cout << "Friction was lost. Our ratio formula might be wrong or floating point error" << std::endl;
+		//Clamp the force if necessary
+		if (glm::abs(force1) > fMax1)
+			force1 = force1 < 0 ? -fMax1 : fMax1;
+		if (glm::abs(force2) > fMax2)
+			force2 = force2 < 0 ? -fMax2 : fMax2;
 		//Give it mass so its a force now
 		force1 *= mass1;
 		force2 *= mass2;
 
 		//relVelT is a vector from actor1 to actor2's velocity
-		glm::vec2 dir = glm::dot(glm::normalize(relVelT), perp) * perp;
+		glm::vec2 dir = glm::normalize(glm::dot(relVelT, perp) * perp);
 
 		//Apply velocity of CoM as force assuming the point of contact is the CoM
 		//Reguardless as to whether the point of contact is stationary, it cannot go down and thus, will act as the pivot point instead of the CoM
