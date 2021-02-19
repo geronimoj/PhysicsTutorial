@@ -120,8 +120,9 @@ void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2
 		force1 *= mass1;
 		force2 *= mass2;
 
+		float dot = glm::dot(relVelT, perp);
 		//relVelT is a vector from actor1 to actor2's velocity
-		glm::vec2 dir = glm::normalize(glm::dot(relVelT, perp) * perp);
+		glm::vec2 dir = dot != 0 ? glm::normalize(dot * perp) : glm::vec2(0);
 
 		//Apply velocity of CoM as force assuming the point of contact is the CoM
 		//Reguardless as to whether the point of contact is stationary, it cannot go down and thus, will act as the pivot point instead of the CoM
@@ -145,11 +146,11 @@ void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2
 
 		if (torque != 0)
 			actor2->SetVelocity((torque / pointMoment) * glm::vec2(lC2.y, -lC2.x));
+
 		//Calculate the direction the force should be applied
 		ApplyForce(force1 * dir, lC1);
 		//Apply their force in the opposite direction
 		actor2->ApplyForce(force2 * -dir, lC1);
-
 
 		//Elasticity
 		r1 = glm::dot(lC1, -perp);
