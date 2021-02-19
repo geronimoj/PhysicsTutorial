@@ -10,6 +10,7 @@
 #include "Plane.h"
 #include "Box.h"
 #include "Spring.h"
+#include "Wheel.h"
 #include "Softbody.h"
 
 PhysicsApp::PhysicsApp()  : m_physicsScene(nullptr), m_2dRenderer(nullptr), m_font(nullptr), m_timer(0)
@@ -40,10 +41,12 @@ bool PhysicsApp::startup() {
 	m_physicsScene->AddActor(plane2);
 	m_physicsScene->AddActor(plane3);
 
-	SphereTest();
+	//SphereTest();
 
-	m_physicsScene->AddActor(new Box(glm::vec2(-20, 100), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 0, 1, 1), glm::vec2(20, 10), 0, 0, 0, 0, 1));
+	//m_physicsScene->AddActor(new Box(glm::vec2(-20, 100), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 0, 1, 1), glm::vec2(20, 10), 45, 0, 0, 0, 1));
 	//m_physicsScene->AddActor(new Box(glm::vec2(30, 20), false, glm::vec2(-10, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 0, 0, 0, 1));
+
+	m_physicsScene->AddActor(new Wheel(glm::vec2(0), 3.0f, 10, 30, 10, glm::vec4(1, 1, 0, 1), 0, 0, 0, 1, 1));
 
 	std::vector<std::string> sb;
 	sb.push_back("..00..");
@@ -54,6 +57,17 @@ bool PhysicsApp::startup() {
 	sb.push_back("..00..");
 
 	//Softbody::Build(m_physicsScene,glm::vec2(0,0), 10, 10, 0.1f, sb);
+
+	/*
+	Game Ideas:
+	 - Angry Birds
+	 - Drive Ahead
+	 - 2D Bowling
+	 - Soft Body sym
+	 - Ball Square & Kinetic Object in cage with a little bit of energy loss
+	 - Box friction showcase 1 (two boxes colliding without gravity)
+	 - Box friction showcase 2 (lone box landing on corner without elasticity)
+	 */
 
 	return true;
 }
@@ -105,6 +119,6 @@ void PhysicsApp::draw() {
 
 void PhysicsApp::SphereTest()
 {
-	//m_physicsScene->AddActor(new Sphere(glm::vec2(0, 30), false, glm::vec2(0, 0), 3.0f, 15, glm::vec4(0, 1, 0, 1)));
-	m_physicsScene->AddActor(new Sphere(glm::vec2(0, 0), true, glm::vec2(0, 0), 3.0f, 15, glm::vec4(0, 1, 0, 1), 0, 0, 0, 1));
+	m_physicsScene->AddActor(new Sphere(glm::vec2(0, 30), false, glm::vec2(20, 0), 3.0f, 15, glm::vec4(0, 1, 0, 1)));
+	m_physicsScene->AddActor(new Sphere(glm::vec2(0, 0), false, glm::vec2(0, 0), 3.0f, 15, glm::vec4(0, 1, 0, 1), 30, 0, 0, 1));
 }

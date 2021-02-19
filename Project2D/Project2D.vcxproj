@@ -182,6 +182,7 @@
     <ClCompile Include="Softbody.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Spring.cpp" />
+    <ClCompile Include="Wheel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h" />
@@ -193,6 +194,7 @@
     <ClInclude Include="Softbody.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Spring.h" />
+    <ClInclude Include="Wheel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
