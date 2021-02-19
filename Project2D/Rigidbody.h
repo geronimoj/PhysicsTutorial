@@ -16,7 +16,8 @@ public:
 	void SetKinematic(bool state) { m_isKinematic = state; }
 	void SetAngularVelocity(float velocity) { m_angularVelocity = velocity; }
 	void SetVelocity(glm::vec2 velocity) { m_velocity = velocity; }
-
+	
+	glm::vec2 GetRelativeVelocity(glm::vec2 localContact) { return m_velocity + m_angularVelocity * glm::vec2(-localContact.y, localContact.x); }
 	glm::vec2 GetPosition() const { return m_position; }
 	glm::vec2 GetVelocity() const { return m_velocity; }
 	virtual glm::vec2 ToWorld(glm::vec2 offset) { return GetPosition() + offset; }
@@ -28,13 +29,13 @@ public:
 	bool IsKinematic() { return m_isKinematic; }
 
 	virtual float getEnergy() {
-		return GetLinearEnergy() + GetAngularEnergy() + GetPotentialEnergy();
+		return GetLinearEnergy() + GetRotationalKineticEnergy() + GetPotentialEnergy();
 	}
 
 	float GetLinearEnergy() { return 0.5f * GetMass() * glm::dot(m_velocity, m_velocity); }
 	//Rename to RotationalKineticEnergy. Do the same for linear energy
-	float GetAngularEnergy() { return 0.5f * GetMoment() * (m_angularVelocity * m_angularVelocity); }
-	float GetPotentialEnergy() { return GetMass() * 100.0f * m_position.y; }
+	float GetRotationalKineticEnergy() { return 0.5f * GetMoment() * (m_angularVelocity * m_angularVelocity); }
+	float GetPotentialEnergy();
 
 protected:
 	glm::vec2 m_position;

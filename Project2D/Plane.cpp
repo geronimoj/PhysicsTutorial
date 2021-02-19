@@ -32,11 +32,11 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	//Store the perpendicular vector
 	glm::vec2 perp(m_normal.y, -m_normal.x);
 	//Store the relative velocity
-	glm::vec2 relativeVelocity = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
+	glm::vec2 relativeVelocity = actor2->GetRelativeVelocity(localContact);
 	//Calcualate initial energy
 	float kePre = actor2->getEnergy();
 	float lKePre = actor2->GetLinearEnergy();
-	float aKePre = actor2->GetAngularEnergy();
+	float aKePre = actor2->GetRotationalKineticEnergy();
 	//Calculate friction and elasticity coefficients
 	float friction = glm::abs(glm::dot(relativeVelocity, perp)) <= 0.0001f ? m_staticFrictionCo + actor2->GetStaticFriction() : m_kinematicFrictionCo + actor2->GetKinematicFriction();
 	friction /= 2;
@@ -50,7 +50,7 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	//Friction
 	//Get the acceleration over this time skip. Since this is a plane, the expectedVelocity (inital relative velocity)
 	//Would be equal to the acceleration the plane puts onto it to stop it from intersecting it
-	float accel = glm::dot(relativeVelocity + actor2->GetMass() * glm::vec2(0, -100), -m_normal);
+	float accel = glm::dot(relativeVelocity + actor2->GetMass() * PhysicsScene::GetGravity(), -m_normal);
 	//Calculate the velocity along the plane and normal force
 	glm::vec2 velocityAlongPlane = perp * glm::dot(relativeVelocity, perp);
 	glm::vec2 normalForce = -m_normal * (actor2->GetMass() * accel);
@@ -109,7 +109,7 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	//Apply the force now we have the force of the CoM
 	actor2->ApplyForce(force, localContact);
 	//Calculate the change in vertical force that we've already applied
-	glm::vec2 velocityChange = actor2->GetVelocity() + actor2->GetAngularVelocity() * glm::vec2(-localContact.y, localContact.x);
+	glm::vec2 velocityChange = actor2->GetRelativeVelocity(localContact);
 	velocityChange -= relativeVelocity;
 	//Get only the vertical component
 	float reboundAccountedFor = glm::dot(velocityChange, m_normal);
@@ -134,7 +134,7 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	float kePost = actor2->getEnergy() + lossToFriction + lossToElasticity;
 	float delta = kePost - kePre;
 	if (glm::abs(delta) > glm::abs(kePost) * 0.01f)
-		std::cout << "Kinetic Energy discrepancy greather than 1%." << std::endl << "Linear Energy Dif:" << actor2->GetLinearEnergy() - lKePre << "	Angular Energy Dif: " << actor2->GetAngularEnergy() - aKePre << std::endl;
+		std::cout << "Kinetic Energy discrepancy greather than 1%." << std::endl << "Linear Energy Dif:" << actor2->GetLinearEnergy() - lKePre << "	Angular Energy Dif: " << actor2->GetRotationalKineticEnergy() - aKePre << std::endl;
 
 	float pen = glm::dot(contact, m_normal) - m_distanceToOrigin;
 	PhysicsScene::ApplyContactForces(actor2, nullptr, m_normal, pen);
