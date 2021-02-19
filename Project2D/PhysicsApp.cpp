@@ -46,7 +46,7 @@ bool PhysicsApp::startup() {
 	//m_physicsScene->AddActor(new Box(glm::vec2(-20, 100), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 0, 1, 1), glm::vec2(20, 10), 45, 0, 0, 0, 1));
 	//m_physicsScene->AddActor(new Box(glm::vec2(30, 20), false, glm::vec2(-10, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 0, 0, 0, 1));
 
-	m_physicsScene->AddActor(new Wheel(glm::vec2(0), 3.0f, 10, 30, 10, glm::vec4(1, 1, 0, 1), 0, 0, 0, 1, 1));
+	m_physicsScene->AddActor(new Wheel(glm::vec2(0), 3.0f, 10, 30, 10, glm::vec4(0, 1, 1, 1), 0, 0, 0, 1, 1));
 
 	std::vector<std::string> sb;
 	sb.push_back("..00..");
