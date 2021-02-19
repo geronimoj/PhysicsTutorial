@@ -6,7 +6,7 @@
 class Plane : public PhysicsObject
 {
 public:
-	Plane(glm::vec2 normal, float distance, glm::vec4 colour, float elasticity = 1, float staticFriction = 1, float kinematicFriction = 1);
+	Plane(glm::vec2 normal, float distance, unsigned int layer, glm::vec4 colour, float elasticity = 1, float staticFriction = 1, float kinematicFriction = 1);
 	~Plane();
 	
 	virtual void FixedUpdate(glm::vec2 gravity, float timeStep) {}

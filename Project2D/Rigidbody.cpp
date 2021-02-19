@@ -2,8 +2,8 @@
 #include "Rigidbody.h"
 #include "PhysicsScene.h"
 
-Rigidbody::Rigidbody(ShapeType shapeID, glm::vec2 position, bool isKinematic, glm::vec2 velocity, float orientation, float mass, float elasticity, float angularVelocity, float linearDrag, float angularDrag, float staticFriction, float kinematicFriction)
-	: PhysicsObject(shapeID, elasticity, staticFriction, kinematicFriction), m_position(position), m_isKinematic(isKinematic), m_velocity(velocity), m_orientation(glm::radians(orientation)), m_mass(mass), m_angularVelocity(angularVelocity), m_moment(0), m_linearDrag(linearDrag), m_angularDrag(angularDrag)
+Rigidbody::Rigidbody(ShapeType shapeID, glm::vec2 position, bool isKinematic, glm::vec2 velocity, unsigned int layer, float orientation, float mass, float elasticity, float angularVelocity, float linearDrag, float angularDrag, float staticFriction, float kinematicFriction)
+	: PhysicsObject(shapeID, layer, elasticity, staticFriction, kinematicFriction), m_position(position), m_isKinematic(isKinematic), m_velocity(velocity), m_orientation(glm::radians(orientation)), m_mass(mass), m_angularVelocity(angularVelocity), m_moment(0), m_linearDrag(linearDrag), m_angularDrag(angularDrag)
 {
 }
 

@@ -13,7 +13,7 @@ enum class ShapeType
 class PhysicsObject
 {
 protected:
-	PhysicsObject(ShapeType shapeID, float elasticity, float staticFriction, float kinematicFriction) : m_shapeID(shapeID), m_elasticity(elasticity), m_staticFrictionCo(staticFriction), m_kinematicFrictionCo(kinematicFriction) {}
+	PhysicsObject(ShapeType shapeID, unsigned int layer, float elasticity, float staticFriction, float kinematicFriction) : m_shapeID(shapeID), m_layer(layer), m_elasticity(elasticity), m_staticFrictionCo(staticFriction), m_kinematicFrictionCo(kinematicFriction) {}
 
 public:
 	virtual void FixedUpdate(glm::vec2 gravity, float timeStep) = 0;
@@ -25,6 +25,7 @@ public:
 	float GetElasticity() { return m_elasticity; }
 	float GetStaticFriction() { return m_staticFrictionCo; }
 	float GetKinematicFriction() { return m_kinematicFrictionCo; }
+	unsigned int GetLayer() const { return m_layer; }
 
 	static const float MIN_LINEAR_THRESHOLD;
 	static const float MIN_ANGULAR_THRESHOLD;
@@ -35,5 +36,6 @@ protected:
 	float m_elasticity;
 	float m_staticFrictionCo;
 	float m_kinematicFrictionCo;
+	unsigned int m_layer;
 };
 

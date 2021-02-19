@@ -17,6 +17,15 @@ static fn collisionFunctionArray[] =
 	PhysicsScene::Box2Plane, PhysicsScene::Box2Sphere, PhysicsScene::Box2Box
 };
 
+static bool layerCollision[] =
+{/*		0		1		2		*/
+/*0*/	true,	true,	true,
+/*1*/	true,	true,	false,
+/*2*/	true,	false,	true
+};
+
+const unsigned int NUMBER_OF_LAYERS = 3;
+
 PhysicsScene::PhysicsScene()
 {
 	m_gravity = glm::vec2(0);
@@ -88,6 +97,8 @@ void PhysicsScene::CheckForCollision()
 			if ((int)object1->GetShapeID() < 0 || (int)object2->GetShapeID() < 0)
 				continue;
 
+			if (!layerCollision[(object1->GetLayer() * NUMBER_OF_LAYERS) + object2->GetLayer()] || !layerCollision[(object2->GetLayer() * NUMBER_OF_LAYERS) + object1->GetLayer()])
+				continue;
 			//Using the function pointer array, we move our index forward and down the 1D array
 			int functionIdx = ((int)object1->GetShapeID() * (int)ShapeType::SHAPE_COUNT) + (int)object2->GetShapeID();
 			fn collisionFunctionPtr = collisionFunctionArray[functionIdx];

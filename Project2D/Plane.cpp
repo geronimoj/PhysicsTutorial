@@ -5,8 +5,8 @@
 #define INFERIOR
 #define DEBUG
 
-Plane::Plane(glm::vec2 normal, float distance, glm::vec4 colour, float elasticity, float staticFriction, float kinematicFriction)
-	: PhysicsObject(ShapeType::PLANE, elasticity, staticFriction, kinematicFriction), m_normal(glm::normalize(normal)), m_distanceToOrigin(distance), m_colour(colour)
+Plane::Plane(glm::vec2 normal, float distance, unsigned int layer, glm::vec4 colour, float elasticity, float staticFriction, float kinematicFriction)
+	: PhysicsObject(ShapeType::PLANE, elasticity, staticFriction, kinematicFriction, layer), m_normal(glm::normalize(normal)), m_distanceToOrigin(distance), m_colour(colour)
 {
 }
 
