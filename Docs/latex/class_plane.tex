@@ -1,0 +1,236 @@
+\hypertarget{class_plane}{}\doxysection{Plane Class Reference}
+\label{class_plane}\index{Plane@{Plane}}
+
+
+Contains all necessary information for creating and simulating static infinite planes  
+
+
+
+
+{\ttfamily \#include $<$Plane.\+h$>$}
+
+Inheritance diagram for Plane\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_plane}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_plane_a2a7006835b6e25264021701ebb40c96d}{Plane}} (glm\+::vec2 normal, float distance, unsigned int layer, glm\+::vec4 colour, float elasticity=1, float static\+Friction=1, float kinetic\+Friction=1)
+\begin{DoxyCompactList}\small\item\em Creates a plane \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_plane_a69abd86051c880dcb44b249ad10c4436}{$\sim$\+Plane}} ()
+\item 
+virtual void \mbox{\hyperlink{class_plane_a988a9123bcc328032d3086979c26ef50}{Fixed\+Update}} (glm\+::vec2 gravity, float time\+Step)
+\begin{DoxyCompactList}\small\item\em Does nothing. Only exists because fixed\+Update is pure virtual \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_plane_affcf658d3125b05c1c3ec7ab9b8086ae}{Draw}} ()
+\begin{DoxyCompactList}\small\item\em Draws the plane \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_plane_a0ff76cb011cdbc4b6a64324427366aef}{Reset\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Does nothing \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_plane_afb8148c835d50ae6ab941a071155772a}{Resolve\+Collision}} (\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$actor2, glm\+::vec2 contact)
+\begin{DoxyCompactList}\small\item\em Resolves collisions with other rigidbodies onto this plane \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{class_plane_a5bf7fdb4fc21f02c4eed631959019390}{Get\+Normal}} () const
+\begin{DoxyCompactList}\small\item\em Returns the normal of the plane \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_plane_a269916a579a60c494a2ac9b7a936dd75}{Get\+Distance}} () const
+\begin{DoxyCompactList}\small\item\em Returns the distance from the origin of the world \end{DoxyCompactList}\item 
+glm\+::vec4 \mbox{\hyperlink{class_plane_afa012218a8c7645a4a65a7a852be375a}{Get\+Colour}} () const
+\begin{DoxyCompactList}\small\item\em Returns the colour of the plane in RGBA \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec2 \mbox{\hyperlink{class_plane_a589218a5bbd8be0d91594bdee383798e}{m\+\_\+normal}}
+\begin{DoxyCompactList}\small\item\em The normal of the plane \end{DoxyCompactList}\item 
+glm\+::vec4 \mbox{\hyperlink{class_plane_a91e1b467745b8d7c113a50a1870daf7e}{m\+\_\+colour}}
+\begin{DoxyCompactList}\small\item\em The colour of the plane \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_plane_aa5b96cec4f43f2cb16c3b575eb9c51ad}{m\+\_\+distance\+To\+Origin}}
+\begin{DoxyCompactList}\small\item\em The distance, along the normal, from the origin of the world \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Contains all necessary information for creating and simulating static infinite planes 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_plane_a2a7006835b6e25264021701ebb40c96d}\label{class_plane_a2a7006835b6e25264021701ebb40c96d}} 
+\index{Plane@{Plane}!Plane@{Plane}}
+\index{Plane@{Plane}!Plane@{Plane}}
+\doxysubsubsection{\texorpdfstring{Plane()}{Plane()}}
+{\footnotesize\ttfamily Plane\+::\+Plane (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{normal,  }\item[{float}]{distance,  }\item[{unsigned int}]{layer,  }\item[{glm\+::vec4}]{colour,  }\item[{float}]{elasticity = {\ttfamily 1},  }\item[{float}]{static\+Friction = {\ttfamily 1},  }\item[{float}]{kinetic\+Friction = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Creates a plane 
+
+
+\begin{DoxyParams}{Parameters}
+{\em normal} & The normal of the plane\\
+\hline
+{\em distance} & The distance from the origin of the world the plane exists\\
+\hline
+{\em layer} & The layer this plane exists on\\
+\hline
+{\em colour} & The colour of the plane in RGBA format\\
+\hline
+{\em elasticity} & The elasticity factor for the plane. Defaults to 1 for no gain or loss of energy.\\
+\hline
+{\em static\+Friction} & The static friction coefficient. Defaults to 1\\
+\hline
+{\em kinematic\+Friction} & The kinetic friction coefficient. Defaults to 1\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_plane_a69abd86051c880dcb44b249ad10c4436}\label{class_plane_a69abd86051c880dcb44b249ad10c4436}} 
+\index{Plane@{Plane}!````~Plane@{$\sim$Plane}}
+\index{````~Plane@{$\sim$Plane}!Plane@{Plane}}
+\doxysubsubsection{\texorpdfstring{$\sim$Plane()}{~Plane()}}
+{\footnotesize\ttfamily Plane\+::$\sim$\+Plane (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_plane_affcf658d3125b05c1c3ec7ab9b8086ae}\label{class_plane_affcf658d3125b05c1c3ec7ab9b8086ae}} 
+\index{Plane@{Plane}!Draw@{Draw}}
+\index{Draw@{Draw}!Plane@{Plane}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Plane\+::\+Draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Draws the plane 
+
+
+
+Implements \mbox{\hyperlink{class_physics_object_a993187e5476cd2e231cdec4b6176f8b4}{Physics\+Object}}.
+
+\mbox{\Hypertarget{class_plane_a988a9123bcc328032d3086979c26ef50}\label{class_plane_a988a9123bcc328032d3086979c26ef50}} 
+\index{Plane@{Plane}!FixedUpdate@{FixedUpdate}}
+\index{FixedUpdate@{FixedUpdate}!Plane@{Plane}}
+\doxysubsubsection{\texorpdfstring{FixedUpdate()}{FixedUpdate()}}
+{\footnotesize\ttfamily virtual void Plane\+::\+Fixed\+Update (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{gravity,  }\item[{float}]{time\+Step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Does nothing. Only exists because fixed\+Update is pure virtual 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gravity} & The direction and magnitude of gravity\\
+\hline
+{\em time\+Step} & The time step for this physics update\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_physics_object_a3aafc8bf82e2b724a85b1af7307dcd59}{Physics\+Object}}.
+
+\mbox{\Hypertarget{class_plane_afa012218a8c7645a4a65a7a852be375a}\label{class_plane_afa012218a8c7645a4a65a7a852be375a}} 
+\index{Plane@{Plane}!GetColour@{GetColour}}
+\index{GetColour@{GetColour}!Plane@{Plane}}
+\doxysubsubsection{\texorpdfstring{GetColour()}{GetColour()}}
+{\footnotesize\ttfamily glm\+::vec4 Plane\+::\+Get\+Colour (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the colour of the plane in RGBA 
+
+\begin{DoxyReturn}{Returns}
+Returns the colour of the plane as a vector4 in RGBA formula
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_plane_a269916a579a60c494a2ac9b7a936dd75}\label{class_plane_a269916a579a60c494a2ac9b7a936dd75}} 
+\index{Plane@{Plane}!GetDistance@{GetDistance}}
+\index{GetDistance@{GetDistance}!Plane@{Plane}}
+\doxysubsubsection{\texorpdfstring{GetDistance()}{GetDistance()}}
+{\footnotesize\ttfamily float Plane\+::\+Get\+Distance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the distance from the origin of the world 
+
+\begin{DoxyReturn}{Returns}
+Returns the distance from the origin of the world
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_plane_a5bf7fdb4fc21f02c4eed631959019390}\label{class_plane_a5bf7fdb4fc21f02c4eed631959019390}} 
+\index{Plane@{Plane}!GetNormal@{GetNormal}}
+\index{GetNormal@{GetNormal}!Plane@{Plane}}
+\doxysubsubsection{\texorpdfstring{GetNormal()}{GetNormal()}}
+{\footnotesize\ttfamily glm\+::vec2 Plane\+::\+Get\+Normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the normal of the plane 
+
+\begin{DoxyReturn}{Returns}
+Returns the normal of the plane as a vector2
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_plane_a0ff76cb011cdbc4b6a64324427366aef}\label{class_plane_a0ff76cb011cdbc4b6a64324427366aef}} 
+\index{Plane@{Plane}!ResetPosition@{ResetPosition}}
+\index{ResetPosition@{ResetPosition}!Plane@{Plane}}
+\doxysubsubsection{\texorpdfstring{ResetPosition()}{ResetPosition()}}
+{\footnotesize\ttfamily virtual void Plane\+::\+Reset\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Does nothing 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_physics_object_a46ad4baf54d7b6086486e090d628ee08}{Physics\+Object}}.
+
+\mbox{\Hypertarget{class_plane_afb8148c835d50ae6ab941a071155772a}\label{class_plane_afb8148c835d50ae6ab941a071155772a}} 
+\index{Plane@{Plane}!ResolveCollision@{ResolveCollision}}
+\index{ResolveCollision@{ResolveCollision}!Plane@{Plane}}
+\doxysubsubsection{\texorpdfstring{ResolveCollision()}{ResolveCollision()}}
+{\footnotesize\ttfamily void Plane\+::\+Resolve\+Collision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$}]{actor2,  }\item[{glm\+::vec2}]{contact }\end{DoxyParamCaption})}
+
+
+
+Resolves collisions with other rigidbodies onto this plane 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actor2} & The actor to resolve the collision with\\
+\hline
+{\em contact} & The contact point where the collision took place\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_plane_a91e1b467745b8d7c113a50a1870daf7e}\label{class_plane_a91e1b467745b8d7c113a50a1870daf7e}} 
+\index{Plane@{Plane}!m\_colour@{m\_colour}}
+\index{m\_colour@{m\_colour}!Plane@{Plane}}
+\doxysubsubsection{\texorpdfstring{m\_colour}{m\_colour}}
+{\footnotesize\ttfamily glm\+::vec4 Plane\+::m\+\_\+colour\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The colour of the plane 
+
+\mbox{\Hypertarget{class_plane_aa5b96cec4f43f2cb16c3b575eb9c51ad}\label{class_plane_aa5b96cec4f43f2cb16c3b575eb9c51ad}} 
+\index{Plane@{Plane}!m\_distanceToOrigin@{m\_distanceToOrigin}}
+\index{m\_distanceToOrigin@{m\_distanceToOrigin}!Plane@{Plane}}
+\doxysubsubsection{\texorpdfstring{m\_distanceToOrigin}{m\_distanceToOrigin}}
+{\footnotesize\ttfamily float Plane\+::m\+\_\+distance\+To\+Origin\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The distance, along the normal, from the origin of the world 
+
+\mbox{\Hypertarget{class_plane_a589218a5bbd8be0d91594bdee383798e}\label{class_plane_a589218a5bbd8be0d91594bdee383798e}} 
+\index{Plane@{Plane}!m\_normal@{m\_normal}}
+\index{m\_normal@{m\_normal}!Plane@{Plane}}
+\doxysubsubsection{\texorpdfstring{m\_normal}{m\_normal}}
+{\footnotesize\ttfamily glm\+::vec2 Plane\+::m\+\_\+normal\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The normal of the plane 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_plane_8h}{Plane.\+h}}\item 
+\mbox{\hyperlink{_plane_8cpp}{Plane.\+cpp}}\end{DoxyCompactItemize}

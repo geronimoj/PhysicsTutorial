@@ -9,27 +9,44 @@ float PhysicsScene::m_timeStep = 0;
 glm::vec2 PhysicsScene::m_gravity = glm::vec2(0);
 
 typedef bool(*fn)(PhysicsObject*, PhysicsObject*);
-
+/// <summary>
+/// Contains pointers to the collision detection and resolution functions between two objects. Used for quick and easy access between collision functions
+/// </summary>
 static fn collisionFunctionArray[] =
 {	//Plane						//Sphere					//Box
 	PhysicsScene::Plane2Plane, PhysicsScene::Plane2Sphere, PhysicsScene::Plane2Box,
 	PhysicsScene::Sphere2Plane, PhysicsScene::Sphere2Sphere, PhysicsScene::Sphere2Box,
 	PhysicsScene::Box2Plane, PhysicsScene::Box2Sphere, PhysicsScene::Box2Box
 };
-
+/// <summary>
+/// Determines which layers can collide with which layers.
+/// </summary>
 static bool layerCollision[] =
 {/*		0		1		2		*/
 /*0*/	true,	true,	true,
 /*1*/	true,	true,	false,
 /*2*/	true,	false,	true
 };
-
+/// <summary>
+/// The number of layers in the scene
+/// </summary>
 const unsigned int NUMBER_OF_LAYERS = 3;
 
 PhysicsScene::PhysicsScene()
 {
 	m_gravity = glm::vec2(0);
 	m_timeStep = 0.01f;
+	//Loop through the layerCollisions array and even it out down the middle just in case someone misses a layer when adjusting stuff.
+	//Also reduces workload.
+	for (int x = 0; x < NUMBER_OF_LAYERS; x++)
+		for (int y = 0; y < NUMBER_OF_LAYERS; y++)
+		{	//If either value are true, set the other/both of them to be true
+			if (layerCollision[(y * NUMBER_OF_LAYERS) + x] || layerCollision[(x * NUMBER_OF_LAYERS) + y])
+			{
+				layerCollision[(y * NUMBER_OF_LAYERS) + x] = true;
+				layerCollision[(x * NUMBER_OF_LAYERS) + y] = true;
+			}
+		}
 }
 
 PhysicsScene::~PhysicsScene()

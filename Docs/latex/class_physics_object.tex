@@ -1,0 +1,304 @@
+\hypertarget{class_physics_object}{}\doxysection{Physics\+Object Class Reference}
+\label{class_physics_object}\index{PhysicsObject@{PhysicsObject}}
+
+
+The base class for all objects in the scene that should be simulated by or interact with physics  
+
+
+
+
+{\ttfamily \#include $<$Physics\+Object.\+h$>$}
+
+Inheritance diagram for Physics\+Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_physics_object}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_physics_object_a3aafc8bf82e2b724a85b1af7307dcd59}{Fixed\+Update}} (glm\+::vec2 gravity, float time\+Step)=0
+\begin{DoxyCompactList}\small\item\em Is a pure virtual function. The physics scene calls this fixed update. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_physics_object_a993187e5476cd2e231cdec4b6176f8b4}{Draw}} ()=0
+\begin{DoxyCompactList}\small\item\em Is a pure virtual function. Draws the \mbox{\hyperlink{class_physics_object}{Physics\+Object}} \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_physics_object_a46ad4baf54d7b6086486e090d628ee08}{Reset\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Empty function for derived classes \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_physics_object_8h_a5a4538eeab397888d88a4eefcc5a1345}{Shape\+Type}} \mbox{\hyperlink{class_physics_object_aed3d0952175c060ad70b8549514b74ce}{Get\+Shape\+ID}} ()
+\begin{DoxyCompactList}\small\item\em Returns the shape ID \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_physics_object_a23efab477cef6248622cb07c0e022bc9}{Get\+Elasticity}} ()
+\begin{DoxyCompactList}\small\item\em Returns the elasticity factor \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_physics_object_ad51922327481b89f8285246c37bce718}{Get\+Static\+Friction}} ()
+\begin{DoxyCompactList}\small\item\em Returns the staic friction coefficient of this object \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_physics_object_af1ea60981c0b575b69a7183d20b0ece9}{Get\+Kinematic\+Friction}} ()
+\begin{DoxyCompactList}\small\item\em Returns the kinetic friction coefficient of this object \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_physics_object_a1b223b25185b86fff18b51ee911bcc3f}{Get\+Layer}} () const
+\begin{DoxyCompactList}\small\item\em Returns the layer this \mbox{\hyperlink{class_physics_object}{Physics\+Object}} exists on. Determines what it can collide with \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{class_physics_object_a992cdb0269794a25afca025fb6a11d11}{get\+Energy}} ()
+\begin{DoxyCompactList}\small\item\em Returns the energy of the object. Returns 0 by default unless a derived class overrides it \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const float \mbox{\hyperlink{class_physics_object_a6a6b3e43aa0160cce7f48e506adadd5f}{MIN\+\_\+\+LINEAR\+\_\+\+THRESHOLD}} = 0.\+5f
+\begin{DoxyCompactList}\small\item\em The minimum linear velocity of a physics object. Having a velocity below this value will result in velocity being set to 0,0 \end{DoxyCompactList}\item 
+static const float \mbox{\hyperlink{class_physics_object_a850041692754ecc023b7775512a81776}{MIN\+\_\+\+ANGULAR\+\_\+\+THRESHOLD}} = 0
+\begin{DoxyCompactList}\small\item\em The minimum angular velocity of a physics object. Having angular velocity below this value will result in that velocity being set to 0 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_physics_object_a03b46c7a4978c648a73fd374616c264b}{Physics\+Object}} (\mbox{\hyperlink{_physics_object_8h_a5a4538eeab397888d88a4eefcc5a1345}{Shape\+Type}} shape\+ID, unsigned int layer, float elasticity, float static\+Friction, float kinematic\+Friction)
+\begin{DoxyCompactList}\small\item\em Creates an object. Must be called from a derived class \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_physics_object_8h_a5a4538eeab397888d88a4eefcc5a1345}{Shape\+Type}} \mbox{\hyperlink{class_physics_object_a0061ff867e112ae0250888fb89bcedcf}{m\+\_\+shape\+ID}}
+\begin{DoxyCompactList}\small\item\em The Shape ID of the object \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_physics_object_ab9c0056c2efc3669e3498621d9d48b6a}{m\+\_\+elasticity}}
+\begin{DoxyCompactList}\small\item\em The elasticity coefficient \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_physics_object_a7852282771ce0c6c9876d82906a2145e}{m\+\_\+static\+Friction\+Co}}
+\begin{DoxyCompactList}\small\item\em The static friction coefficient \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_physics_object_a6db7c6ff56fc183a23dcb485f0473b92}{m\+\_\+kinematic\+Friction\+Co}}
+\begin{DoxyCompactList}\small\item\em The kinetic friction coefficient \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_physics_object_ab5a3fe7a134c865c2d4b06c8730da5dd}{m\+\_\+layer}}
+\begin{DoxyCompactList}\small\item\em The layer this object exists on. Determines what it can collide with \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The base class for all objects in the scene that should be simulated by or interact with physics 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_physics_object_a03b46c7a4978c648a73fd374616c264b}\label{class_physics_object_a03b46c7a4978c648a73fd374616c264b}} 
+\index{PhysicsObject@{PhysicsObject}!PhysicsObject@{PhysicsObject}}
+\index{PhysicsObject@{PhysicsObject}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{PhysicsObject()}{PhysicsObject()}}
+{\footnotesize\ttfamily Physics\+Object\+::\+Physics\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_physics_object_8h_a5a4538eeab397888d88a4eefcc5a1345}{Shape\+Type}}}]{shape\+ID,  }\item[{unsigned int}]{layer,  }\item[{float}]{elasticity,  }\item[{float}]{static\+Friction,  }\item[{float}]{kinematic\+Friction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Creates an object. Must be called from a derived class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shape\+ID} & The type of shape. See Shape\+Type for possible shapes\\
+\hline
+{\em layer} & The layer this physics object exists on. Determines what it can collide with\\
+\hline
+{\em elasticity} & The elasticity factor of this object. Set to 1 for no energy loss or gain\\
+\hline
+{\em static\+Friction} & The static friction factor\\
+\hline
+{\em kinematic\+Friction} & The kinetic friction factor\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_physics_object_a993187e5476cd2e231cdec4b6176f8b4}\label{class_physics_object_a993187e5476cd2e231cdec4b6176f8b4}} 
+\index{PhysicsObject@{PhysicsObject}!Draw@{Draw}}
+\index{Draw@{Draw}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily virtual void Physics\+Object\+::\+Draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Is a pure virtual function. Draws the \mbox{\hyperlink{class_physics_object}{Physics\+Object}} 
+
+
+
+Implemented in \mbox{\hyperlink{class_spring_a369742d3910fdf035dd28cabcbde921f}{Spring}}, \mbox{\hyperlink{class_sphere_ae7c208cca0c269de15283dca82ce6310}{Sphere}}, \mbox{\hyperlink{class_plane_affcf658d3125b05c1c3ec7ab9b8086ae}{Plane}}, and \mbox{\hyperlink{class_box_a309d54fdeea398925f6341fab3e0ea84}{Box}}.
+
+\mbox{\Hypertarget{class_physics_object_a3aafc8bf82e2b724a85b1af7307dcd59}\label{class_physics_object_a3aafc8bf82e2b724a85b1af7307dcd59}} 
+\index{PhysicsObject@{PhysicsObject}!FixedUpdate@{FixedUpdate}}
+\index{FixedUpdate@{FixedUpdate}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{FixedUpdate()}{FixedUpdate()}}
+{\footnotesize\ttfamily virtual void Physics\+Object\+::\+Fixed\+Update (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{gravity,  }\item[{float}]{time\+Step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Is a pure virtual function. The physics scene calls this fixed update. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gravity} & The direction and magnitude of gravity\\
+\hline
+{\em time\+Step} & The amount of time that has passed this physics update\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_wheel_a0522e8cac5753e352ac88fb5bfddc131}{Wheel}}, \mbox{\hyperlink{class_spring_af5c6a4fe6f1fd858a692fe4e16a96eac}{Spring}}, \mbox{\hyperlink{class_rigidbody_aac9dd7a302e8acfa76f4ae4399dcfb60}{Rigidbody}}, \mbox{\hyperlink{class_plane_a988a9123bcc328032d3086979c26ef50}{Plane}}, and \mbox{\hyperlink{class_box_a9a66c0051d4109c8f05676d95ced3033}{Box}}.
+
+\mbox{\Hypertarget{class_physics_object_a23efab477cef6248622cb07c0e022bc9}\label{class_physics_object_a23efab477cef6248622cb07c0e022bc9}} 
+\index{PhysicsObject@{PhysicsObject}!GetElasticity@{GetElasticity}}
+\index{GetElasticity@{GetElasticity}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{GetElasticity()}{GetElasticity()}}
+{\footnotesize\ttfamily float Physics\+Object\+::\+Get\+Elasticity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the elasticity factor 
+
+\begin{DoxyReturn}{Returns}
+Returns the elasticity factor as a float
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_object_a992cdb0269794a25afca025fb6a11d11}\label{class_physics_object_a992cdb0269794a25afca025fb6a11d11}} 
+\index{PhysicsObject@{PhysicsObject}!getEnergy@{getEnergy}}
+\index{getEnergy@{getEnergy}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{getEnergy()}{getEnergy()}}
+{\footnotesize\ttfamily virtual float Physics\+Object\+::get\+Energy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the energy of the object. Returns 0 by default unless a derived class overrides it 
+
+
+
+Reimplemented in \mbox{\hyperlink{class_rigidbody_af096668db82728fc0c7d1ce11700b1e7}{Rigidbody}}.
+
+\mbox{\Hypertarget{class_physics_object_af1ea60981c0b575b69a7183d20b0ece9}\label{class_physics_object_af1ea60981c0b575b69a7183d20b0ece9}} 
+\index{PhysicsObject@{PhysicsObject}!GetKinematicFriction@{GetKinematicFriction}}
+\index{GetKinematicFriction@{GetKinematicFriction}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{GetKinematicFriction()}{GetKinematicFriction()}}
+{\footnotesize\ttfamily float Physics\+Object\+::\+Get\+Kinematic\+Friction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the kinetic friction coefficient of this object 
+
+\begin{DoxyReturn}{Returns}
+Returns the kinetic friction coefficient of this object as a float
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_object_a1b223b25185b86fff18b51ee911bcc3f}\label{class_physics_object_a1b223b25185b86fff18b51ee911bcc3f}} 
+\index{PhysicsObject@{PhysicsObject}!GetLayer@{GetLayer}}
+\index{GetLayer@{GetLayer}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{GetLayer()}{GetLayer()}}
+{\footnotesize\ttfamily unsigned int Physics\+Object\+::\+Get\+Layer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the layer this \mbox{\hyperlink{class_physics_object}{Physics\+Object}} exists on. Determines what it can collide with 
+
+\begin{DoxyReturn}{Returns}
+Returns the layer this \mbox{\hyperlink{class_physics_object}{Physics\+Object}} exists on as an unsigned int
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_object_aed3d0952175c060ad70b8549514b74ce}\label{class_physics_object_aed3d0952175c060ad70b8549514b74ce}} 
+\index{PhysicsObject@{PhysicsObject}!GetShapeID@{GetShapeID}}
+\index{GetShapeID@{GetShapeID}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{GetShapeID()}{GetShapeID()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_physics_object_8h_a5a4538eeab397888d88a4eefcc5a1345}{Shape\+Type}} Physics\+Object\+::\+Get\+Shape\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the shape ID 
+
+\begin{DoxyReturn}{Returns}
+Returns the shape ID as a Shape\+Type.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_object_ad51922327481b89f8285246c37bce718}\label{class_physics_object_ad51922327481b89f8285246c37bce718}} 
+\index{PhysicsObject@{PhysicsObject}!GetStaticFriction@{GetStaticFriction}}
+\index{GetStaticFriction@{GetStaticFriction}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{GetStaticFriction()}{GetStaticFriction()}}
+{\footnotesize\ttfamily float Physics\+Object\+::\+Get\+Static\+Friction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the staic friction coefficient of this object 
+
+\begin{DoxyReturn}{Returns}
+Returns the staic friction coefficient of this object as a float
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_object_a46ad4baf54d7b6086486e090d628ee08}\label{class_physics_object_a46ad4baf54d7b6086486e090d628ee08}} 
+\index{PhysicsObject@{PhysicsObject}!ResetPosition@{ResetPosition}}
+\index{ResetPosition@{ResetPosition}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{ResetPosition()}{ResetPosition()}}
+{\footnotesize\ttfamily virtual void Physics\+Object\+::\+Reset\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Empty function for derived classes 
+
+
+
+Reimplemented in \mbox{\hyperlink{class_plane_a0ff76cb011cdbc4b6a64324427366aef}{Plane}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_physics_object_ab9c0056c2efc3669e3498621d9d48b6a}\label{class_physics_object_ab9c0056c2efc3669e3498621d9d48b6a}} 
+\index{PhysicsObject@{PhysicsObject}!m\_elasticity@{m\_elasticity}}
+\index{m\_elasticity@{m\_elasticity}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{m\_elasticity}{m\_elasticity}}
+{\footnotesize\ttfamily float Physics\+Object\+::m\+\_\+elasticity\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The elasticity coefficient 
+
+\mbox{\Hypertarget{class_physics_object_a6db7c6ff56fc183a23dcb485f0473b92}\label{class_physics_object_a6db7c6ff56fc183a23dcb485f0473b92}} 
+\index{PhysicsObject@{PhysicsObject}!m\_kinematicFrictionCo@{m\_kinematicFrictionCo}}
+\index{m\_kinematicFrictionCo@{m\_kinematicFrictionCo}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{m\_kinematicFrictionCo}{m\_kinematicFrictionCo}}
+{\footnotesize\ttfamily float Physics\+Object\+::m\+\_\+kinematic\+Friction\+Co\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The kinetic friction coefficient 
+
+\mbox{\Hypertarget{class_physics_object_ab5a3fe7a134c865c2d4b06c8730da5dd}\label{class_physics_object_ab5a3fe7a134c865c2d4b06c8730da5dd}} 
+\index{PhysicsObject@{PhysicsObject}!m\_layer@{m\_layer}}
+\index{m\_layer@{m\_layer}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{m\_layer}{m\_layer}}
+{\footnotesize\ttfamily unsigned int Physics\+Object\+::m\+\_\+layer\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The layer this object exists on. Determines what it can collide with 
+
+\mbox{\Hypertarget{class_physics_object_a0061ff867e112ae0250888fb89bcedcf}\label{class_physics_object_a0061ff867e112ae0250888fb89bcedcf}} 
+\index{PhysicsObject@{PhysicsObject}!m\_shapeID@{m\_shapeID}}
+\index{m\_shapeID@{m\_shapeID}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{m\_shapeID}{m\_shapeID}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_physics_object_8h_a5a4538eeab397888d88a4eefcc5a1345}{Shape\+Type}} Physics\+Object\+::m\+\_\+shape\+ID\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Shape ID of the object 
+
+\mbox{\Hypertarget{class_physics_object_a7852282771ce0c6c9876d82906a2145e}\label{class_physics_object_a7852282771ce0c6c9876d82906a2145e}} 
+\index{PhysicsObject@{PhysicsObject}!m\_staticFrictionCo@{m\_staticFrictionCo}}
+\index{m\_staticFrictionCo@{m\_staticFrictionCo}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{m\_staticFrictionCo}{m\_staticFrictionCo}}
+{\footnotesize\ttfamily float Physics\+Object\+::m\+\_\+static\+Friction\+Co\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The static friction coefficient 
+
+\mbox{\Hypertarget{class_physics_object_a850041692754ecc023b7775512a81776}\label{class_physics_object_a850041692754ecc023b7775512a81776}} 
+\index{PhysicsObject@{PhysicsObject}!MIN\_ANGULAR\_THRESHOLD@{MIN\_ANGULAR\_THRESHOLD}}
+\index{MIN\_ANGULAR\_THRESHOLD@{MIN\_ANGULAR\_THRESHOLD}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{MIN\_ANGULAR\_THRESHOLD}{MIN\_ANGULAR\_THRESHOLD}}
+{\footnotesize\ttfamily const float Physics\+Object\+::\+MIN\+\_\+\+ANGULAR\+\_\+\+THRESHOLD = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The minimum angular velocity of a physics object. Having angular velocity below this value will result in that velocity being set to 0 
+
+\mbox{\Hypertarget{class_physics_object_a6a6b3e43aa0160cce7f48e506adadd5f}\label{class_physics_object_a6a6b3e43aa0160cce7f48e506adadd5f}} 
+\index{PhysicsObject@{PhysicsObject}!MIN\_LINEAR\_THRESHOLD@{MIN\_LINEAR\_THRESHOLD}}
+\index{MIN\_LINEAR\_THRESHOLD@{MIN\_LINEAR\_THRESHOLD}!PhysicsObject@{PhysicsObject}}
+\doxysubsubsection{\texorpdfstring{MIN\_LINEAR\_THRESHOLD}{MIN\_LINEAR\_THRESHOLD}}
+{\footnotesize\ttfamily const float Physics\+Object\+::\+MIN\+\_\+\+LINEAR\+\_\+\+THRESHOLD = 0.\+5f\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The minimum linear velocity of a physics object. Having a velocity below this value will result in velocity being set to 0,0 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_physics_object_8h}{Physics\+Object.\+h}}\item 
+\mbox{\hyperlink{_physics_object_8cpp}{Physics\+Object.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,309 @@
+\hypertarget{class_box}{}\doxysection{Box Class Reference}
+\label{class_box}\index{Box@{Box}}
+
+
+Contains all necessary information for creating and simulating Cubes and Rectangles.  
+
+
+
+
+{\ttfamily \#include $<$Box.\+h$>$}
+
+Inheritance diagram for Box\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_box}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_box_abf5fc8fc959a37f5596aac6889cdbea9}{Box}} (glm\+::vec2 position, bool is\+Kinematic, glm\+::vec2 velocity, float mass, glm\+::vec4 colour, glm\+::vec2 extents, float orientation, float angular\+Velocity, unsigned int layer=0, float linear\+Drag=0, float angular\+Drag=0, float elasticity=1, float static\+Friction=1, float kinetic\+Friction=1)
+\begin{DoxyCompactList}\small\item\em Creates a box \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_box_a6a5e09398e85d602a046b429062fb9c2}{$\sim$\+Box}} ()
+\item 
+virtual void \mbox{\hyperlink{class_box_a9a66c0051d4109c8f05676d95ced3033}{Fixed\+Update}} (glm\+::vec2 gravity, float time\+Step)
+\begin{DoxyCompactList}\small\item\em Rotates, transforms and applys drag to the box. Also re-\/calculates local X and Y axis. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_box_a309d54fdeea398925f6341fab3e0ea84}{Draw}} ()
+\begin{DoxyCompactList}\small\item\em Draws the box \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_box_a220a487ebfb88b1180f3c3f7c1570b97}{Check\+Box\+Corners}} (const \mbox{\hyperlink{class_box}{Box}} \&box, glm\+::vec2 \&contact, int \&num\+Contacts, float \&pen, glm\+::vec2 \&edge\+Normal)
+\begin{DoxyCompactList}\small\item\em Determines if this box is intersecting with the given box and returns information about the contact point. \end{DoxyCompactList}\item 
+virtual glm\+::vec2 \mbox{\hyperlink{class_box_a5ae288d4894c6c27b852376b4ce09dfd}{To\+World}} (glm\+::vec2 offset)
+\begin{DoxyCompactList}\small\item\em Transforms a local position/offset into world co-\/ordinates. Accounts for box rotation. \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{class_box_aff12077a77574c02686520adbce87b5e}{Get\+Extents}} () const
+\begin{DoxyCompactList}\small\item\em Returns the half extents of the box. \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{class_box_a13ae16e57251d949462899bf7a2a9bcd}{Get\+LocalX}} () const
+\begin{DoxyCompactList}\small\item\em Returns the local X axis. \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{class_box_a51f8ff2ff03974a31ad462ccb8642f41}{Get\+LocalY}} () const
+\begin{DoxyCompactList}\small\item\em Returns the local Y axis. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_box_a50689dfcc029ff70a0ebeefd8b2e47ff}{Get\+Width}} () const
+\begin{DoxyCompactList}\small\item\em Returns the width. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_box_a8c00edf5bb5b75e53be3129cbb35d4fe}{Get\+Height}} () const
+\begin{DoxyCompactList}\small\item\em Returns the height. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec2 \mbox{\hyperlink{class_box_a8f5a631cb798cb3cb10233a96b0a4fac}{m\+\_\+extents}}
+\begin{DoxyCompactList}\small\item\em The half extents \end{DoxyCompactList}\item 
+glm\+::vec4 \mbox{\hyperlink{class_box_a19f97d818f628dfceed981f91cad584d}{m\+\_\+colour}}
+\begin{DoxyCompactList}\small\item\em The colour of the box in RBGA \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{class_box_ab32c63781b62feb9be810bb15a99aa9f}{m\+\_\+localX}}
+\begin{DoxyCompactList}\small\item\em The local X axis \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{class_box_a96930b5d2c7b8357b16da55c984ddcb5}{m\+\_\+localY}}
+\begin{DoxyCompactList}\small\item\em The local Y axis \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Contains all necessary information for creating and simulating Cubes and Rectangles. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_box_abf5fc8fc959a37f5596aac6889cdbea9}\label{class_box_abf5fc8fc959a37f5596aac6889cdbea9}} 
+\index{Box@{Box}!Box@{Box}}
+\index{Box@{Box}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{Box()}{Box()}}
+{\footnotesize\ttfamily Box\+::\+Box (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{position,  }\item[{bool}]{is\+Kinematic,  }\item[{glm\+::vec2}]{velocity,  }\item[{float}]{mass,  }\item[{glm\+::vec4}]{colour,  }\item[{glm\+::vec2}]{extents,  }\item[{float}]{orientation,  }\item[{float}]{angular\+Velocity,  }\item[{unsigned int}]{layer = {\ttfamily 0},  }\item[{float}]{linear\+Drag = {\ttfamily 0},  }\item[{float}]{angular\+Drag = {\ttfamily 0},  }\item[{float}]{elasticity = {\ttfamily 1},  }\item[{float}]{static\+Friction = {\ttfamily 1},  }\item[{float}]{kinetic\+Friction = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Creates a box 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position of the origin of the box\\
+\hline
+{\em is\+Kinematic} & Should the box be simulated by the physics engine\\
+\hline
+{\em velocity} & The inital velocity of the boxes Center of Mass in units per second\\
+\hline
+{\em mass} & The mass of the Center of Mass\\
+\hline
+{\em colour} & The colour of the box in RGBA format\\
+\hline
+{\em extents} & The half extents of the box\\
+\hline
+{\em orientation} & The inital orientation of the box in degrees\\
+\hline
+{\em angular\+Velocity} & The inital angular velocity of the box in radians per second or per second\\
+\hline
+{\em layer} & The layer of the box. Determines what it can collide with. Defaults to layer 0\\
+\hline
+{\em linear\+Drag} & The linear drag of the box. Defaults to 0\\
+\hline
+{\em angular\+Drag} & The angular drag of the box. Defaults to 0\\
+\hline
+{\em elasticity} & The elasticity of the box. Determines how much energy is gained or lost from a collision with this physics object. Defaults to 1 (no energy loss or gain)\\
+\hline
+{\em static\+Friction} & The static friction coefficient. The friction factor applied on a stationary object. Defaults to 1. Set to 0 for frictionless\\
+\hline
+{\em kinematic\+Friction} & The kinetic friction coefficient. The friction factor applied on a moving object. Defaults to 1. Set to 0 for frictionless\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_box_a6a5e09398e85d602a046b429062fb9c2}\label{class_box_a6a5e09398e85d602a046b429062fb9c2}} 
+\index{Box@{Box}!````~Box@{$\sim$Box}}
+\index{````~Box@{$\sim$Box}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{$\sim$Box()}{~Box()}}
+{\footnotesize\ttfamily Box\+::$\sim$\+Box (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_box_a220a487ebfb88b1180f3c3f7c1570b97}\label{class_box_a220a487ebfb88b1180f3c3f7c1570b97}} 
+\index{Box@{Box}!CheckBoxCorners@{CheckBoxCorners}}
+\index{CheckBoxCorners@{CheckBoxCorners}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{CheckBoxCorners()}{CheckBoxCorners()}}
+{\footnotesize\ttfamily bool Box\+::\+Check\+Box\+Corners (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_box}{Box}} \&}]{box,  }\item[{glm\+::vec2 \&}]{contact,  }\item[{int \&}]{num\+Contacts,  }\item[{float \&}]{pen,  }\item[{glm\+::vec2 \&}]{edge\+Normal }\end{DoxyParamCaption})}
+
+
+
+Determines if this box is intersecting with the given box and returns information about the contact point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em box} & The box to compare to\\
+\hline
+{\em contact} & The point of contact. Does not override the original value, it instead adds to the value.\\
+\hline
+{\em num\+Contacts} & The number of contacts between the boxes. Does not override the original value, it increments the value instead.\\
+\hline
+{\em pen} & A reference to a float for writing purposes. How far the contact point penetrates the box.\\
+\hline
+{\em edge\+Normal} & A reference to a glm\+::vec2 for writing purposes. The normal of the edge the collision occured on.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if there is a collision and writes to the parameters information about the collision.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_box_a309d54fdeea398925f6341fab3e0ea84}\label{class_box_a309d54fdeea398925f6341fab3e0ea84}} 
+\index{Box@{Box}!Draw@{Draw}}
+\index{Draw@{Draw}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Box\+::\+Draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Draws the box 
+
+
+
+Implements \mbox{\hyperlink{class_physics_object_a993187e5476cd2e231cdec4b6176f8b4}{Physics\+Object}}.
+
+\mbox{\Hypertarget{class_box_a9a66c0051d4109c8f05676d95ced3033}\label{class_box_a9a66c0051d4109c8f05676d95ced3033}} 
+\index{Box@{Box}!FixedUpdate@{FixedUpdate}}
+\index{FixedUpdate@{FixedUpdate}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{FixedUpdate()}{FixedUpdate()}}
+{\footnotesize\ttfamily void Box\+::\+Fixed\+Update (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{gravity,  }\item[{float}]{time\+Step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Rotates, transforms and applys drag to the box. Also re-\/calculates local X and Y axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gravity} & The direction and magnitude of gravity.\\
+\hline
+{\em time\+Step} & The time that has passed for this physics update.\\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_rigidbody_aac9dd7a302e8acfa76f4ae4399dcfb60}{Rigidbody}}.
+
+\mbox{\Hypertarget{class_box_aff12077a77574c02686520adbce87b5e}\label{class_box_aff12077a77574c02686520adbce87b5e}} 
+\index{Box@{Box}!GetExtents@{GetExtents}}
+\index{GetExtents@{GetExtents}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{GetExtents()}{GetExtents()}}
+{\footnotesize\ttfamily glm\+::vec2 Box\+::\+Get\+Extents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the half extents of the box. 
+
+\begin{DoxyReturn}{Returns}
+Returns the half extents of the box as a vector2. The x represents half the width, the y represents half the height. (Half extents) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_box_a8c00edf5bb5b75e53be3129cbb35d4fe}\label{class_box_a8c00edf5bb5b75e53be3129cbb35d4fe}} 
+\index{Box@{Box}!GetHeight@{GetHeight}}
+\index{GetHeight@{GetHeight}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{GetHeight()}{GetHeight()}}
+{\footnotesize\ttfamily float Box\+::\+Get\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the height. 
+
+\begin{DoxyReturn}{Returns}
+The length of the box along the local Y axis.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_box_a13ae16e57251d949462899bf7a2a9bcd}\label{class_box_a13ae16e57251d949462899bf7a2a9bcd}} 
+\index{Box@{Box}!GetLocalX@{GetLocalX}}
+\index{GetLocalX@{GetLocalX}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{GetLocalX()}{GetLocalX()}}
+{\footnotesize\ttfamily glm\+::vec2 Box\+::\+Get\+LocalX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the local X axis. 
+
+\begin{DoxyReturn}{Returns}
+Returns the local X axis as a vector2.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_box_a51f8ff2ff03974a31ad462ccb8642f41}\label{class_box_a51f8ff2ff03974a31ad462ccb8642f41}} 
+\index{Box@{Box}!GetLocalY@{GetLocalY}}
+\index{GetLocalY@{GetLocalY}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{GetLocalY()}{GetLocalY()}}
+{\footnotesize\ttfamily glm\+::vec2 Box\+::\+Get\+LocalY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the local Y axis. 
+
+\begin{DoxyReturn}{Returns}
+Returns the local Y axis as a vector2.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_box_a50689dfcc029ff70a0ebeefd8b2e47ff}\label{class_box_a50689dfcc029ff70a0ebeefd8b2e47ff}} 
+\index{Box@{Box}!GetWidth@{GetWidth}}
+\index{GetWidth@{GetWidth}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{GetWidth()}{GetWidth()}}
+{\footnotesize\ttfamily float Box\+::\+Get\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the width. 
+
+\begin{DoxyReturn}{Returns}
+The length of the box along the local X axis.
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_box_a5ae288d4894c6c27b852376b4ce09dfd}\label{class_box_a5ae288d4894c6c27b852376b4ce09dfd}} 
+\index{Box@{Box}!ToWorld@{ToWorld}}
+\index{ToWorld@{ToWorld}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{ToWorld()}{ToWorld()}}
+{\footnotesize\ttfamily virtual glm\+::vec2 Box\+::\+To\+World (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Transforms a local position/offset into world co-\/ordinates. Accounts for box rotation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & The local position or offset from the center of the box.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the equivalent position of \char`\"{}offset\char`\"{} in world co-\/ordinates.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_rigidbody_a811b18f46784382d4935f0a1c8f27b59}{Rigidbody}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_box_a19f97d818f628dfceed981f91cad584d}\label{class_box_a19f97d818f628dfceed981f91cad584d}} 
+\index{Box@{Box}!m\_colour@{m\_colour}}
+\index{m\_colour@{m\_colour}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{m\_colour}{m\_colour}}
+{\footnotesize\ttfamily glm\+::vec4 Box\+::m\+\_\+colour\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The colour of the box in RBGA 
+
+\mbox{\Hypertarget{class_box_a8f5a631cb798cb3cb10233a96b0a4fac}\label{class_box_a8f5a631cb798cb3cb10233a96b0a4fac}} 
+\index{Box@{Box}!m\_extents@{m\_extents}}
+\index{m\_extents@{m\_extents}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{m\_extents}{m\_extents}}
+{\footnotesize\ttfamily glm\+::vec2 Box\+::m\+\_\+extents\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The half extents 
+
+\mbox{\Hypertarget{class_box_ab32c63781b62feb9be810bb15a99aa9f}\label{class_box_ab32c63781b62feb9be810bb15a99aa9f}} 
+\index{Box@{Box}!m\_localX@{m\_localX}}
+\index{m\_localX@{m\_localX}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{m\_localX}{m\_localX}}
+{\footnotesize\ttfamily glm\+::vec2 Box\+::m\+\_\+localX\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The local X axis 
+
+\mbox{\Hypertarget{class_box_a96930b5d2c7b8357b16da55c984ddcb5}\label{class_box_a96930b5d2c7b8357b16da55c984ddcb5}} 
+\index{Box@{Box}!m\_localY@{m\_localY}}
+\index{m\_localY@{m\_localY}!Box@{Box}}
+\doxysubsubsection{\texorpdfstring{m\_localY}{m\_localY}}
+{\footnotesize\ttfamily glm\+::vec2 Box\+::m\+\_\+localY\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The local Y axis 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_box_8h}{Box.\+h}}\item 
+\mbox{\hyperlink{_box_8cpp}{Box.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,138 @@
+\hypertarget{class_wheel}{}\doxysection{Wheel Class Reference}
+\label{class_wheel}\index{Wheel@{Wheel}}
+
+
+A user controller sphere. The user can control the angular velocity of the sphere  
+
+
+
+
+{\ttfamily \#include $<$Wheel.\+h$>$}
+
+Inheritance diagram for Wheel\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_wheel}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_wheel_a3586c3758dcc9dd98f292c12bd2b647a}{Wheel}} (glm\+::vec2 position, float mass, float radius, float angular\+Acceleration, float angular\+Velocity\+Limit, glm\+::vec4 colour, unsigned int layer, float linear\+Drag=0, float angular\+Drag=0, float elasticity=1, float static\+Friction=1, float kinetic\+Friction=1)
+\begin{DoxyCompactList}\small\item\em Creates a wheel \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_wheel_ac145d7f4f1d2921ebf268700f390548e}{$\sim$\+Wheel}} ()
+\item 
+virtual void \mbox{\hyperlink{class_wheel_a0522e8cac5753e352ac88fb5bfddc131}{Fixed\+Update}} (glm\+::vec2 gravity, float time\+Step)
+\begin{DoxyCompactList}\small\item\em Applies angular acceleration and clamps velocity \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_wheel_ab2b76ebe89529df3cb0a18b55b03ffca}{m\+\_\+angular\+Acceleration}}
+\begin{DoxyCompactList}\small\item\em How quickly the angular velocity changes \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_wheel_a87ec89e350a9a69f92addbb02838c7d5}{m\+\_\+angular\+Velocity\+Limit}}
+\begin{DoxyCompactList}\small\item\em The maximum angular velocity \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A user controller sphere. The user can control the angular velocity of the sphere 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_wheel_a3586c3758dcc9dd98f292c12bd2b647a}\label{class_wheel_a3586c3758dcc9dd98f292c12bd2b647a}} 
+\index{Wheel@{Wheel}!Wheel@{Wheel}}
+\index{Wheel@{Wheel}!Wheel@{Wheel}}
+\doxysubsubsection{\texorpdfstring{Wheel()}{Wheel()}}
+{\footnotesize\ttfamily Wheel\+::\+Wheel (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{position,  }\item[{float}]{mass,  }\item[{float}]{radius,  }\item[{float}]{angular\+Acceleration,  }\item[{float}]{angular\+Velocity\+Limit,  }\item[{glm\+::vec4}]{colour,  }\item[{unsigned int}]{layer,  }\item[{float}]{linear\+Drag = {\ttfamily 0},  }\item[{float}]{angular\+Drag = {\ttfamily 0},  }\item[{float}]{elasticity = {\ttfamily 1},  }\item[{float}]{static\+Friction = {\ttfamily 1},  }\item[{float}]{kinetic\+Friction = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Creates a wheel 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The initial position of the wheel\\
+\hline
+{\em mass} & The mass of the wheel\\
+\hline
+{\em radius} & The radius of the wheel\\
+\hline
+{\em angular\+Acceleration} & The acceleration applied to the angular velocity when an input is made\\
+\hline
+{\em angular\+Velocity\+Limit} & The maximum angular velocity\\
+\hline
+{\em colour} & The colour of the wheel in RGBA format\\
+\hline
+{\em layer} & The layer the wheel exists on\\
+\hline
+{\em linear\+Drag} & The linear drag coefficient. Defaults to 0\\
+\hline
+{\em angular\+Drag} & The angular drag coefficient. Defaults to 0\\
+\hline
+{\em elasticity} & The elasticity factor. Set to 1 for no loss or gain of energy. Defaults to 1\\
+\hline
+{\em static\+Friction} & The static friction coefficient. Defaults to 1\\
+\hline
+{\em kinetic\+Friction} & The kinetic friction coefficient. Defaults to 1\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_wheel_ac145d7f4f1d2921ebf268700f390548e}\label{class_wheel_ac145d7f4f1d2921ebf268700f390548e}} 
+\index{Wheel@{Wheel}!````~Wheel@{$\sim$Wheel}}
+\index{````~Wheel@{$\sim$Wheel}!Wheel@{Wheel}}
+\doxysubsubsection{\texorpdfstring{$\sim$Wheel()}{~Wheel()}}
+{\footnotesize\ttfamily Wheel\+::$\sim$\+Wheel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_wheel_a0522e8cac5753e352ac88fb5bfddc131}\label{class_wheel_a0522e8cac5753e352ac88fb5bfddc131}} 
+\index{Wheel@{Wheel}!FixedUpdate@{FixedUpdate}}
+\index{FixedUpdate@{FixedUpdate}!Wheel@{Wheel}}
+\doxysubsubsection{\texorpdfstring{FixedUpdate()}{FixedUpdate()}}
+{\footnotesize\ttfamily void Wheel\+::\+Fixed\+Update (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{gravity,  }\item[{float}]{time\+Step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Applies angular acceleration and clamps velocity 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gravity} & The direction and magnitude of gravity\\
+\hline
+{\em time\+Step} & The time passed for this physics simulation\\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_rigidbody_aac9dd7a302e8acfa76f4ae4399dcfb60}{Rigidbody}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_wheel_ab2b76ebe89529df3cb0a18b55b03ffca}\label{class_wheel_ab2b76ebe89529df3cb0a18b55b03ffca}} 
+\index{Wheel@{Wheel}!m\_angularAcceleration@{m\_angularAcceleration}}
+\index{m\_angularAcceleration@{m\_angularAcceleration}!Wheel@{Wheel}}
+\doxysubsubsection{\texorpdfstring{m\_angularAcceleration}{m\_angularAcceleration}}
+{\footnotesize\ttfamily float Wheel\+::m\+\_\+angular\+Acceleration\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+How quickly the angular velocity changes 
+
+\mbox{\Hypertarget{class_wheel_a87ec89e350a9a69f92addbb02838c7d5}\label{class_wheel_a87ec89e350a9a69f92addbb02838c7d5}} 
+\index{Wheel@{Wheel}!m\_angularVelocityLimit@{m\_angularVelocityLimit}}
+\index{m\_angularVelocityLimit@{m\_angularVelocityLimit}!Wheel@{Wheel}}
+\doxysubsubsection{\texorpdfstring{m\_angularVelocityLimit}{m\_angularVelocityLimit}}
+{\footnotesize\ttfamily float Wheel\+::m\+\_\+angular\+Velocity\+Limit\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The maximum angular velocity 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_wheel_8h}{Wheel.\+h}}\item 
+\mbox{\hyperlink{_wheel_8cpp}{Wheel.\+cpp}}\end{DoxyCompactItemize}

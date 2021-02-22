@@ -1,0 +1,551 @@
+\hypertarget{class_rigidbody}{}\doxysection{Rigidbody Class Reference}
+\label{class_rigidbody}\index{Rigidbody@{Rigidbody}}
+
+
+Contains the information for creating and simulating a rigidbody.  
+
+
+
+
+{\ttfamily \#include $<$Rigidbody.\+h$>$}
+
+Inheritance diagram for Rigidbody\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_rigidbody}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_rigidbody_af752e64bec530c077f24bada3b4f01f7}{Rigidbody}} (\mbox{\hyperlink{_physics_object_8h_a5a4538eeab397888d88a4eefcc5a1345}{Shape\+Type}} shape\+ID, glm\+::vec2 position, bool is\+Kinematic, glm\+::vec2 velocity, unsigned int layer, float orientation, float mass, float elasticity, float angular\+Velocity, float linear\+Drag, float angular\+Drag, float static\+Friction, float kinetic\+Friction)
+\begin{DoxyCompactList}\small\item\em Creates a rigid body \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_rigidbody_adef2355db93cd489250ce7ab2c797a10}{$\sim$\+Rigidbody}} ()
+\item 
+virtual void \mbox{\hyperlink{class_rigidbody_aac9dd7a302e8acfa76f4ae4399dcfb60}{Fixed\+Update}} (glm\+::vec2 gravity, float time\+Step)
+\begin{DoxyCompactList}\small\item\em Simulates the movement, rotation and drag of the rigidbody \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rigidbody_afe190cee08f8a0e48c281dd1be15075c}{Apply\+Force}} (glm\+::vec2 force, glm\+::vec2 pos)
+\begin{DoxyCompactList}\small\item\em Applies a force to the rigidbody at a given local point \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rigidbody_afb0a45c0c86d4a3069d1eb00c467a05f}{Resolve\+Collision}} (\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$actor2, glm\+::vec2 contact, glm\+::vec2 $\ast$collision\+Normal=nullptr, float pen=0)
+\begin{DoxyCompactList}\small\item\em Resolves the collision between this rigidbody and another rigidbody \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rigidbody_a7b3f4a8d0951c995ab95405c1ad1c73c}{Set\+Position}} (glm\+::vec2 position)
+\begin{DoxyCompactList}\small\item\em Sets the position \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rigidbody_a66edffd623756c7fa0afa9b07fb812f4}{Set\+Kinematic}} (bool state)
+\begin{DoxyCompactList}\small\item\em Sets the kinematic state of the rigidbody \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rigidbody_adb4e2129878ca3a674e4fc7c73e35913}{Set\+Angular\+Velocity}} (float velocity)
+\begin{DoxyCompactList}\small\item\em Sets the angular velocity \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rigidbody_ae60f0129bc21ee431699e18552c6799f}{Set\+Velocity}} (glm\+::vec2 velocity)
+\begin{DoxyCompactList}\small\item\em Sets the velocity \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{class_rigidbody_a99935c8859d6ed2430577cd5ef66b426}{Get\+Relative\+Velocity}} (glm\+::vec2 local\+Contact)
+\begin{DoxyCompactList}\small\item\em Returns the velocity of a point on the object \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{class_rigidbody_ac1eb5295cffc197d79441061ef3ce619}{Get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Returns the position \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{class_rigidbody_a38c692f255c2e2ab6951ff5d34a6ba67}{Get\+Velocity}} () const
+\begin{DoxyCompactList}\small\item\em Returns the velocity \end{DoxyCompactList}\item 
+virtual glm\+::vec2 \mbox{\hyperlink{class_rigidbody_a811b18f46784382d4935f0a1c8f27b59}{To\+World}} (glm\+::vec2 offset)
+\begin{DoxyCompactList}\small\item\em Converts an offset in local space to global space \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rigidbody_a39b3ffef23186577ecd71e90b899d277}{Get\+Orientation}} () const
+\begin{DoxyCompactList}\small\item\em Returns the orientation \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rigidbody_a0eaa036f46bfd34c0b2ae9f2c43e540c}{Get\+Mass}} () const
+\begin{DoxyCompactList}\small\item\em Returns the mass \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rigidbody_aa65bc28f8e0bfd4c3064587f5a19ff48}{Get\+Moment}} () const
+\begin{DoxyCompactList}\small\item\em Returns the moment \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rigidbody_aea4f133b535f4993d21cd3384665b42a}{Get\+Angular\+Velocity}} () const
+\begin{DoxyCompactList}\small\item\em Returns the angular velocity \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_rigidbody_a89b40820433b864a57e4b5606579b358}{Is\+Kinematic}} ()
+\begin{DoxyCompactList}\small\item\em Returns the kinematic state \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{class_rigidbody_af096668db82728fc0c7d1ce11700b1e7}{get\+Energy}} ()
+\begin{DoxyCompactList}\small\item\em Returns the total energy of the physics object \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rigidbody_a9bcd756280d22d053c082c7a27061cef}{Get\+Linear\+Energy}} ()
+\begin{DoxyCompactList}\small\item\em Returns the linear kinetic energy \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rigidbody_ab47e9ad292a019022c0984330a105d9a}{Get\+Rotational\+Kinetic\+Energy}} ()
+\begin{DoxyCompactList}\small\item\em Returns the rotational kinetic energy \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rigidbody_a8445b88d71bff752136842fcf9fb580c}{Get\+Potential\+Energy}} ()
+\begin{DoxyCompactList}\small\item\em Returns to potential energy \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec2 \mbox{\hyperlink{class_rigidbody_a9540ff3467659df33ac51b3d6e1f3e30}{m\+\_\+position}}
+\begin{DoxyCompactList}\small\item\em The position of the object \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{class_rigidbody_a069496a4cccd6a3f0f91652daf01ae64}{m\+\_\+velocity}}
+\begin{DoxyCompactList}\small\item\em The velocity of the object \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rigidbody_a7cf0d814beb581834522e9758cf5c84b}{m\+\_\+angular\+Velocity}}
+\begin{DoxyCompactList}\small\item\em The angular velocity of the object \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rigidbody_a542eb2a911d8765c47a9353e1fe24ade}{m\+\_\+mass}}
+\begin{DoxyCompactList}\small\item\em The mass of the Center of Mass \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rigidbody_a6df7b6c3cb7342cea4a168f40c0fad32}{m\+\_\+orientation}}
+\begin{DoxyCompactList}\small\item\em The orientation in radians of the object \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rigidbody_a923e24726f05e4af8d4f7b1b7a9a76ce}{m\+\_\+moment}}
+\begin{DoxyCompactList}\small\item\em The moment. Calculated in constructor \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rigidbody_aecb789379623b00bba04e4aef0223e2c}{m\+\_\+linear\+Drag}}
+\begin{DoxyCompactList}\small\item\em The linear drag \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_rigidbody_ae630f5d7497c74c351b1857f61523433}{m\+\_\+angular\+Drag}}
+\begin{DoxyCompactList}\small\item\em The angular drag \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_rigidbody_a77e8dc7fd8d83c27448e118e4dfba252}{m\+\_\+is\+Kinematic}}
+\begin{DoxyCompactList}\small\item\em Should the Physics Object be simulated by the physics \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Contains the information for creating and simulating a rigidbody. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_rigidbody_af752e64bec530c077f24bada3b4f01f7}\label{class_rigidbody_af752e64bec530c077f24bada3b4f01f7}} 
+\index{Rigidbody@{Rigidbody}!Rigidbody@{Rigidbody}}
+\index{Rigidbody@{Rigidbody}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{Rigidbody()}{Rigidbody()}}
+{\footnotesize\ttfamily Rigidbody\+::\+Rigidbody (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_physics_object_8h_a5a4538eeab397888d88a4eefcc5a1345}{Shape\+Type}}}]{shape\+ID,  }\item[{glm\+::vec2}]{position,  }\item[{bool}]{is\+Kinematic,  }\item[{glm\+::vec2}]{velocity,  }\item[{unsigned int}]{layer,  }\item[{float}]{orientation,  }\item[{float}]{mass,  }\item[{float}]{elasticity,  }\item[{float}]{angular\+Velocity,  }\item[{float}]{linear\+Drag,  }\item[{float}]{angular\+Drag,  }\item[{float}]{static\+Friction,  }\item[{float}]{kinetic\+Friction }\end{DoxyParamCaption})}
+
+
+
+Creates a rigid body 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shape\+ID} & The ID of the shape\\
+\hline
+{\em position} & The position of the body\\
+\hline
+{\em is\+Kinematic} & The kinematic state of the body. Set to true if you don\textquotesingle{}t want the body to be simulated by physics\\
+\hline
+{\em velocity} & The inital velocity of the object\\
+\hline
+{\em layer} & The layer the body exists on\\
+\hline
+{\em orientation} & The orientation, in degrees of the body\\
+\hline
+{\em mass} & The mass of the body\\
+\hline
+{\em elasticity} & The elasticity of the body. Set to 1 for no energy loss or gain\\
+\hline
+{\em angular\+Velocity} & The inital angular velocity\\
+\hline
+{\em linear\+Drag} & The linear drag for this body\\
+\hline
+{\em angular\+Drag} & The angular drag for this body\\
+\hline
+{\em static\+Friction} & The static friction coefficient for this body\\
+\hline
+{\em kinetic\+Friction} & The kinetic friction coefficient for this body\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_rigidbody_adef2355db93cd489250ce7ab2c797a10}\label{class_rigidbody_adef2355db93cd489250ce7ab2c797a10}} 
+\index{Rigidbody@{Rigidbody}!````~Rigidbody@{$\sim$Rigidbody}}
+\index{````~Rigidbody@{$\sim$Rigidbody}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{$\sim$Rigidbody()}{~Rigidbody()}}
+{\footnotesize\ttfamily Rigidbody\+::$\sim$\+Rigidbody (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rigidbody_afe190cee08f8a0e48c281dd1be15075c}\label{class_rigidbody_afe190cee08f8a0e48c281dd1be15075c}} 
+\index{Rigidbody@{Rigidbody}!ApplyForce@{ApplyForce}}
+\index{ApplyForce@{ApplyForce}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{ApplyForce()}{ApplyForce()}}
+{\footnotesize\ttfamily void Rigidbody\+::\+Apply\+Force (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{force,  }\item[{glm\+::vec2}]{pos }\end{DoxyParamCaption})}
+
+
+
+Applies a force to the rigidbody at a given local point 
+
+
+\begin{DoxyParams}{Parameters}
+{\em force} & The force with direction to apply\\
+\hline
+{\em pos} & The local point to apply the force to\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_rigidbody_aac9dd7a302e8acfa76f4ae4399dcfb60}\label{class_rigidbody_aac9dd7a302e8acfa76f4ae4399dcfb60}} 
+\index{Rigidbody@{Rigidbody}!FixedUpdate@{FixedUpdate}}
+\index{FixedUpdate@{FixedUpdate}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{FixedUpdate()}{FixedUpdate()}}
+{\footnotesize\ttfamily void Rigidbody\+::\+Fixed\+Update (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{gravity,  }\item[{float}]{time\+Step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Simulates the movement, rotation and drag of the rigidbody 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gravity} & The direction and magnitude of gravity\\
+\hline
+{\em time\+Step} & The time that has passed for this time step\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_physics_object_a3aafc8bf82e2b724a85b1af7307dcd59}{Physics\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{class_wheel_a0522e8cac5753e352ac88fb5bfddc131}{Wheel}}, and \mbox{\hyperlink{class_box_a9a66c0051d4109c8f05676d95ced3033}{Box}}.
+
+\mbox{\Hypertarget{class_rigidbody_aea4f133b535f4993d21cd3384665b42a}\label{class_rigidbody_aea4f133b535f4993d21cd3384665b42a}} 
+\index{Rigidbody@{Rigidbody}!GetAngularVelocity@{GetAngularVelocity}}
+\index{GetAngularVelocity@{GetAngularVelocity}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{GetAngularVelocity()}{GetAngularVelocity()}}
+{\footnotesize\ttfamily float Rigidbody\+::\+Get\+Angular\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the angular velocity 
+
+\begin{DoxyReturn}{Returns}
+Returns the angular velocity in radians per second
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rigidbody_af096668db82728fc0c7d1ce11700b1e7}\label{class_rigidbody_af096668db82728fc0c7d1ce11700b1e7}} 
+\index{Rigidbody@{Rigidbody}!getEnergy@{getEnergy}}
+\index{getEnergy@{getEnergy}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{getEnergy()}{getEnergy()}}
+{\footnotesize\ttfamily virtual float Rigidbody\+::get\+Energy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the total energy of the physics object 
+
+\begin{DoxyReturn}{Returns}
+Returns the sum of the lienar, rotational and potential energy
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_physics_object_a992cdb0269794a25afca025fb6a11d11}{Physics\+Object}}.
+
+\mbox{\Hypertarget{class_rigidbody_a9bcd756280d22d053c082c7a27061cef}\label{class_rigidbody_a9bcd756280d22d053c082c7a27061cef}} 
+\index{Rigidbody@{Rigidbody}!GetLinearEnergy@{GetLinearEnergy}}
+\index{GetLinearEnergy@{GetLinearEnergy}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{GetLinearEnergy()}{GetLinearEnergy()}}
+{\footnotesize\ttfamily float Rigidbody\+::\+Get\+Linear\+Energy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the linear kinetic energy 
+
+\begin{DoxyReturn}{Returns}
+Returns the linear kinetic energy
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rigidbody_a0eaa036f46bfd34c0b2ae9f2c43e540c}\label{class_rigidbody_a0eaa036f46bfd34c0b2ae9f2c43e540c}} 
+\index{Rigidbody@{Rigidbody}!GetMass@{GetMass}}
+\index{GetMass@{GetMass}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{GetMass()}{GetMass()}}
+{\footnotesize\ttfamily float Rigidbody\+::\+Get\+Mass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the mass 
+
+\begin{DoxyReturn}{Returns}
+Returns the mass
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rigidbody_aa65bc28f8e0bfd4c3064587f5a19ff48}\label{class_rigidbody_aa65bc28f8e0bfd4c3064587f5a19ff48}} 
+\index{Rigidbody@{Rigidbody}!GetMoment@{GetMoment}}
+\index{GetMoment@{GetMoment}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{GetMoment()}{GetMoment()}}
+{\footnotesize\ttfamily float Rigidbody\+::\+Get\+Moment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the moment 
+
+\begin{DoxyReturn}{Returns}
+Returns the moment
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rigidbody_a39b3ffef23186577ecd71e90b899d277}\label{class_rigidbody_a39b3ffef23186577ecd71e90b899d277}} 
+\index{Rigidbody@{Rigidbody}!GetOrientation@{GetOrientation}}
+\index{GetOrientation@{GetOrientation}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{GetOrientation()}{GetOrientation()}}
+{\footnotesize\ttfamily float Rigidbody\+::\+Get\+Orientation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the orientation 
+
+\begin{DoxyReturn}{Returns}
+Returns the orientation in radians
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rigidbody_ac1eb5295cffc197d79441061ef3ce619}\label{class_rigidbody_ac1eb5295cffc197d79441061ef3ce619}} 
+\index{Rigidbody@{Rigidbody}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{GetPosition()}{GetPosition()}}
+{\footnotesize\ttfamily glm\+::vec2 Rigidbody\+::\+Get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the position 
+
+\begin{DoxyReturn}{Returns}
+Returns the position
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rigidbody_a8445b88d71bff752136842fcf9fb580c}\label{class_rigidbody_a8445b88d71bff752136842fcf9fb580c}} 
+\index{Rigidbody@{Rigidbody}!GetPotentialEnergy@{GetPotentialEnergy}}
+\index{GetPotentialEnergy@{GetPotentialEnergy}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{GetPotentialEnergy()}{GetPotentialEnergy()}}
+{\footnotesize\ttfamily float Rigidbody\+::\+Get\+Potential\+Energy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns to potential energy 
+
+\begin{DoxyReturn}{Returns}
+Returns the potential energy
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rigidbody_a99935c8859d6ed2430577cd5ef66b426}\label{class_rigidbody_a99935c8859d6ed2430577cd5ef66b426}} 
+\index{Rigidbody@{Rigidbody}!GetRelativeVelocity@{GetRelativeVelocity}}
+\index{GetRelativeVelocity@{GetRelativeVelocity}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{GetRelativeVelocity()}{GetRelativeVelocity()}}
+{\footnotesize\ttfamily glm\+::vec2 Rigidbody\+::\+Get\+Relative\+Velocity (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{local\+Contact }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the velocity of a point on the object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em local\+Contact} & The local point to get the velocity at\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the velocity of a particle at that local point as a vector2
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rigidbody_ab47e9ad292a019022c0984330a105d9a}\label{class_rigidbody_ab47e9ad292a019022c0984330a105d9a}} 
+\index{Rigidbody@{Rigidbody}!GetRotationalKineticEnergy@{GetRotationalKineticEnergy}}
+\index{GetRotationalKineticEnergy@{GetRotationalKineticEnergy}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{GetRotationalKineticEnergy()}{GetRotationalKineticEnergy()}}
+{\footnotesize\ttfamily float Rigidbody\+::\+Get\+Rotational\+Kinetic\+Energy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the rotational kinetic energy 
+
+\begin{DoxyReturn}{Returns}
+Returns the rotational kinetic energy
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rigidbody_a38c692f255c2e2ab6951ff5d34a6ba67}\label{class_rigidbody_a38c692f255c2e2ab6951ff5d34a6ba67}} 
+\index{Rigidbody@{Rigidbody}!GetVelocity@{GetVelocity}}
+\index{GetVelocity@{GetVelocity}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{GetVelocity()}{GetVelocity()}}
+{\footnotesize\ttfamily glm\+::vec2 Rigidbody\+::\+Get\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the velocity 
+
+\begin{DoxyReturn}{Returns}
+Returns the velocity as a vector2
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rigidbody_a89b40820433b864a57e4b5606579b358}\label{class_rigidbody_a89b40820433b864a57e4b5606579b358}} 
+\index{Rigidbody@{Rigidbody}!IsKinematic@{IsKinematic}}
+\index{IsKinematic@{IsKinematic}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{IsKinematic()}{IsKinematic()}}
+{\footnotesize\ttfamily bool Rigidbody\+::\+Is\+Kinematic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the kinematic state 
+
+\begin{DoxyReturn}{Returns}
+Returns true if the rigidbody is kinematic
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_rigidbody_afb0a45c0c86d4a3069d1eb00c467a05f}\label{class_rigidbody_afb0a45c0c86d4a3069d1eb00c467a05f}} 
+\index{Rigidbody@{Rigidbody}!ResolveCollision@{ResolveCollision}}
+\index{ResolveCollision@{ResolveCollision}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{ResolveCollision()}{ResolveCollision()}}
+{\footnotesize\ttfamily void Rigidbody\+::\+Resolve\+Collision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$}]{actor2,  }\item[{glm\+::vec2}]{contact,  }\item[{glm\+::vec2 $\ast$}]{collision\+Normal = {\ttfamily nullptr},  }\item[{float}]{pen = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Resolves the collision between this rigidbody and another rigidbody 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actor2} & The rigidbody to resolve with\\
+\hline
+{\em contact} & The contact point\\
+\hline
+{\em collision\+Normal} & The collision normal. If nullptr, collision normal will be calculated as the vector between the two objects origins\\
+\hline
+{\em pen} & How much the two objects are penetrating each other. Defaults to 0\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_rigidbody_adb4e2129878ca3a674e4fc7c73e35913}\label{class_rigidbody_adb4e2129878ca3a674e4fc7c73e35913}} 
+\index{Rigidbody@{Rigidbody}!SetAngularVelocity@{SetAngularVelocity}}
+\index{SetAngularVelocity@{SetAngularVelocity}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{SetAngularVelocity()}{SetAngularVelocity()}}
+{\footnotesize\ttfamily void Rigidbody\+::\+Set\+Angular\+Velocity (\begin{DoxyParamCaption}\item[{float}]{velocity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the angular velocity 
+
+
+\begin{DoxyParams}{Parameters}
+{\em velocity} & The angular velocity to be set to\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_rigidbody_a66edffd623756c7fa0afa9b07fb812f4}\label{class_rigidbody_a66edffd623756c7fa0afa9b07fb812f4}} 
+\index{Rigidbody@{Rigidbody}!SetKinematic@{SetKinematic}}
+\index{SetKinematic@{SetKinematic}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{SetKinematic()}{SetKinematic()}}
+{\footnotesize\ttfamily void Rigidbody\+::\+Set\+Kinematic (\begin{DoxyParamCaption}\item[{bool}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the kinematic state of the rigidbody 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The state to be set to\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_rigidbody_a7b3f4a8d0951c995ab95405c1ad1c73c}\label{class_rigidbody_a7b3f4a8d0951c995ab95405c1ad1c73c}} 
+\index{Rigidbody@{Rigidbody}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{SetPosition()}{SetPosition()}}
+{\footnotesize\ttfamily void Rigidbody\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position to be set to\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_rigidbody_ae60f0129bc21ee431699e18552c6799f}\label{class_rigidbody_ae60f0129bc21ee431699e18552c6799f}} 
+\index{Rigidbody@{Rigidbody}!SetVelocity@{SetVelocity}}
+\index{SetVelocity@{SetVelocity}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{SetVelocity()}{SetVelocity()}}
+{\footnotesize\ttfamily void Rigidbody\+::\+Set\+Velocity (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{velocity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the velocity 
+
+
+\begin{DoxyParams}{Parameters}
+{\em velocity} & The velocity to be set to\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_rigidbody_a811b18f46784382d4935f0a1c8f27b59}\label{class_rigidbody_a811b18f46784382d4935f0a1c8f27b59}} 
+\index{Rigidbody@{Rigidbody}!ToWorld@{ToWorld}}
+\index{ToWorld@{ToWorld}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{ToWorld()}{ToWorld()}}
+{\footnotesize\ttfamily virtual glm\+::vec2 Rigidbody\+::\+To\+World (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Converts an offset in local space to global space 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & The local offset/position to convert\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the equivalent global position of offset as a vector2
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{class_box_a5ae288d4894c6c27b852376b4ce09dfd}{Box}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_rigidbody_ae630f5d7497c74c351b1857f61523433}\label{class_rigidbody_ae630f5d7497c74c351b1857f61523433}} 
+\index{Rigidbody@{Rigidbody}!m\_angularDrag@{m\_angularDrag}}
+\index{m\_angularDrag@{m\_angularDrag}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{m\_angularDrag}{m\_angularDrag}}
+{\footnotesize\ttfamily float Rigidbody\+::m\+\_\+angular\+Drag\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The angular drag 
+
+\mbox{\Hypertarget{class_rigidbody_a7cf0d814beb581834522e9758cf5c84b}\label{class_rigidbody_a7cf0d814beb581834522e9758cf5c84b}} 
+\index{Rigidbody@{Rigidbody}!m\_angularVelocity@{m\_angularVelocity}}
+\index{m\_angularVelocity@{m\_angularVelocity}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{m\_angularVelocity}{m\_angularVelocity}}
+{\footnotesize\ttfamily float Rigidbody\+::m\+\_\+angular\+Velocity\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The angular velocity of the object 
+
+\mbox{\Hypertarget{class_rigidbody_a77e8dc7fd8d83c27448e118e4dfba252}\label{class_rigidbody_a77e8dc7fd8d83c27448e118e4dfba252}} 
+\index{Rigidbody@{Rigidbody}!m\_isKinematic@{m\_isKinematic}}
+\index{m\_isKinematic@{m\_isKinematic}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{m\_isKinematic}{m\_isKinematic}}
+{\footnotesize\ttfamily bool Rigidbody\+::m\+\_\+is\+Kinematic\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Should the Physics Object be simulated by the physics 
+
+\mbox{\Hypertarget{class_rigidbody_aecb789379623b00bba04e4aef0223e2c}\label{class_rigidbody_aecb789379623b00bba04e4aef0223e2c}} 
+\index{Rigidbody@{Rigidbody}!m\_linearDrag@{m\_linearDrag}}
+\index{m\_linearDrag@{m\_linearDrag}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{m\_linearDrag}{m\_linearDrag}}
+{\footnotesize\ttfamily float Rigidbody\+::m\+\_\+linear\+Drag\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The linear drag 
+
+\mbox{\Hypertarget{class_rigidbody_a542eb2a911d8765c47a9353e1fe24ade}\label{class_rigidbody_a542eb2a911d8765c47a9353e1fe24ade}} 
+\index{Rigidbody@{Rigidbody}!m\_mass@{m\_mass}}
+\index{m\_mass@{m\_mass}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{m\_mass}{m\_mass}}
+{\footnotesize\ttfamily float Rigidbody\+::m\+\_\+mass\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The mass of the Center of Mass 
+
+\mbox{\Hypertarget{class_rigidbody_a923e24726f05e4af8d4f7b1b7a9a76ce}\label{class_rigidbody_a923e24726f05e4af8d4f7b1b7a9a76ce}} 
+\index{Rigidbody@{Rigidbody}!m\_moment@{m\_moment}}
+\index{m\_moment@{m\_moment}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{m\_moment}{m\_moment}}
+{\footnotesize\ttfamily float Rigidbody\+::m\+\_\+moment\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The moment. Calculated in constructor 
+
+\mbox{\Hypertarget{class_rigidbody_a6df7b6c3cb7342cea4a168f40c0fad32}\label{class_rigidbody_a6df7b6c3cb7342cea4a168f40c0fad32}} 
+\index{Rigidbody@{Rigidbody}!m\_orientation@{m\_orientation}}
+\index{m\_orientation@{m\_orientation}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{m\_orientation}{m\_orientation}}
+{\footnotesize\ttfamily float Rigidbody\+::m\+\_\+orientation\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The orientation in radians of the object 
+
+\mbox{\Hypertarget{class_rigidbody_a9540ff3467659df33ac51b3d6e1f3e30}\label{class_rigidbody_a9540ff3467659df33ac51b3d6e1f3e30}} 
+\index{Rigidbody@{Rigidbody}!m\_position@{m\_position}}
+\index{m\_position@{m\_position}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{m\_position}{m\_position}}
+{\footnotesize\ttfamily glm\+::vec2 Rigidbody\+::m\+\_\+position\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The position of the object 
+
+\mbox{\Hypertarget{class_rigidbody_a069496a4cccd6a3f0f91652daf01ae64}\label{class_rigidbody_a069496a4cccd6a3f0f91652daf01ae64}} 
+\index{Rigidbody@{Rigidbody}!m\_velocity@{m\_velocity}}
+\index{m\_velocity@{m\_velocity}!Rigidbody@{Rigidbody}}
+\doxysubsubsection{\texorpdfstring{m\_velocity}{m\_velocity}}
+{\footnotesize\ttfamily glm\+::vec2 Rigidbody\+::m\+\_\+velocity\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The velocity of the object 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_rigidbody_8h}{Rigidbody.\+h}}\item 
+\mbox{\hyperlink{_rigidbody_8cpp}{Rigidbody.\+cpp}}\end{DoxyCompactItemize}

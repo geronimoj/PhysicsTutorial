@@ -1,8 +1,8 @@
 #include <Input.h>
 #include "Wheel.h"
 
-Wheel::Wheel(glm::vec2 position, float mass, float radius, float angularAcceleration, float angularVelocityLimit, glm::vec4 colour, unsigned int layer, float linearDrag, float angularDrag, float elasticity, float staticFriction, float kinematicFriction)
-	: Sphere(position, false, glm::vec2(0), mass, radius, colour, 0, layer, linearDrag, angularDrag, elasticity, staticFriction, kinematicFriction), m_angularAcceleration(angularAcceleration), m_angularVelocityLimit(angularVelocityLimit)
+Wheel::Wheel(glm::vec2 position, float mass, float radius, float angularAcceleration, float angularVelocityLimit, glm::vec4 colour, unsigned int layer, float linearDrag, float angularDrag, float elasticity, float staticFriction, float kineticFriction)
+	: Sphere(position, false, glm::vec2(0), mass, radius, colour, 0, layer, linearDrag, angularDrag, elasticity, staticFriction, kineticFriction), m_angularAcceleration(angularAcceleration), m_angularVelocityLimit(angularVelocityLimit)
 {
 }
 

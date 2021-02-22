@@ -1,0 +1,241 @@
+\hypertarget{class_spring}{}\doxysection{Spring Class Reference}
+\label{class_spring}\index{Spring@{Spring}}
+
+
+Contains the information for creating and simulating a sphere  
+
+
+
+
+{\ttfamily \#include $<$Spring.\+h$>$}
+
+Inheritance diagram for Spring\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_spring}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_spring_adaee930f391056ee178e23839ef77494}{Spring}} (\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$body1, \mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$body2, float rest\+Length, glm\+::vec4 colour, float spring\+Coefficient, float damping=0.\+1f, glm\+::vec2 body1\+Contact=glm\+::vec2(0, 0), glm\+::vec2 body2\+Contact=glm\+::vec2(0, 0))
+\begin{DoxyCompactList}\small\item\em Creates a spring \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_spring_aa20437518f30d9af7347a5b3c301c27f}{Spring}} (\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$body1, \mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$body2, float damping, float spring\+Coefficient)
+\begin{DoxyCompactList}\small\item\em Create a spring with automatically calculated length and contact points at center of mass \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_spring_a8b5c6088814c8e343be53682f33866f1}{$\sim$\+Spring}} ()
+\item 
+virtual void \mbox{\hyperlink{class_spring_af5c6a4fe6f1fd858a692fe4e16a96eac}{Fixed\+Update}} (glm\+::vec2 gravity, float time\+Step)
+\begin{DoxyCompactList}\small\item\em Applies forces to push or pull the bodies towards or away from eachother \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_spring_a369742d3910fdf035dd28cabcbde921f}{Draw}} ()
+\begin{DoxyCompactList}\small\item\em Draws the spring \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$ \mbox{\hyperlink{class_spring_a686013a562bf1fb09989b701ceb2f94c}{m\+\_\+body1}}
+\begin{DoxyCompactList}\small\item\em The first body attached to the spring \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$ \mbox{\hyperlink{class_spring_ad3f1033990321808a28275cada250b9c}{m\+\_\+body2}}
+\begin{DoxyCompactList}\small\item\em The second body attached to the spring \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{class_spring_a729899a089c84dd4d8294a8f6783e30b}{m\+\_\+contact1}}
+\begin{DoxyCompactList}\small\item\em The attachment point on the first body in local co-\/ordinates relative to the body \end{DoxyCompactList}\item 
+glm\+::vec2 \mbox{\hyperlink{class_spring_a7556ad48cccc6523c11ff7c72128672c}{m\+\_\+contact2}}
+\begin{DoxyCompactList}\small\item\em The attachment point on the second body in local co-\/ordinates relative to the body \end{DoxyCompactList}\item 
+glm\+::vec4 \mbox{\hyperlink{class_spring_a1327fd1c3edc0d7ad5ebbb569472e0bc}{m\+\_\+colour}}
+\begin{DoxyCompactList}\small\item\em The colour of the spring \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_spring_aa4771cc360cca6867707b8b9e601d77c}{m\+\_\+damping}}
+\begin{DoxyCompactList}\small\item\em The dampening factor for the springs \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_spring_a612ed8ef8bbdbb0bbe21039dd1b4786c}{m\+\_\+rest\+Length}}
+\begin{DoxyCompactList}\small\item\em The length at which the spring applies no force \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_spring_a5b8c202b0a81a3bf358109a70f7fd460}{m\+\_\+spring\+Coefficient}}
+\begin{DoxyCompactList}\small\item\em The springs strength \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Contains the information for creating and simulating a sphere 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_spring_adaee930f391056ee178e23839ef77494}\label{class_spring_adaee930f391056ee178e23839ef77494}} 
+\index{Spring@{Spring}!Spring@{Spring}}
+\index{Spring@{Spring}!Spring@{Spring}}
+\doxysubsubsection{\texorpdfstring{Spring()}{Spring()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Spring\+::\+Spring (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$}]{body1,  }\item[{\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$}]{body2,  }\item[{float}]{rest\+Length,  }\item[{glm\+::vec4}]{colour,  }\item[{float}]{spring\+Coefficient,  }\item[{float}]{damping = {\ttfamily 0.1f},  }\item[{glm\+::vec2}]{body1\+Contact = {\ttfamily glm\+:\+:vec2(0,0)},  }\item[{glm\+::vec2}]{body2\+Contact = {\ttfamily glm\+:\+:vec2(0,0)} }\end{DoxyParamCaption})}
+
+
+
+Creates a spring 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body1} & The first body\\
+\hline
+{\em body2} & The second body\\
+\hline
+{\em rest\+Length} & The length of the spring\\
+\hline
+{\em colour} & The colour of the spring\\
+\hline
+{\em spring\+Coefficient} & The springs strength coefficient\\
+\hline
+{\em damping} & The damping factor. Defaults to 0.\+1f\\
+\hline
+{\em body1\+Contact} & The point of connection to body1 in local co-\/ordinates. Defaults to body1 Center of Mass\\
+\hline
+{\em body2\+Contact} & The point of connection to body2 in local co-\/ordinates. Defaults to body2 Center of Mass\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_spring_aa20437518f30d9af7347a5b3c301c27f}\label{class_spring_aa20437518f30d9af7347a5b3c301c27f}} 
+\index{Spring@{Spring}!Spring@{Spring}}
+\index{Spring@{Spring}!Spring@{Spring}}
+\doxysubsubsection{\texorpdfstring{Spring()}{Spring()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Spring\+::\+Spring (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$}]{body1,  }\item[{\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$}]{body2,  }\item[{float}]{damping,  }\item[{float}]{spring\+Coefficient }\end{DoxyParamCaption})}
+
+
+
+Create a spring with automatically calculated length and contact points at center of mass 
+
+
+\begin{DoxyParams}{Parameters}
+{\em body1} & The first body\\
+\hline
+{\em body2} & The second body\\
+\hline
+{\em damping} & The damping factor\\
+\hline
+{\em spring\+Coefficient} & The springs strength coefficient\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_spring_a8b5c6088814c8e343be53682f33866f1}\label{class_spring_a8b5c6088814c8e343be53682f33866f1}} 
+\index{Spring@{Spring}!````~Spring@{$\sim$Spring}}
+\index{````~Spring@{$\sim$Spring}!Spring@{Spring}}
+\doxysubsubsection{\texorpdfstring{$\sim$Spring()}{~Spring()}}
+{\footnotesize\ttfamily Spring\+::$\sim$\+Spring (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_spring_a369742d3910fdf035dd28cabcbde921f}\label{class_spring_a369742d3910fdf035dd28cabcbde921f}} 
+\index{Spring@{Spring}!Draw@{Draw}}
+\index{Draw@{Draw}!Spring@{Spring}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Spring\+::\+Draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Draws the spring 
+
+
+
+Implements \mbox{\hyperlink{class_physics_object_a993187e5476cd2e231cdec4b6176f8b4}{Physics\+Object}}.
+
+\mbox{\Hypertarget{class_spring_af5c6a4fe6f1fd858a692fe4e16a96eac}\label{class_spring_af5c6a4fe6f1fd858a692fe4e16a96eac}} 
+\index{Spring@{Spring}!FixedUpdate@{FixedUpdate}}
+\index{FixedUpdate@{FixedUpdate}!Spring@{Spring}}
+\doxysubsubsection{\texorpdfstring{FixedUpdate()}{FixedUpdate()}}
+{\footnotesize\ttfamily void Spring\+::\+Fixed\+Update (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{gravity,  }\item[{float}]{time\+Step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Applies forces to push or pull the bodies towards or away from eachother 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gravity} & The direction and magnitude of gravity\\
+\hline
+{\em time\+Step} & The time that has passed during this physics update\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_physics_object_a3aafc8bf82e2b724a85b1af7307dcd59}{Physics\+Object}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_spring_a686013a562bf1fb09989b701ceb2f94c}\label{class_spring_a686013a562bf1fb09989b701ceb2f94c}} 
+\index{Spring@{Spring}!m\_body1@{m\_body1}}
+\index{m\_body1@{m\_body1}!Spring@{Spring}}
+\doxysubsubsection{\texorpdfstring{m\_body1}{m\_body1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rigidbody}{Rigidbody}}$\ast$ Spring\+::m\+\_\+body1\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The first body attached to the spring 
+
+\mbox{\Hypertarget{class_spring_ad3f1033990321808a28275cada250b9c}\label{class_spring_ad3f1033990321808a28275cada250b9c}} 
+\index{Spring@{Spring}!m\_body2@{m\_body2}}
+\index{m\_body2@{m\_body2}!Spring@{Spring}}
+\doxysubsubsection{\texorpdfstring{m\_body2}{m\_body2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rigidbody}{Rigidbody}}$\ast$ Spring\+::m\+\_\+body2\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The second body attached to the spring 
+
+\mbox{\Hypertarget{class_spring_a1327fd1c3edc0d7ad5ebbb569472e0bc}\label{class_spring_a1327fd1c3edc0d7ad5ebbb569472e0bc}} 
+\index{Spring@{Spring}!m\_colour@{m\_colour}}
+\index{m\_colour@{m\_colour}!Spring@{Spring}}
+\doxysubsubsection{\texorpdfstring{m\_colour}{m\_colour}}
+{\footnotesize\ttfamily glm\+::vec4 Spring\+::m\+\_\+colour\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The colour of the spring 
+
+\mbox{\Hypertarget{class_spring_a729899a089c84dd4d8294a8f6783e30b}\label{class_spring_a729899a089c84dd4d8294a8f6783e30b}} 
+\index{Spring@{Spring}!m\_contact1@{m\_contact1}}
+\index{m\_contact1@{m\_contact1}!Spring@{Spring}}
+\doxysubsubsection{\texorpdfstring{m\_contact1}{m\_contact1}}
+{\footnotesize\ttfamily glm\+::vec2 Spring\+::m\+\_\+contact1\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The attachment point on the first body in local co-\/ordinates relative to the body 
+
+\mbox{\Hypertarget{class_spring_a7556ad48cccc6523c11ff7c72128672c}\label{class_spring_a7556ad48cccc6523c11ff7c72128672c}} 
+\index{Spring@{Spring}!m\_contact2@{m\_contact2}}
+\index{m\_contact2@{m\_contact2}!Spring@{Spring}}
+\doxysubsubsection{\texorpdfstring{m\_contact2}{m\_contact2}}
+{\footnotesize\ttfamily glm\+::vec2 Spring\+::m\+\_\+contact2\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The attachment point on the second body in local co-\/ordinates relative to the body 
+
+\mbox{\Hypertarget{class_spring_aa4771cc360cca6867707b8b9e601d77c}\label{class_spring_aa4771cc360cca6867707b8b9e601d77c}} 
+\index{Spring@{Spring}!m\_damping@{m\_damping}}
+\index{m\_damping@{m\_damping}!Spring@{Spring}}
+\doxysubsubsection{\texorpdfstring{m\_damping}{m\_damping}}
+{\footnotesize\ttfamily float Spring\+::m\+\_\+damping\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The dampening factor for the springs 
+
+\mbox{\Hypertarget{class_spring_a612ed8ef8bbdbb0bbe21039dd1b4786c}\label{class_spring_a612ed8ef8bbdbb0bbe21039dd1b4786c}} 
+\index{Spring@{Spring}!m\_restLength@{m\_restLength}}
+\index{m\_restLength@{m\_restLength}!Spring@{Spring}}
+\doxysubsubsection{\texorpdfstring{m\_restLength}{m\_restLength}}
+{\footnotesize\ttfamily float Spring\+::m\+\_\+rest\+Length\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The length at which the spring applies no force 
+
+\mbox{\Hypertarget{class_spring_a5b8c202b0a81a3bf358109a70f7fd460}\label{class_spring_a5b8c202b0a81a3bf358109a70f7fd460}} 
+\index{Spring@{Spring}!m\_springCoefficient@{m\_springCoefficient}}
+\index{m\_springCoefficient@{m\_springCoefficient}!Spring@{Spring}}
+\doxysubsubsection{\texorpdfstring{m\_springCoefficient}{m\_springCoefficient}}
+{\footnotesize\ttfamily float Spring\+::m\+\_\+spring\+Coefficient\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The springs strength 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_spring_8h}{Spring.\+h}}\item 
+\mbox{\hyperlink{_spring_8cpp}{Spring.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,175 @@
+\hypertarget{class_physics_app}{}\doxysection{Physics\+App Class Reference}
+\label{class_physics_app}\index{PhysicsApp@{PhysicsApp}}
+
+
+The application the simulation is run inside  
+
+
+
+
+{\ttfamily \#include $<$Physics\+App.\+h$>$}
+
+Inheritance diagram for Physics\+App\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_physics_app}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_physics_app_a05d4631d84317507880faf8173a55db1}{Physics\+App}} ()
+\item 
+virtual \mbox{\hyperlink{class_physics_app_a836692ac354ffcaa5882cc68e3c51a96}{$\sim$\+Physics\+App}} ()
+\item 
+virtual bool \mbox{\hyperlink{class_physics_app_adda7b4beb5986e036d360119a68dae0d}{startup}} ()
+\begin{DoxyCompactList}\small\item\em The startup function for initialising the scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_physics_app_a92ddd4498dae080e7c1dfad07db5596e}{shutdown}} ()
+\begin{DoxyCompactList}\small\item\em Fancy destructor \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_physics_app_a3f3d3955fc8164ee4345385d22026bfe}{update}} (float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Increments timer, calls update on the physics scene, calls draw and checks for the escape key to exit \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_physics_app_a76195807dc109de9009980431884b320}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Draws the world \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_app_a7ba271fbd7ad86c179dbd138fcdffd83}{Sphere\+Test}} ()
+\begin{DoxyCompactList}\small\item\em Spawns two spheres with different properties \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+aie\+::\+Renderer2D $\ast$ \mbox{\hyperlink{class_physics_app_a9a245d7df762e9ebd2ef1d3ca174b705}{m\+\_\+2d\+Renderer}}
+\begin{DoxyCompactList}\small\item\em Pointer to the renderer \end{DoxyCompactList}\item 
+aie\+::\+Font $\ast$ \mbox{\hyperlink{class_physics_app_af08473602334b4bff2d30167f52d5fce}{m\+\_\+font}}
+\begin{DoxyCompactList}\small\item\em Pointer to the font used for text \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_physics_scene}{Physics\+Scene}} $\ast$ \mbox{\hyperlink{class_physics_app_a7a520621fe0ac5ae36a45b700d31bc44}{m\+\_\+physics\+Scene}}
+\begin{DoxyCompactList}\small\item\em A pointer to the Physics Scene \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_physics_app_a0c7f18c64f67dff5a881cdab9a4fcee0}{m\+\_\+timer}}
+\begin{DoxyCompactList}\small\item\em The global timer \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The application the simulation is run inside 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_physics_app_a05d4631d84317507880faf8173a55db1}\label{class_physics_app_a05d4631d84317507880faf8173a55db1}} 
+\index{PhysicsApp@{PhysicsApp}!PhysicsApp@{PhysicsApp}}
+\index{PhysicsApp@{PhysicsApp}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{PhysicsApp()}{PhysicsApp()}}
+{\footnotesize\ttfamily Physics\+App\+::\+Physics\+App (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_physics_app_a836692ac354ffcaa5882cc68e3c51a96}\label{class_physics_app_a836692ac354ffcaa5882cc68e3c51a96}} 
+\index{PhysicsApp@{PhysicsApp}!````~PhysicsApp@{$\sim$PhysicsApp}}
+\index{````~PhysicsApp@{$\sim$PhysicsApp}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{$\sim$PhysicsApp()}{~PhysicsApp()}}
+{\footnotesize\ttfamily Physics\+App\+::$\sim$\+Physics\+App (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_physics_app_a76195807dc109de9009980431884b320}\label{class_physics_app_a76195807dc109de9009980431884b320}} 
+\index{PhysicsApp@{PhysicsApp}!draw@{draw}}
+\index{draw@{draw}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Physics\+App\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Draws the world 
+
+\mbox{\Hypertarget{class_physics_app_a92ddd4498dae080e7c1dfad07db5596e}\label{class_physics_app_a92ddd4498dae080e7c1dfad07db5596e}} 
+\index{PhysicsApp@{PhysicsApp}!shutdown@{shutdown}}
+\index{shutdown@{shutdown}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{shutdown()}{shutdown()}}
+{\footnotesize\ttfamily void Physics\+App\+::shutdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Fancy destructor 
+
+\mbox{\Hypertarget{class_physics_app_a7ba271fbd7ad86c179dbd138fcdffd83}\label{class_physics_app_a7ba271fbd7ad86c179dbd138fcdffd83}} 
+\index{PhysicsApp@{PhysicsApp}!SphereTest@{SphereTest}}
+\index{SphereTest@{SphereTest}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{SphereTest()}{SphereTest()}}
+{\footnotesize\ttfamily void Physics\+App\+::\+Sphere\+Test (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Spawns two spheres with different properties 
+
+\mbox{\Hypertarget{class_physics_app_adda7b4beb5986e036d360119a68dae0d}\label{class_physics_app_adda7b4beb5986e036d360119a68dae0d}} 
+\index{PhysicsApp@{PhysicsApp}!startup@{startup}}
+\index{startup@{startup}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{startup()}{startup()}}
+{\footnotesize\ttfamily bool Physics\+App\+::startup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+The startup function for initialising the scene 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_app_a3f3d3955fc8164ee4345385d22026bfe}\label{class_physics_app_a3f3d3955fc8164ee4345385d22026bfe}} 
+\index{PhysicsApp@{PhysicsApp}!update@{update}}
+\index{update@{update}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Physics\+App\+::update (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Increments timer, calls update on the physics scene, calls draw and checks for the escape key to exit 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\+Time} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_physics_app_a9a245d7df762e9ebd2ef1d3ca174b705}\label{class_physics_app_a9a245d7df762e9ebd2ef1d3ca174b705}} 
+\index{PhysicsApp@{PhysicsApp}!m\_2dRenderer@{m\_2dRenderer}}
+\index{m\_2dRenderer@{m\_2dRenderer}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{m\_2dRenderer}{m\_2dRenderer}}
+{\footnotesize\ttfamily aie\+::\+Renderer2D$\ast$ Physics\+App\+::m\+\_\+2d\+Renderer\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Pointer to the renderer 
+
+\mbox{\Hypertarget{class_physics_app_af08473602334b4bff2d30167f52d5fce}\label{class_physics_app_af08473602334b4bff2d30167f52d5fce}} 
+\index{PhysicsApp@{PhysicsApp}!m\_font@{m\_font}}
+\index{m\_font@{m\_font}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{m\_font}{m\_font}}
+{\footnotesize\ttfamily aie\+::\+Font$\ast$ Physics\+App\+::m\+\_\+font\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Pointer to the font used for text 
+
+\mbox{\Hypertarget{class_physics_app_a7a520621fe0ac5ae36a45b700d31bc44}\label{class_physics_app_a7a520621fe0ac5ae36a45b700d31bc44}} 
+\index{PhysicsApp@{PhysicsApp}!m\_physicsScene@{m\_physicsScene}}
+\index{m\_physicsScene@{m\_physicsScene}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{m\_physicsScene}{m\_physicsScene}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_physics_scene}{Physics\+Scene}}$\ast$ Physics\+App\+::m\+\_\+physics\+Scene\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+A pointer to the Physics Scene 
+
+\mbox{\Hypertarget{class_physics_app_a0c7f18c64f67dff5a881cdab9a4fcee0}\label{class_physics_app_a0c7f18c64f67dff5a881cdab9a4fcee0}} 
+\index{PhysicsApp@{PhysicsApp}!m\_timer@{m\_timer}}
+\index{m\_timer@{m\_timer}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{m\_timer}{m\_timer}}
+{\footnotesize\ttfamily float Physics\+App\+::m\+\_\+timer\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The global timer 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_physics_app_8h}{Physics\+App.\+h}}\item 
+\mbox{\hyperlink{_physics_app_8cpp}{Physics\+App.\+cpp}}\end{DoxyCompactItemize}

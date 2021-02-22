@@ -1,0 +1,163 @@
+\hypertarget{class_sphere}{}\doxysection{Sphere Class Reference}
+\label{class_sphere}\index{Sphere@{Sphere}}
+
+
+Contains information for simulating drawing and creating a sphere.  
+
+
+
+
+{\ttfamily \#include $<$Sphere.\+h$>$}
+
+Inheritance diagram for Sphere\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_sphere}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sphere_aef1677cf3b2cfb63293bada30956819e}{Sphere}} (glm\+::vec2 position, bool is\+Kinematic, glm\+::vec2 velocity, float mass, float radius, glm\+::vec4 colour, float angular\+Velocity=0, unsigned int layer=0, float linear\+Drag=0, float angular\+Drag=0, float elasticity=1, float static\+Friction=1, float kinetic\+Friction=1)
+\begin{DoxyCompactList}\small\item\em Creates a sphere \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sphere_a569c071e50a3e11f678630ee1a17737e}{$\sim$\+Sphere}} ()
+\item 
+virtual void \mbox{\hyperlink{class_sphere_ae7c208cca0c269de15283dca82ce6310}{Draw}} ()
+\begin{DoxyCompactList}\small\item\em Draws the sphere with a line to indicate orientation. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_sphere_a1be9f865028172ade600ed25ca0aee4f}{Get\+Radius}} () const
+\begin{DoxyCompactList}\small\item\em Returns the radius \end{DoxyCompactList}\item 
+glm\+::vec4 \mbox{\hyperlink{class_sphere_a38858deda76c5ca30d7f53ae28ac5fbd}{Get\+Colour}} () const
+\begin{DoxyCompactList}\small\item\em Returns the colour in RGBA format \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_sphere_a1faee6c9b6e62abf0d35cc87a1894b61}{m\+\_\+radius}}
+\begin{DoxyCompactList}\small\item\em The radius of the sphere \end{DoxyCompactList}\item 
+glm\+::vec4 \mbox{\hyperlink{class_sphere_aca3c6c348856bfe747dbc47eb0cc797a}{m\+\_\+colour}}
+\begin{DoxyCompactList}\small\item\em The colour of the sphere \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Contains information for simulating drawing and creating a sphere. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_sphere_aef1677cf3b2cfb63293bada30956819e}\label{class_sphere_aef1677cf3b2cfb63293bada30956819e}} 
+\index{Sphere@{Sphere}!Sphere@{Sphere}}
+\index{Sphere@{Sphere}!Sphere@{Sphere}}
+\doxysubsubsection{\texorpdfstring{Sphere()}{Sphere()}}
+{\footnotesize\ttfamily Sphere\+::\+Sphere (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{position,  }\item[{bool}]{is\+Kinematic,  }\item[{glm\+::vec2}]{velocity,  }\item[{float}]{mass,  }\item[{float}]{radius,  }\item[{glm\+::vec4}]{colour,  }\item[{float}]{angular\+Velocity = {\ttfamily 0},  }\item[{unsigned int}]{layer = {\ttfamily 0},  }\item[{float}]{linear\+Drag = {\ttfamily 0},  }\item[{float}]{angular\+Drag = {\ttfamily 0},  }\item[{float}]{elasticity = {\ttfamily 1},  }\item[{float}]{static\+Friction = {\ttfamily 1},  }\item[{float}]{kinetic\+Friction = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Creates a sphere 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The position of the sphere\\
+\hline
+{\em is\+Kinematic} & The kinematic state of the sphere. Determines if the sphere should be simulated by and interact with physics\\
+\hline
+{\em velocity} & The inital velocity of the sphere\\
+\hline
+{\em mass} & The mass of the sphere\\
+\hline
+{\em radius} & The radius of the sphere\\
+\hline
+{\em colour} & The colour of the sphere in RGBA format\\
+\hline
+{\em angular\+Velocity} & The initial angular velocity of the sphere in radians per second. Defaults to 0\\
+\hline
+{\em layer} & The inital layer of the sphere. Defaults to layer 0\\
+\hline
+{\em linear\+Drag} & The linear drag coefficient. Defaults to 0\\
+\hline
+{\em angular\+Drag} & The angular drag coefficient. Defaults to 0\\
+\hline
+{\em elasticity} & The elasticity factor. Set to 1 for no gain or loss of energy. Defaults to 1.\\
+\hline
+{\em static\+Friction} & The static friction coefficient. Defaults to 1\\
+\hline
+{\em kinetic\+Friction} & The kinetic friction coefficient. Defaults to 1\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sphere_a569c071e50a3e11f678630ee1a17737e}\label{class_sphere_a569c071e50a3e11f678630ee1a17737e}} 
+\index{Sphere@{Sphere}!````~Sphere@{$\sim$Sphere}}
+\index{````~Sphere@{$\sim$Sphere}!Sphere@{Sphere}}
+\doxysubsubsection{\texorpdfstring{$\sim$Sphere()}{~Sphere()}}
+{\footnotesize\ttfamily Sphere\+::$\sim$\+Sphere (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sphere_ae7c208cca0c269de15283dca82ce6310}\label{class_sphere_ae7c208cca0c269de15283dca82ce6310}} 
+\index{Sphere@{Sphere}!Draw@{Draw}}
+\index{Draw@{Draw}!Sphere@{Sphere}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Sphere\+::\+Draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Draws the sphere with a line to indicate orientation. 
+
+
+
+Implements \mbox{\hyperlink{class_physics_object_a993187e5476cd2e231cdec4b6176f8b4}{Physics\+Object}}.
+
+\mbox{\Hypertarget{class_sphere_a38858deda76c5ca30d7f53ae28ac5fbd}\label{class_sphere_a38858deda76c5ca30d7f53ae28ac5fbd}} 
+\index{Sphere@{Sphere}!GetColour@{GetColour}}
+\index{GetColour@{GetColour}!Sphere@{Sphere}}
+\doxysubsubsection{\texorpdfstring{GetColour()}{GetColour()}}
+{\footnotesize\ttfamily glm\+::vec4 Sphere\+::\+Get\+Colour (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the colour in RGBA format 
+
+\begin{DoxyReturn}{Returns}
+Returns the colour in RGBA format as a vector4
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_sphere_a1be9f865028172ade600ed25ca0aee4f}\label{class_sphere_a1be9f865028172ade600ed25ca0aee4f}} 
+\index{Sphere@{Sphere}!GetRadius@{GetRadius}}
+\index{GetRadius@{GetRadius}!Sphere@{Sphere}}
+\doxysubsubsection{\texorpdfstring{GetRadius()}{GetRadius()}}
+{\footnotesize\ttfamily float Sphere\+::\+Get\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the radius 
+
+\begin{DoxyReturn}{Returns}
+Returns the radius
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_sphere_aca3c6c348856bfe747dbc47eb0cc797a}\label{class_sphere_aca3c6c348856bfe747dbc47eb0cc797a}} 
+\index{Sphere@{Sphere}!m\_colour@{m\_colour}}
+\index{m\_colour@{m\_colour}!Sphere@{Sphere}}
+\doxysubsubsection{\texorpdfstring{m\_colour}{m\_colour}}
+{\footnotesize\ttfamily glm\+::vec4 Sphere\+::m\+\_\+colour\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The colour of the sphere 
+
+\mbox{\Hypertarget{class_sphere_a1faee6c9b6e62abf0d35cc87a1894b61}\label{class_sphere_a1faee6c9b6e62abf0d35cc87a1894b61}} 
+\index{Sphere@{Sphere}!m\_radius@{m\_radius}}
+\index{m\_radius@{m\_radius}!Sphere@{Sphere}}
+\doxysubsubsection{\texorpdfstring{m\_radius}{m\_radius}}
+{\footnotesize\ttfamily float Sphere\+::m\+\_\+radius\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The radius of the sphere 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_sphere_8h}{Sphere.\+h}}\item 
+\mbox{\hyperlink{_sphere_8cpp}{Sphere.\+cpp}}\end{DoxyCompactItemize}

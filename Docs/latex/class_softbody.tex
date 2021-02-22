@@ -1,0 +1,55 @@
+\hypertarget{class_softbody}{}\doxysection{Softbody Class Reference}
+\label{class_softbody}\index{Softbody@{Softbody}}
+
+
+Generates a softbody out of springs and spheres.  
+
+
+
+
+{\ttfamily \#include $<$Softbody.\+h$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_softbody_a666026b032a371b045776d00278d13eb}{Build}} (\mbox{\hyperlink{class_physics_scene}{Physics\+Scene}} $\ast$scene, glm\+::vec2 position, float spacing, float spring\+Force, float damping, std\+::vector$<$ std\+::string $>$ \&strings)
+\begin{DoxyCompactList}\small\item\em Creates a soft body. 0 Represents circle . represents open space \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Generates a softbody out of springs and spheres. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_softbody_a666026b032a371b045776d00278d13eb}\label{class_softbody_a666026b032a371b045776d00278d13eb}} 
+\index{Softbody@{Softbody}!Build@{Build}}
+\index{Build@{Build}!Softbody@{Softbody}}
+\doxysubsubsection{\texorpdfstring{Build()}{Build()}}
+{\footnotesize\ttfamily void Softbody\+::\+Build (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_physics_scene}{Physics\+Scene}} $\ast$}]{scene,  }\item[{glm\+::vec2}]{position,  }\item[{float}]{spacing,  }\item[{float}]{spring\+Force,  }\item[{float}]{damping,  }\item[{std\+::vector$<$ std\+::string $>$ \&}]{strings }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Creates a soft body. 0 Represents circle . represents open space 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & A reference to the physics scene\\
+\hline
+{\em position} & The origin of the soft body\\
+\hline
+{\em spacing} & The distance between the origins of the spheres\\
+\hline
+{\em spring\+Force} & The strength of the spring\\
+\hline
+{\em damping} & The dampning of the springs\\
+\hline
+{\em strings} & A string array determining where the spheres should be placed on a grid. 0 represents circle, . represents space\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_softbody_8h}{Softbody.\+h}}\item 
+\mbox{\hyperlink{_softbody_8cpp}{Softbody.\+cpp}}\end{DoxyCompactItemize}

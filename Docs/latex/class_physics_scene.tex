@@ -1,0 +1,467 @@
+\hypertarget{class_physics_scene}{}\doxysection{Physics\+Scene Class Reference}
+\label{class_physics_scene}\index{PhysicsScene@{PhysicsScene}}
+
+
+Simulates, draws all actors and checks for and resolves collisions. For layer collisions, see \mbox{\hyperlink{_physics_scene_8cpp}{Physics\+Scene.\+cpp}}  
+
+
+
+
+{\ttfamily \#include $<$Physics\+Scene.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_physics_scene_a815f1460e822c52d27cdbb1c79b7d38d}{Physics\+Scene}} ()
+\item 
+\mbox{\hyperlink{class_physics_scene_ab51b08cdb9a551134f9a347e59709724}{$\sim$\+Physics\+Scene}} ()
+\item 
+void \mbox{\hyperlink{class_physics_scene_a0a64b92eb00f69f0dd859062a610b83a}{Add\+Actor}} (\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$actor)
+\begin{DoxyCompactList}\small\item\em Adds an actor to the scene \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_scene_a7075bfbc59d1a3aa27d1e7cf62242059}{Remove\+Actor}} (\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$actor, bool do\+Delete=false)
+\begin{DoxyCompactList}\small\item\em Removes an actor from the scene. If do\+Delete is true, deletes it as well \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_scene_a9bfe0d1042ae1980fddbca983192e9a2}{Update}} (float dt)
+\begin{DoxyCompactList}\small\item\em Simulates the physics simulation \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_scene_a54b84a544bfa19e4f5bcbbbc8e425aaf}{Draw}} ()
+\begin{DoxyCompactList}\small\item\em Draws the scene \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_scene_ad96cea0d7617d8332f7a9801f3066b44}{Set\+Gravity}} (const glm\+::vec2 gravity)
+\begin{DoxyCompactList}\small\item\em Sets the direction and magnitude of gravity \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_scene_ab29d083734aefca5d590c7113e28b1fc}{Set\+Time\+Step}} (const float time\+Step)
+\begin{DoxyCompactList}\small\item\em Sets the timestep to the given value \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_scene_af17e3b8579ff1cf5e026399b837c9cfb}{Check\+For\+Collision}} ()
+\begin{DoxyCompactList}\small\item\em Checks for collisions amongst all actors in m\+\_\+actors \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_physics_scene_a62cfab74cd6885729583a3b5f433f72f}{get\+Total\+Energy}} ()
+\begin{DoxyCompactList}\small\item\em Returns the total energy in the scene for debugging purposes \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static glm\+::vec2 \mbox{\hyperlink{class_physics_scene_aa35ae26295112a02ab71b011351502e2}{Get\+Gravity}} ()
+\begin{DoxyCompactList}\small\item\em Returns gravity \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{class_physics_scene_abcc8efa89dd069d0155e3703c1108101}{Get\+Time\+Step}} ()
+\begin{DoxyCompactList}\small\item\em Returns the time step \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_physics_scene_a48a80596718f3fd10cff5c981fc48ea4}{Apply\+Contact\+Forces}} (\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$actor1, \mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$actor2, glm\+::vec2 norm, float pen)
+\begin{DoxyCompactList}\small\item\em Forcefully teleports two actors away from eachother so they are no-\/long clipping into eachother \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{class_physics_scene_a4afc0921b8a16e85faa82cb98269a39c}{Get\+Mass0}} (const \mbox{\hyperlink{class_rigidbody}{Rigidbody}} \&actor, float r)
+\begin{DoxyCompactList}\small\item\em Calculates the mass at a point r from the center of mass of the actor \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_physics_scene_a71144b0a811d2f47e52a472414c7c8b4}{Sphere2\+Sphere}} (\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$, \mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Determines if a sphere a sphere are colliding. If so, resolves the collision \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_physics_scene_a52698d4508f97950c6265a4e5fadcd42}{Sphere2\+Plane}} (\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$, \mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Determines if a sphere and a plane are colliding. If so, resolves the collision \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_physics_scene_a8fdc96dba781cfe34750ab75d41601d5}{Sphere2\+Box}} (\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$, \mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Determines if a box and a sphere are colliding. If so, resolves the collision \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_physics_scene_a1fb5b81273005f6a4a9fee94b373c18d}{Plane2\+Sphere}} (\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$, \mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Determines if a sphere and a plane are colliding. If so, resolves the collision \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_physics_scene_aef140d960fe556f32c46276e6025b794}{Plane2\+Plane}} (\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$, \mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Does nothing. Only exists to even out the function array in the .cpp \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_physics_scene_abc15d275892fad81ccf5343186b294f8}{Plane2\+Box}} (\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$, \mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Determines if a box and a plane are colliding. If so, resolves the collision \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_physics_scene_a1f3f3f2fbc56509381f22bab80095cdb}{Box2\+Plane}} (\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$, \mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Determines if a box and a plane are colliding. If so, resolves the collision \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_physics_scene_a54f20d60eaa83b2c9e56ed4b28d0a9be}{Box2\+Sphere}} (\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$, \mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Determines if a box and a sphere are colliding. If so, resolves the collision \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_physics_scene_a2d35e7b5f25ad84fe0bac20d4e71b07f}{Box2\+Box}} (\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$, \mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Determines if two boxes are colliding. If so, resolves the collision \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$ $>$ \mbox{\hyperlink{class_physics_scene_a978016f79254116006754b696fcccfe8}{m\+\_\+actors}}
+\begin{DoxyCompactList}\small\item\em A reference to every actor in the scene \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static glm\+::vec2 \mbox{\hyperlink{class_physics_scene_abadc3360e65a310da475fcb3a4c5ce54}{m\+\_\+gravity}} = glm\+::vec2(0)
+\begin{DoxyCompactList}\small\item\em The direction and magnitude of gravity \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{class_physics_scene_a732dc7b93711413a177ae3b5e1422184}{m\+\_\+time\+Step}} = 0
+\begin{DoxyCompactList}\small\item\em The time step for each physics simulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Simulates, draws all actors and checks for and resolves collisions. For layer collisions, see \mbox{\hyperlink{_physics_scene_8cpp}{Physics\+Scene.\+cpp}} 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_physics_scene_a815f1460e822c52d27cdbb1c79b7d38d}\label{class_physics_scene_a815f1460e822c52d27cdbb1c79b7d38d}} 
+\index{PhysicsScene@{PhysicsScene}!PhysicsScene@{PhysicsScene}}
+\index{PhysicsScene@{PhysicsScene}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{PhysicsScene()}{PhysicsScene()}}
+{\footnotesize\ttfamily Physics\+Scene\+::\+Physics\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_physics_scene_ab51b08cdb9a551134f9a347e59709724}\label{class_physics_scene_ab51b08cdb9a551134f9a347e59709724}} 
+\index{PhysicsScene@{PhysicsScene}!````~PhysicsScene@{$\sim$PhysicsScene}}
+\index{````~PhysicsScene@{$\sim$PhysicsScene}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{$\sim$PhysicsScene()}{~PhysicsScene()}}
+{\footnotesize\ttfamily Physics\+Scene\+::$\sim$\+Physics\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_physics_scene_a0a64b92eb00f69f0dd859062a610b83a}\label{class_physics_scene_a0a64b92eb00f69f0dd859062a610b83a}} 
+\index{PhysicsScene@{PhysicsScene}!AddActor@{AddActor}}
+\index{AddActor@{AddActor}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{AddActor()}{AddActor()}}
+{\footnotesize\ttfamily void Physics\+Scene\+::\+Add\+Actor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{actor }\end{DoxyParamCaption})}
+
+
+
+Adds an actor to the scene 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actor} & The actor to add\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_physics_scene_a48a80596718f3fd10cff5c981fc48ea4}\label{class_physics_scene_a48a80596718f3fd10cff5c981fc48ea4}} 
+\index{PhysicsScene@{PhysicsScene}!ApplyContactForces@{ApplyContactForces}}
+\index{ApplyContactForces@{ApplyContactForces}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{ApplyContactForces()}{ApplyContactForces()}}
+{\footnotesize\ttfamily void Physics\+Scene\+::\+Apply\+Contact\+Forces (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$}]{actor1,  }\item[{\mbox{\hyperlink{class_rigidbody}{Rigidbody}} $\ast$}]{actor2,  }\item[{glm\+::vec2}]{norm,  }\item[{float}]{pen }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Forcefully teleports two actors away from eachother so they are no-\/long clipping into eachother 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actor1} & Actor 1\\
+\hline
+{\em actor2} & Actor 2\\
+\hline
+{\em norm} & The normal of the actors collision\\
+\hline
+{\em pen} & How much the actors are penetrating eachother along the normal\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_physics_scene_a2d35e7b5f25ad84fe0bac20d4e71b07f}\label{class_physics_scene_a2d35e7b5f25ad84fe0bac20d4e71b07f}} 
+\index{PhysicsScene@{PhysicsScene}!Box2Box@{Box2Box}}
+\index{Box2Box@{Box2Box}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{Box2Box()}{Box2Box()}}
+{\footnotesize\ttfamily bool Physics\+Scene\+::\+Box2\+Box (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj1,  }\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determines if two boxes are colliding. If so, resolves the collision 
+
+Object 1
+
+Object 2
+
+\begin{DoxyReturn}{Returns}
+Returns true if two object were colliding
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_scene_a1f3f3f2fbc56509381f22bab80095cdb}\label{class_physics_scene_a1f3f3f2fbc56509381f22bab80095cdb}} 
+\index{PhysicsScene@{PhysicsScene}!Box2Plane@{Box2Plane}}
+\index{Box2Plane@{Box2Plane}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{Box2Plane()}{Box2Plane()}}
+{\footnotesize\ttfamily bool Physics\+Scene\+::\+Box2\+Plane (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj1,  }\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determines if a box and a plane are colliding. If so, resolves the collision 
+
+Object 1
+
+Object 2
+
+\begin{DoxyReturn}{Returns}
+Returns true if the two objects were colliding
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_scene_a54f20d60eaa83b2c9e56ed4b28d0a9be}\label{class_physics_scene_a54f20d60eaa83b2c9e56ed4b28d0a9be}} 
+\index{PhysicsScene@{PhysicsScene}!Box2Sphere@{Box2Sphere}}
+\index{Box2Sphere@{Box2Sphere}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{Box2Sphere()}{Box2Sphere()}}
+{\footnotesize\ttfamily bool Physics\+Scene\+::\+Box2\+Sphere (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj1,  }\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determines if a box and a sphere are colliding. If so, resolves the collision 
+
+Object 1
+
+Object 2
+
+\begin{DoxyReturn}{Returns}
+Returns true if the two objects were colliding
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_scene_af17e3b8579ff1cf5e026399b837c9cfb}\label{class_physics_scene_af17e3b8579ff1cf5e026399b837c9cfb}} 
+\index{PhysicsScene@{PhysicsScene}!CheckForCollision@{CheckForCollision}}
+\index{CheckForCollision@{CheckForCollision}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{CheckForCollision()}{CheckForCollision()}}
+{\footnotesize\ttfamily void Physics\+Scene\+::\+Check\+For\+Collision (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks for collisions amongst all actors in m\+\_\+actors 
+
+\mbox{\Hypertarget{class_physics_scene_a54b84a544bfa19e4f5bcbbbc8e425aaf}\label{class_physics_scene_a54b84a544bfa19e4f5bcbbbc8e425aaf}} 
+\index{PhysicsScene@{PhysicsScene}!Draw@{Draw}}
+\index{Draw@{Draw}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Physics\+Scene\+::\+Draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Draws the scene 
+
+\mbox{\Hypertarget{class_physics_scene_aa35ae26295112a02ab71b011351502e2}\label{class_physics_scene_aa35ae26295112a02ab71b011351502e2}} 
+\index{PhysicsScene@{PhysicsScene}!GetGravity@{GetGravity}}
+\index{GetGravity@{GetGravity}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{GetGravity()}{GetGravity()}}
+{\footnotesize\ttfamily static glm\+::vec2 Physics\+Scene\+::\+Get\+Gravity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Returns gravity 
+
+\begin{DoxyReturn}{Returns}
+Returns gravity as a vector 2 with direction and magnitude
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_scene_a4afc0921b8a16e85faa82cb98269a39c}\label{class_physics_scene_a4afc0921b8a16e85faa82cb98269a39c}} 
+\index{PhysicsScene@{PhysicsScene}!GetMass0@{GetMass0}}
+\index{GetMass0@{GetMass0}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{GetMass0()}{GetMass0()}}
+{\footnotesize\ttfamily float Physics\+Scene\+::\+Get\+Mass0 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_rigidbody}{Rigidbody}} \&}]{actor,  }\item[{float}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calculates the mass at a point r from the center of mass of the actor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actor} & The actor to calculate mass0 for\\
+\hline
+{\em r} & The radius to the point\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns mass0
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_scene_abcc8efa89dd069d0155e3703c1108101}\label{class_physics_scene_abcc8efa89dd069d0155e3703c1108101}} 
+\index{PhysicsScene@{PhysicsScene}!GetTimeStep@{GetTimeStep}}
+\index{GetTimeStep@{GetTimeStep}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{GetTimeStep()}{GetTimeStep()}}
+{\footnotesize\ttfamily static float Physics\+Scene\+::\+Get\+Time\+Step (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Returns the time step 
+
+\begin{DoxyReturn}{Returns}
+Returns the timestep as a float
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_scene_a62cfab74cd6885729583a3b5f433f72f}\label{class_physics_scene_a62cfab74cd6885729583a3b5f433f72f}} 
+\index{PhysicsScene@{PhysicsScene}!getTotalEnergy@{getTotalEnergy}}
+\index{getTotalEnergy@{getTotalEnergy}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{getTotalEnergy()}{getTotalEnergy()}}
+{\footnotesize\ttfamily float Physics\+Scene\+::get\+Total\+Energy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the total energy in the scene for debugging purposes 
+
+\begin{DoxyReturn}{Returns}
+Returns the total energy in the scene as a float for debugging purposes
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_scene_abc15d275892fad81ccf5343186b294f8}\label{class_physics_scene_abc15d275892fad81ccf5343186b294f8}} 
+\index{PhysicsScene@{PhysicsScene}!Plane2Box@{Plane2Box}}
+\index{Plane2Box@{Plane2Box}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{Plane2Box()}{Plane2Box()}}
+{\footnotesize\ttfamily bool Physics\+Scene\+::\+Plane2\+Box (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj1,  }\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determines if a box and a plane are colliding. If so, resolves the collision 
+
+Object 1
+
+Object 2
+
+\begin{DoxyReturn}{Returns}
+Returns true if the two objects were colliding
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_scene_aef140d960fe556f32c46276e6025b794}\label{class_physics_scene_aef140d960fe556f32c46276e6025b794}} 
+\index{PhysicsScene@{PhysicsScene}!Plane2Plane@{Plane2Plane}}
+\index{Plane2Plane@{Plane2Plane}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{Plane2Plane()}{Plane2Plane()}}
+{\footnotesize\ttfamily bool Physics\+Scene\+::\+Plane2\+Plane (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{,  }\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Does nothing. Only exists to even out the function array in the .cpp 
+
+Object 1
+
+Object 2
+
+\begin{DoxyReturn}{Returns}
+Always returns false
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_scene_a1fb5b81273005f6a4a9fee94b373c18d}\label{class_physics_scene_a1fb5b81273005f6a4a9fee94b373c18d}} 
+\index{PhysicsScene@{PhysicsScene}!Plane2Sphere@{Plane2Sphere}}
+\index{Plane2Sphere@{Plane2Sphere}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{Plane2Sphere()}{Plane2Sphere()}}
+{\footnotesize\ttfamily bool Physics\+Scene\+::\+Plane2\+Sphere (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj1,  }\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determines if a sphere and a plane are colliding. If so, resolves the collision 
+
+Object 1
+
+Object 2
+
+\begin{DoxyReturn}{Returns}
+Returns true if the two objects were colliding
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_scene_a7075bfbc59d1a3aa27d1e7cf62242059}\label{class_physics_scene_a7075bfbc59d1a3aa27d1e7cf62242059}} 
+\index{PhysicsScene@{PhysicsScene}!RemoveActor@{RemoveActor}}
+\index{RemoveActor@{RemoveActor}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{RemoveActor()}{RemoveActor()}}
+{\footnotesize\ttfamily void Physics\+Scene\+::\+Remove\+Actor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{actor,  }\item[{bool}]{do\+Delete = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Removes an actor from the scene. If do\+Delete is true, deletes it as well 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actor} & The actor to delete\\
+\hline
+{\em do\+Delete} & Should the actor also be deleted?\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_physics_scene_ad96cea0d7617d8332f7a9801f3066b44}\label{class_physics_scene_ad96cea0d7617d8332f7a9801f3066b44}} 
+\index{PhysicsScene@{PhysicsScene}!SetGravity@{SetGravity}}
+\index{SetGravity@{SetGravity}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{SetGravity()}{SetGravity()}}
+{\footnotesize\ttfamily void Physics\+Scene\+::\+Set\+Gravity (\begin{DoxyParamCaption}\item[{const glm\+::vec2}]{gravity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the direction and magnitude of gravity 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gravity} & The direction and magnitude of gravity\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_physics_scene_ab29d083734aefca5d590c7113e28b1fc}\label{class_physics_scene_ab29d083734aefca5d590c7113e28b1fc}} 
+\index{PhysicsScene@{PhysicsScene}!SetTimeStep@{SetTimeStep}}
+\index{SetTimeStep@{SetTimeStep}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{SetTimeStep()}{SetTimeStep()}}
+{\footnotesize\ttfamily void Physics\+Scene\+::\+Set\+Time\+Step (\begin{DoxyParamCaption}\item[{const float}]{time\+Step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the timestep to the given value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+Step} & Sets the timestep\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_physics_scene_a8fdc96dba781cfe34750ab75d41601d5}\label{class_physics_scene_a8fdc96dba781cfe34750ab75d41601d5}} 
+\index{PhysicsScene@{PhysicsScene}!Sphere2Box@{Sphere2Box}}
+\index{Sphere2Box@{Sphere2Box}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{Sphere2Box()}{Sphere2Box()}}
+{\footnotesize\ttfamily bool Physics\+Scene\+::\+Sphere2\+Box (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj1,  }\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determines if a box and a sphere are colliding. If so, resolves the collision 
+
+Object 1
+
+Object 2
+
+\begin{DoxyReturn}{Returns}
+Returns true if the two objects were colliding
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_scene_a52698d4508f97950c6265a4e5fadcd42}\label{class_physics_scene_a52698d4508f97950c6265a4e5fadcd42}} 
+\index{PhysicsScene@{PhysicsScene}!Sphere2Plane@{Sphere2Plane}}
+\index{Sphere2Plane@{Sphere2Plane}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{Sphere2Plane()}{Sphere2Plane()}}
+{\footnotesize\ttfamily bool Physics\+Scene\+::\+Sphere2\+Plane (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj1,  }\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determines if a sphere and a plane are colliding. If so, resolves the collision 
+
+Object 1
+
+Object 2
+
+\begin{DoxyReturn}{Returns}
+Returns true if the two objects were colliding
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_scene_a71144b0a811d2f47e52a472414c7c8b4}\label{class_physics_scene_a71144b0a811d2f47e52a472414c7c8b4}} 
+\index{PhysicsScene@{PhysicsScene}!Sphere2Sphere@{Sphere2Sphere}}
+\index{Sphere2Sphere@{Sphere2Sphere}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{Sphere2Sphere()}{Sphere2Sphere()}}
+{\footnotesize\ttfamily bool Physics\+Scene\+::\+Sphere2\+Sphere (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj1,  }\item[{\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$}]{obj2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determines if a sphere a sphere are colliding. If so, resolves the collision 
+
+Object 1
+
+Object 2
+
+\begin{DoxyReturn}{Returns}
+Returns true if the two objects were colliding
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_scene_a9bfe0d1042ae1980fddbca983192e9a2}\label{class_physics_scene_a9bfe0d1042ae1980fddbca983192e9a2}} 
+\index{PhysicsScene@{PhysicsScene}!Update@{Update}}
+\index{Update@{Update}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Physics\+Scene\+::\+Update (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})}
+
+
+
+Simulates the physics simulation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & Delta time\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_physics_scene_a978016f79254116006754b696fcccfe8}\label{class_physics_scene_a978016f79254116006754b696fcccfe8}} 
+\index{PhysicsScene@{PhysicsScene}!m\_actors@{m\_actors}}
+\index{m\_actors@{m\_actors}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{m\_actors}{m\_actors}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_physics_object}{Physics\+Object}}$\ast$$>$ Physics\+Scene\+::m\+\_\+actors\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+A reference to every actor in the scene 
+
+\mbox{\Hypertarget{class_physics_scene_abadc3360e65a310da475fcb3a4c5ce54}\label{class_physics_scene_abadc3360e65a310da475fcb3a4c5ce54}} 
+\index{PhysicsScene@{PhysicsScene}!m\_gravity@{m\_gravity}}
+\index{m\_gravity@{m\_gravity}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{m\_gravity}{m\_gravity}}
+{\footnotesize\ttfamily glm\+::vec2 Physics\+Scene\+::m\+\_\+gravity = glm\+::vec2(0)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+The direction and magnitude of gravity 
+
+\mbox{\Hypertarget{class_physics_scene_a732dc7b93711413a177ae3b5e1422184}\label{class_physics_scene_a732dc7b93711413a177ae3b5e1422184}} 
+\index{PhysicsScene@{PhysicsScene}!m\_timeStep@{m\_timeStep}}
+\index{m\_timeStep@{m\_timeStep}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{m\_timeStep}{m\_timeStep}}
+{\footnotesize\ttfamily float Physics\+Scene\+::m\+\_\+time\+Step = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+The time step for each physics simulation. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_physics_scene_8h}{Physics\+Scene.\+h}}\item 
+\mbox{\hyperlink{_physics_scene_8cpp}{Physics\+Scene.\+cpp}}\end{DoxyCompactItemize}

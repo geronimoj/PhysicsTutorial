@@ -1,0 +1,84 @@
+\hypertarget{_physics_scene_8cpp}{}\doxysection{Physics\+Scene.\+cpp File Reference}
+\label{_physics_scene_8cpp}\index{PhysicsScene.cpp@{PhysicsScene.cpp}}
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}Physics\+Scene.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Sphere.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Plane.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Box.\+h\char`\"{}}\newline
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{_physics_scene_8cpp_a3afb83394050b457bc7267afe14923a8}{fn}}) (\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$, \mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{_physics_scene_8cpp_a3afb83394050b457bc7267afe14923a8}{fn}} \mbox{\hyperlink{_physics_scene_8cpp_acff23f6d4174802cb7663fbed3e65982}{collision\+Function\+Array}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Contains pointers to the collision detection and resolution functions between two objects. Used for quick and easy access between collision functions \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{_physics_scene_8cpp_ad29ef7561248196c274f181177908639}{layer\+Collision}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Determines which layers can collide with which layers. \end{DoxyCompactList}\item 
+const unsigned int \mbox{\hyperlink{_physics_scene_8cpp_a5d0da22800dda2056f6173ae3ce88d1d}{NUMBER\+\_\+\+OF\+\_\+\+LAYERS}} = 3
+\begin{DoxyCompactList}\small\item\em The number of layers in the scene \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_physics_scene_8cpp_a3afb83394050b457bc7267afe14923a8}\label{_physics_scene_8cpp_a3afb83394050b457bc7267afe14923a8}} 
+\index{PhysicsScene.cpp@{PhysicsScene.cpp}!fn@{fn}}
+\index{fn@{fn}!PhysicsScene.cpp@{PhysicsScene.cpp}}
+\doxysubsubsection{\texorpdfstring{fn}{fn}}
+{\footnotesize\ttfamily typedef bool($\ast$ fn) (\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$, \mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$)}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_physics_scene_8cpp_acff23f6d4174802cb7663fbed3e65982}\label{_physics_scene_8cpp_acff23f6d4174802cb7663fbed3e65982}} 
+\index{PhysicsScene.cpp@{PhysicsScene.cpp}!collisionFunctionArray@{collisionFunctionArray}}
+\index{collisionFunctionArray@{collisionFunctionArray}!PhysicsScene.cpp@{PhysicsScene.cpp}}
+\doxysubsubsection{\texorpdfstring{collisionFunctionArray}{collisionFunctionArray}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_physics_scene_8cpp_a3afb83394050b457bc7267afe14923a8}{fn}} collision\+Function\+Array\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{   }
+\DoxyCodeLine{    \mbox{\hyperlink{class_physics_scene_aef140d960fe556f32c46276e6025b794}{PhysicsScene::Plane2Plane}}, \mbox{\hyperlink{class_physics_scene_a1fb5b81273005f6a4a9fee94b373c18d}{PhysicsScene::Plane2Sphere}}, \mbox{\hyperlink{class_physics_scene_abc15d275892fad81ccf5343186b294f8}{PhysicsScene::Plane2Box}},}
+\DoxyCodeLine{    \mbox{\hyperlink{class_physics_scene_a52698d4508f97950c6265a4e5fadcd42}{PhysicsScene::Sphere2Plane}}, \mbox{\hyperlink{class_physics_scene_a71144b0a811d2f47e52a472414c7c8b4}{PhysicsScene::Sphere2Sphere}}, \mbox{\hyperlink{class_physics_scene_a8fdc96dba781cfe34750ab75d41601d5}{PhysicsScene::Sphere2Box}},}
+\DoxyCodeLine{    \mbox{\hyperlink{class_physics_scene_a1f3f3f2fbc56509381f22bab80095cdb}{PhysicsScene::Box2Plane}}, \mbox{\hyperlink{class_physics_scene_a54f20d60eaa83b2c9e56ed4b28d0a9be}{PhysicsScene::Box2Sphere}}, \mbox{\hyperlink{class_physics_scene_a2d35e7b5f25ad84fe0bac20d4e71b07f}{PhysicsScene::Box2Box}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Contains pointers to the collision detection and resolution functions between two objects. Used for quick and easy access between collision functions 
+
+\mbox{\Hypertarget{_physics_scene_8cpp_ad29ef7561248196c274f181177908639}\label{_physics_scene_8cpp_ad29ef7561248196c274f181177908639}} 
+\index{PhysicsScene.cpp@{PhysicsScene.cpp}!layerCollision@{layerCollision}}
+\index{layerCollision@{layerCollision}!PhysicsScene.cpp@{PhysicsScene.cpp}}
+\doxysubsubsection{\texorpdfstring{layerCollision}{layerCollision}}
+{\footnotesize\ttfamily bool layer\+Collision\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keyword}{true},   \textcolor{keyword}{true},   \textcolor{keyword}{true},}
+\DoxyCodeLine{    \textcolor{keyword}{true},   \textcolor{keyword}{true},   \textcolor{keyword}{false},}
+\DoxyCodeLine{    \textcolor{keyword}{true},   \textcolor{keyword}{false},  \textcolor{keyword}{true}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Determines which layers can collide with which layers. 
+
+\mbox{\Hypertarget{_physics_scene_8cpp_a5d0da22800dda2056f6173ae3ce88d1d}\label{_physics_scene_8cpp_a5d0da22800dda2056f6173ae3ce88d1d}} 
+\index{PhysicsScene.cpp@{PhysicsScene.cpp}!NUMBER\_OF\_LAYERS@{NUMBER\_OF\_LAYERS}}
+\index{NUMBER\_OF\_LAYERS@{NUMBER\_OF\_LAYERS}!PhysicsScene.cpp@{PhysicsScene.cpp}}
+\doxysubsubsection{\texorpdfstring{NUMBER\_OF\_LAYERS}{NUMBER\_OF\_LAYERS}}
+{\footnotesize\ttfamily const unsigned int NUMBER\+\_\+\+OF\+\_\+\+LAYERS = 3}
+
+
+
+The number of layers in the scene 
+
