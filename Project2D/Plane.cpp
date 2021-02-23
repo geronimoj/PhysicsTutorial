@@ -18,10 +18,10 @@ void Plane::Draw()
 	glm::vec2 parallel(m_normal.y, -m_normal.x);
 	glm::vec4 colourFade = m_colour;
 	colourFade.a = 0;
-
+	//Calculate the start and end point
 	glm::vec2 start = centerPoint + (parallel * lineSegmentLength);
 	glm::vec2 end = centerPoint - (parallel * lineSegmentLength);
-
+	//Draw two triangles representing the plane
 	aie::Gizmos::add2DTri(start, end, start - m_normal * 10.f, m_colour, m_colour, colourFade);
 	aie::Gizmos::add2DTri(end, end - m_normal * 10.f, start - m_normal * 10.f, m_colour, colourFade, colourFade);
 }

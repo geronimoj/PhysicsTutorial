@@ -98,7 +98,7 @@ void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2
 		float fForce = glm::dot(relVelT, perp);
 		float force1 = 0;
 		float force2 = 0;
-
+		//The ratio cannot be above 1 so we need to make sure the larger mass is on the right
 		if (GetMass() < actor2->GetMass())
 		{	
 			float ratio = GetMass() / actor2->GetMass();

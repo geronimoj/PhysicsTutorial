@@ -203,11 +203,10 @@ bool PhysicsScene::Sphere2Box(PhysicsObject* obj1, PhysicsObject* obj2)
 	if (sphere != nullptr && box != nullptr)
 	{
 		glm::vec2 circlePosWorld = sphere->GetPosition() - box->GetPosition();
-		glm::vec2 circlePosBox = glm::vec2(glm::dot(circlePosWorld, box->GetLocalX()), glm::dot(circlePosWorld, box->GetLocalY()));
-
-		glm::vec2 closestPointOnBoxBox = circlePosBox;
+		//Calculate the closest point to the box
+		glm::vec2 closestPointOnBoxBox = glm::vec2(glm::dot(circlePosWorld, box->GetLocalX()), glm::dot(circlePosWorld, box->GetLocalY()));;
 		glm::vec2 extents = box->GetExtents();
-
+		//Check if the point intersects with the boxes sides.
 		if (closestPointOnBoxBox.x < -extents.x) 
 			closestPointOnBoxBox.x = -extents.x;
 		if (closestPointOnBoxBox.x > extents.x) 
@@ -219,9 +218,9 @@ bool PhysicsScene::Sphere2Box(PhysicsObject* obj1, PhysicsObject* obj2)
 
 		glm::vec2 closetsPointOnBoxWorld = box->GetPosition() + closestPointOnBoxBox.x * box->GetLocalX() + closestPointOnBoxBox.y * box->GetLocalY();
 		glm::vec2 circleToBox = sphere->GetPosition() - closetsPointOnBoxWorld;
-
+		//Calculate how much the circle is penetrating the box
 		float penetration = sphere->GetRadius() - glm::length(circleToBox);
-
+		//If we are penetrating, resolve the collision
 		if (penetration > 0)
 		{
 			glm::vec2 direction = glm::normalize(circleToBox);
@@ -235,7 +234,7 @@ bool PhysicsScene::Sphere2Box(PhysicsObject* obj1, PhysicsObject* obj2)
 }
 
 bool PhysicsScene::Plane2Sphere(PhysicsObject* obj1, PhysicsObject* obj2)
-{
+{	//Call the other version for less code
 	return Sphere2Plane(obj2, obj1);
 }
 
@@ -245,7 +244,7 @@ bool PhysicsScene::Plane2Plane(PhysicsObject*, PhysicsObject*)
 }
 
 bool PhysicsScene::Plane2Box(PhysicsObject* obj1, PhysicsObject* obj2)
-{
+{	//Call the other version for less code
 	return Box2Plane(obj2, obj1);
 }
 
@@ -261,7 +260,7 @@ bool PhysicsScene::Box2Plane(PhysicsObject* obj1, PhysicsObject* obj2)
 		float contactV = 0;
 
 		glm::vec2 planeOrigin = plane->GetNormal() * plane->GetDistance();
-
+		//Loop through the boxes corners and check if any of them are colliding with the plane
 		for (float x = -box->GetExtents().x; x < box->GetWidth(); x += box->GetWidth())
 			for (float y = -box->GetExtents().y; y < box->GetHeight(); y += box->GetHeight())
 			{
@@ -274,7 +273,7 @@ bool PhysicsScene::Box2Plane(PhysicsObject* obj1, PhysicsObject* obj2)
 				glm::vec2 pointVelocity = box->GetVelocity() + box->GetAngularVelocity() * glm::vec2(-displacement.y, displacement.x);
 
 				float velocityIntoPlane = glm::dot(pointVelocity, plane->GetNormal());
-
+				//If this point is going into the plane and is intersecting the plane, add it to the contacts
 				if (distFromPlane < 0 && velocityIntoPlane <= 0)
 				{
 					numContacts++;
@@ -282,7 +281,7 @@ bool PhysicsScene::Box2Plane(PhysicsObject* obj1, PhysicsObject* obj2)
 					contactV += velocityIntoPlane;
 				}
 			}
-
+		//If we have contacts, resolve the collision
 		if (numContacts > 0)
 		{
 			plane->ResolveCollision(box, contact / (float)numContacts);
@@ -294,7 +293,7 @@ bool PhysicsScene::Box2Plane(PhysicsObject* obj1, PhysicsObject* obj2)
 }
 
 bool PhysicsScene::Box2Sphere(PhysicsObject* obj1, PhysicsObject* obj2)
-{
+{	//Call the other version for less code
 	return Sphere2Box(obj2, obj1);
 }
 
@@ -304,15 +303,17 @@ bool PhysicsScene::Box2Box(PhysicsObject* obj1, PhysicsObject* obj2)
 	Box* box2 = dynamic_cast<Box*>(obj2);
 
 	if (box1 != nullptr && box2 != nullptr)
-	{
-		glm::vec2 boxPos = box2->GetPosition() - box1->GetPosition();
+	{	//Create a storage locations for the parameters
 		glm::vec2 norm(0, 0);
 		glm::vec2 contact(0, 0);
 		float pen = 0;
 		int numContacts = 0;
+		//Check if box2 is cutting into box1
 		box1->CheckBoxCorners(*box2, contact, numContacts, pen, norm);
+		//Repeat for box 2
 		if (box2->CheckBoxCorners(*box1, contact, numContacts, pen, norm))
 			norm = -norm;
+		//If the boxes are penetrating, resolve the collision
 		if (pen > 0)
 			box1->ResolveCollision(box2, contact / (float)numContacts, &norm, pen);
 		return true;
@@ -322,7 +323,7 @@ bool PhysicsScene::Box2Box(PhysicsObject* obj1, PhysicsObject* obj2)
 }
 
 float PhysicsScene::getTotalEnergy()
-{
+{	//Loop through all the actors and calculate their energy
 	float total = 0.0f;
 	for (auto it = m_actors.begin(); it != m_actors.end(); it++)
 	{
