@@ -30,6 +30,10 @@ public:
 	/// </summary>
 	virtual void draw();
 	/// <summary>
+	/// Loads a physics scenes actors
+	/// </summary>
+	void LoadScene();
+	/// <summary>
 	/// Spawns two spheres with different properties
 	/// </summary>
 	void SphereTest();
@@ -67,4 +71,8 @@ protected:
 	/// The global timer
 	/// </summary>
 	float m_timer;
+	/// <summary>
+	/// The current scene that should be loaded
+	/// </summary>
+	int m_currentScene;
 };

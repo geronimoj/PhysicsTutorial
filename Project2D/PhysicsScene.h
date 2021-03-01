@@ -146,6 +146,8 @@ public:
 	/// <returns>Returns the total energy in the scene as a float for debugging purposes</returns>
 	float getTotalEnergy();
 
+	bool HasActors() { return m_actors.size() != 0; }
+
 protected:
 	/// <summary>
 	/// The direction and magnitude of gravity

@@ -79,6 +79,7 @@ void PhysicsScene::RemoveAllActors()
 {
 	for (int i = 0; i < m_actors.size(); i++)
 		RemoveActor(m_actors[i], true);
+	m_actors.clear();
 }
 
 void PhysicsScene::Update(float dt)
