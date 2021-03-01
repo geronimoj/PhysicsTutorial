@@ -30,8 +30,18 @@ virtual void \mbox{\hyperlink{class_physics_app_a3f3d3955fc8164ee4345385d22026bf
 \begin{DoxyCompactList}\small\item\em Increments timer, calls update on the physics scene, calls draw and checks for the escape key to exit \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_physics_app_a76195807dc109de9009980431884b320}{draw}} ()
 \begin{DoxyCompactList}\small\item\em Draws the world \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_app_a4299b95b85dba058a5785ac0f1a8399a}{Load\+Scene}} ()
+\begin{DoxyCompactList}\small\item\em Loads a physics scenes actors \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_physics_app_a7ba271fbd7ad86c179dbd138fcdffd83}{Sphere\+Test}} ()
-\begin{DoxyCompactList}\small\item\em Spawns two spheres with different properties \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Spawns two spheres with different properties \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_app_a121907ec21ad469ad786a0d98e16167e}{Rolling\+Sphere}} ()
+\begin{DoxyCompactList}\small\item\em Spawns a rolling sphere \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_app_ae72192fba8c9390e3744643ae6effd10}{Falling\+Box}} ()
+\begin{DoxyCompactList}\small\item\em Spawns a falling box at an angle \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_app_a50acdcb60b0fab74b39402e4690154fe}{Rotating\+Box}} ()
+\begin{DoxyCompactList}\small\item\em Spawns a rotating box \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_app_aabd632e9e820157ac33f2da3d6aea430}{Bounce\+House}} ()
+\begin{DoxyCompactList}\small\item\em Spawns a varienty of physics objects and kinematic objcets \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -42,7 +52,9 @@ aie\+::\+Font $\ast$ \mbox{\hyperlink{class_physics_app_af08473602334b4bff2d3016
 \mbox{\hyperlink{class_physics_scene}{Physics\+Scene}} $\ast$ \mbox{\hyperlink{class_physics_app_a7a520621fe0ac5ae36a45b700d31bc44}{m\+\_\+physics\+Scene}}
 \begin{DoxyCompactList}\small\item\em A pointer to the Physics Scene \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{class_physics_app_a0c7f18c64f67dff5a881cdab9a4fcee0}{m\+\_\+timer}}
-\begin{DoxyCompactList}\small\item\em The global timer \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The global timer \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_physics_app_a278e868f10c0d8dabd4b3b40cd0f0df8}{m\+\_\+current\+Scene}}
+\begin{DoxyCompactList}\small\item\em The current scene that should be loaded \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -66,6 +78,16 @@ The application the simulation is run inside
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_physics_app_aabd632e9e820157ac33f2da3d6aea430}\label{class_physics_app_aabd632e9e820157ac33f2da3d6aea430}} 
+\index{PhysicsApp@{PhysicsApp}!BounceHouse@{BounceHouse}}
+\index{BounceHouse@{BounceHouse}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{BounceHouse()}{BounceHouse()}}
+{\footnotesize\ttfamily void Physics\+App\+::\+Bounce\+House (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Spawns a varienty of physics objects and kinematic objcets 
+
 \mbox{\Hypertarget{class_physics_app_a76195807dc109de9009980431884b320}\label{class_physics_app_a76195807dc109de9009980431884b320}} 
 \index{PhysicsApp@{PhysicsApp}!draw@{draw}}
 \index{draw@{draw}!PhysicsApp@{PhysicsApp}}
@@ -75,6 +97,46 @@ The application the simulation is run inside
 
 
 Draws the world 
+
+\mbox{\Hypertarget{class_physics_app_ae72192fba8c9390e3744643ae6effd10}\label{class_physics_app_ae72192fba8c9390e3744643ae6effd10}} 
+\index{PhysicsApp@{PhysicsApp}!FallingBox@{FallingBox}}
+\index{FallingBox@{FallingBox}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{FallingBox()}{FallingBox()}}
+{\footnotesize\ttfamily void Physics\+App\+::\+Falling\+Box (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Spawns a falling box at an angle 
+
+\mbox{\Hypertarget{class_physics_app_a4299b95b85dba058a5785ac0f1a8399a}\label{class_physics_app_a4299b95b85dba058a5785ac0f1a8399a}} 
+\index{PhysicsApp@{PhysicsApp}!LoadScene@{LoadScene}}
+\index{LoadScene@{LoadScene}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{LoadScene()}{LoadScene()}}
+{\footnotesize\ttfamily void Physics\+App\+::\+Load\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Loads a physics scenes actors 
+
+\mbox{\Hypertarget{class_physics_app_a121907ec21ad469ad786a0d98e16167e}\label{class_physics_app_a121907ec21ad469ad786a0d98e16167e}} 
+\index{PhysicsApp@{PhysicsApp}!RollingSphere@{RollingSphere}}
+\index{RollingSphere@{RollingSphere}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{RollingSphere()}{RollingSphere()}}
+{\footnotesize\ttfamily void Physics\+App\+::\+Rolling\+Sphere (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Spawns a rolling sphere 
+
+\mbox{\Hypertarget{class_physics_app_a50acdcb60b0fab74b39402e4690154fe}\label{class_physics_app_a50acdcb60b0fab74b39402e4690154fe}} 
+\index{PhysicsApp@{PhysicsApp}!RotatingBox@{RotatingBox}}
+\index{RotatingBox@{RotatingBox}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{RotatingBox()}{RotatingBox()}}
+{\footnotesize\ttfamily void Physics\+App\+::\+Rotating\+Box (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Spawns a rotating box 
 
 \mbox{\Hypertarget{class_physics_app_a92ddd4498dae080e7c1dfad07db5596e}\label{class_physics_app_a92ddd4498dae080e7c1dfad07db5596e}} 
 \index{PhysicsApp@{PhysicsApp}!shutdown@{shutdown}}
@@ -136,6 +198,16 @@ Increments timer, calls update on the physics scene, calls draw and checks for t
 
 
 Pointer to the renderer 
+
+\mbox{\Hypertarget{class_physics_app_a278e868f10c0d8dabd4b3b40cd0f0df8}\label{class_physics_app_a278e868f10c0d8dabd4b3b40cd0f0df8}} 
+\index{PhysicsApp@{PhysicsApp}!m\_currentScene@{m\_currentScene}}
+\index{m\_currentScene@{m\_currentScene}!PhysicsApp@{PhysicsApp}}
+\doxysubsubsection{\texorpdfstring{m\_currentScene}{m\_currentScene}}
+{\footnotesize\ttfamily int Physics\+App\+::m\+\_\+current\+Scene\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The current scene that should be loaded 
 
 \mbox{\Hypertarget{class_physics_app_af08473602334b4bff2d30167f52d5fce}\label{class_physics_app_af08473602334b4bff2d30167f52d5fce}} 
 \index{PhysicsApp@{PhysicsApp}!m\_font@{m\_font}}

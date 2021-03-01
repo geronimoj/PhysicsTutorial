@@ -90,6 +90,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7075bfbc59d1a3aa27d1e7cf62242059"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_scene.html#a7075bfbc59d1a3aa27d1e7cf62242059">RemoveActor</a> (<a class="el" href="class_physics_object.html">PhysicsObject</a> *actor, bool doDelete=false)</td></tr>
 <tr class="memdesc:a7075bfbc59d1a3aa27d1e7cf62242059"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an actor from the scene. If doDelete is true, deletes it as well  <a href="class_physics_scene.html#a7075bfbc59d1a3aa27d1e7cf62242059">More...</a><br /></td></tr>
 <tr class="separator:a7075bfbc59d1a3aa27d1e7cf62242059"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dcdd354236a090e44b7485208f8e1b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_scene.html#a3dcdd354236a090e44b7485208f8e1b5">RemoveAllActors</a> ()</td></tr>
+<tr class="memdesc:a3dcdd354236a090e44b7485208f8e1b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes all the actors in the scene.  <a href="class_physics_scene.html#a3dcdd354236a090e44b7485208f8e1b5">More...</a><br /></td></tr>
+<tr class="separator:a3dcdd354236a090e44b7485208f8e1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bfe0d1042ae1980fddbca983192e9a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_scene.html#a9bfe0d1042ae1980fddbca983192e9a2">Update</a> (float dt)</td></tr>
 <tr class="memdesc:a9bfe0d1042ae1980fddbca983192e9a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulates the physics simulation  <a href="class_physics_scene.html#a9bfe0d1042ae1980fddbca983192e9a2">More...</a><br /></td></tr>
 <tr class="separator:a9bfe0d1042ae1980fddbca983192e9a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,6 +111,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a62cfab74cd6885729583a3b5f433f72f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_scene.html#a62cfab74cd6885729583a3b5f433f72f">getTotalEnergy</a> ()</td></tr>
 <tr class="memdesc:a62cfab74cd6885729583a3b5f433f72f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total energy in the scene for debugging purposes  <a href="class_physics_scene.html#a62cfab74cd6885729583a3b5f433f72f">More...</a><br /></td></tr>
 <tr class="separator:a62cfab74cd6885729583a3b5f433f72f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53175bd12e8a38268bd1403a1ae3ee16"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics_scene.html#a53175bd12e8a38268bd1403a1ae3ee16">HasActors</a> ()</td></tr>
+<tr class="separator:a53175bd12e8a38268bd1403a1ae3ee16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -572,6 +577,31 @@ Static Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a53175bd12e8a38268bd1403a1ae3ee16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53175bd12e8a38268bd1403a1ae3ee16">&#9670;&nbsp;</a></span>HasActors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PhysicsScene::HasActors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="abc15d275892fad81ccf5343186b294f8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abc15d275892fad81ccf5343186b294f8">&#9670;&nbsp;</a></span>Plane2Box()</h2>
 
@@ -729,6 +759,25 @@ Static Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a3dcdd354236a090e44b7485208f8e1b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dcdd354236a090e44b7485208f8e1b5">&#9670;&nbsp;</a></span>RemoveAllActors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PhysicsScene::RemoveAllActors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deletes all the actors in the scene. </p>
 
 </div>
 </div>

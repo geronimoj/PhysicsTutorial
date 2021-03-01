@@ -20,6 +20,8 @@ void \mbox{\hyperlink{class_physics_scene_a0a64b92eb00f69f0dd859062a610b83a}{Add
 \begin{DoxyCompactList}\small\item\em Adds an actor to the scene \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_physics_scene_a7075bfbc59d1a3aa27d1e7cf62242059}{Remove\+Actor}} (\mbox{\hyperlink{class_physics_object}{Physics\+Object}} $\ast$actor, bool do\+Delete=false)
 \begin{DoxyCompactList}\small\item\em Removes an actor from the scene. If do\+Delete is true, deletes it as well \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_physics_scene_a3dcdd354236a090e44b7485208f8e1b5}{Remove\+All\+Actors}} ()
+\begin{DoxyCompactList}\small\item\em Deletes all the actors in the scene. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_physics_scene_a9bfe0d1042ae1980fddbca983192e9a2}{Update}} (float dt)
 \begin{DoxyCompactList}\small\item\em Simulates the physics simulation \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_physics_scene_a54b84a544bfa19e4f5bcbbbc8e425aaf}{Draw}} ()
@@ -31,7 +33,9 @@ void \mbox{\hyperlink{class_physics_scene_ab29d083734aefca5d590c7113e28b1fc}{Set
 void \mbox{\hyperlink{class_physics_scene_af17e3b8579ff1cf5e026399b837c9cfb}{Check\+For\+Collision}} ()
 \begin{DoxyCompactList}\small\item\em Checks for collisions amongst all actors in m\+\_\+actors \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{class_physics_scene_a62cfab74cd6885729583a3b5f433f72f}{get\+Total\+Energy}} ()
-\begin{DoxyCompactList}\small\item\em Returns the total energy in the scene for debugging purposes \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns the total energy in the scene for debugging purposes \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_physics_scene_a53175bd12e8a38268bd1403a1ae3ee16}{Has\+Actors}} ()
+\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -262,6 +266,12 @@ Returns the total energy in the scene for debugging purposes
 \begin{DoxyReturn}{Returns}
 Returns the total energy in the scene as a float for debugging purposes
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_physics_scene_a53175bd12e8a38268bd1403a1ae3ee16}\label{class_physics_scene_a53175bd12e8a38268bd1403a1ae3ee16}} 
+\index{PhysicsScene@{PhysicsScene}!HasActors@{HasActors}}
+\index{HasActors@{HasActors}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{HasActors()}{HasActors()}}
+{\footnotesize\ttfamily bool Physics\+Scene\+::\+Has\+Actors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{class_physics_scene_abc15d275892fad81ccf5343186b294f8}\label{class_physics_scene_abc15d275892fad81ccf5343186b294f8}} 
 \index{PhysicsScene@{PhysicsScene}!Plane2Box@{Plane2Box}}
 \index{Plane2Box@{Plane2Box}!PhysicsScene@{PhysicsScene}}
@@ -330,6 +340,16 @@ Removes an actor from the scene. If do\+Delete is true, deletes it as well
 {\em do\+Delete} & Should the actor also be deleted?\\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{class_physics_scene_a3dcdd354236a090e44b7485208f8e1b5}\label{class_physics_scene_a3dcdd354236a090e44b7485208f8e1b5}} 
+\index{PhysicsScene@{PhysicsScene}!RemoveAllActors@{RemoveAllActors}}
+\index{RemoveAllActors@{RemoveAllActors}!PhysicsScene@{PhysicsScene}}
+\doxysubsubsection{\texorpdfstring{RemoveAllActors()}{RemoveAllActors()}}
+{\footnotesize\ttfamily void Physics\+Scene\+::\+Remove\+All\+Actors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Deletes all the actors in the scene. 
+
 \mbox{\Hypertarget{class_physics_scene_ad96cea0d7617d8332f7a9801f3066b44}\label{class_physics_scene_ad96cea0d7617d8332f7a9801f3066b44}} 
 \index{PhysicsScene@{PhysicsScene}!SetGravity@{SetGravity}}
 \index{SetGravity@{SetGravity}!PhysicsScene@{PhysicsScene}}

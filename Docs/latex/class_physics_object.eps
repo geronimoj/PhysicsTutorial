@@ -179,6 +179,7 @@ boxfont setfont
 (Spring) cw
 (Box) cw
 (Sphere) cw
+(CarBody) cw
 (Wheel) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
@@ -197,6 +198,7 @@ boundx scalefactor div boundy scalefactor div scale
  (Spring) 2.000000 2.000000 box
  (Box) 0.500000 1.000000 box
  (Sphere) 1.500000 1.000000 box
+ (CarBody) 0.500000 0.000000 box
  (Wheel) 1.500000 0.000000 box
 
 % ----- relations -----
@@ -218,8 +220,12 @@ solid
 solid
 0 0.500000 1.750000 in
 solid
+1 0.500000 0.250000 out
+solid
 0 1.500000 1.750000 in
 solid
 1 1.500000 0.250000 out
+solid
+0 0.500000 0.750000 in
 solid
 0 1.500000 0.750000 in

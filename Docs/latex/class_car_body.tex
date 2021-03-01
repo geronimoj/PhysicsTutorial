@@ -1,0 +1,89 @@
+\hypertarget{class_car_body}{}\doxysection{Car\+Body Class Reference}
+\label{class_car_body}\index{CarBody@{CarBody}}
+
+
+{\ttfamily \#include $<$Car\+Body.\+h$>$}
+
+Inheritance diagram for Car\+Body\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_car_body}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_car_body_ad9b02bbebc757662830370f1d49ca963}{Car\+Body}} ()
+\item 
+\mbox{\hyperlink{class_car_body_a7cf1a39dbe8c31e68bb50de307a67fc3}{$\sim$\+Car\+Body}} ()
+\item 
+virtual void \mbox{\hyperlink{class_car_body_a24934b5590377d79982e944119a1ba5b}{Fixed\+Update}} (glm\+::vec2 gravity, float time\+Step)
+\begin{DoxyCompactList}\small\item\em Rotates, transforms and applys drag to the box. Also re-\/calculates local X and Y axis. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_wheel}{Wheel}} $\ast$ \mbox{\hyperlink{class_car_body_afd12f79a5d9f211030082dd4736d9810}{m\+\_\+back\+Wheel}}
+\item 
+\mbox{\hyperlink{class_wheel}{Wheel}} $\ast$ \mbox{\hyperlink{class_car_body_a88131eef4c973492745a6ab9a3f84e7f}{m\+\_\+front\+Wheel}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_car_body_ad9b02bbebc757662830370f1d49ca963}\label{class_car_body_ad9b02bbebc757662830370f1d49ca963}} 
+\index{CarBody@{CarBody}!CarBody@{CarBody}}
+\index{CarBody@{CarBody}!CarBody@{CarBody}}
+\doxysubsubsection{\texorpdfstring{CarBody()}{CarBody()}}
+{\footnotesize\ttfamily Car\+Body\+::\+Car\+Body (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_car_body_a7cf1a39dbe8c31e68bb50de307a67fc3}\label{class_car_body_a7cf1a39dbe8c31e68bb50de307a67fc3}} 
+\index{CarBody@{CarBody}!````~CarBody@{$\sim$CarBody}}
+\index{````~CarBody@{$\sim$CarBody}!CarBody@{CarBody}}
+\doxysubsubsection{\texorpdfstring{$\sim$CarBody()}{~CarBody()}}
+{\footnotesize\ttfamily Car\+Body\+::$\sim$\+Car\+Body (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_car_body_a24934b5590377d79982e944119a1ba5b}\label{class_car_body_a24934b5590377d79982e944119a1ba5b}} 
+\index{CarBody@{CarBody}!FixedUpdate@{FixedUpdate}}
+\index{FixedUpdate@{FixedUpdate}!CarBody@{CarBody}}
+\doxysubsubsection{\texorpdfstring{FixedUpdate()}{FixedUpdate()}}
+{\footnotesize\ttfamily void Car\+Body\+::\+Fixed\+Update (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{gravity,  }\item[{float}]{time\+Step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Rotates, transforms and applys drag to the box. Also re-\/calculates local X and Y axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gravity} & The direction and magnitude of gravity.\\
+\hline
+{\em time\+Step} & The time that has passed for this physics update.\\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_box_a9a66c0051d4109c8f05676d95ced3033}{Box}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_car_body_afd12f79a5d9f211030082dd4736d9810}\label{class_car_body_afd12f79a5d9f211030082dd4736d9810}} 
+\index{CarBody@{CarBody}!m\_backWheel@{m\_backWheel}}
+\index{m\_backWheel@{m\_backWheel}!CarBody@{CarBody}}
+\doxysubsubsection{\texorpdfstring{m\_backWheel}{m\_backWheel}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_wheel}{Wheel}}$\ast$ Car\+Body\+::m\+\_\+back\+Wheel\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_car_body_a88131eef4c973492745a6ab9a3f84e7f}\label{class_car_body_a88131eef4c973492745a6ab9a3f84e7f}} 
+\index{CarBody@{CarBody}!m\_frontWheel@{m\_frontWheel}}
+\index{m\_frontWheel@{m\_frontWheel}!CarBody@{CarBody}}
+\doxysubsubsection{\texorpdfstring{m\_frontWheel}{m\_frontWheel}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_wheel}{Wheel}}$\ast$ Car\+Body\+::m\+\_\+front\+Wheel\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_car_body_8h}{Car\+Body.\+h}}\item 
+\mbox{\hyperlink{_car_body_8cpp}{Car\+Body.\+cpp}}\end{DoxyCompactItemize}

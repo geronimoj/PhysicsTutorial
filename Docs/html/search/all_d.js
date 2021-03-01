@@ -1,4 +1,28 @@
 var searchData=
 [
-  ['toworld_140',['ToWorld',['../class_box.html#a5ae288d4894c6c27b852376b4ce09dfd',1,'Box::ToWorld()'],['../class_rigidbody.html#a811b18f46784382d4935f0a1c8f27b59',1,'Rigidbody::ToWorld()']]]
+  ['setangularvelocity_128',['SetAngularVelocity',['../class_rigidbody.html#adb4e2129878ca3a674e4fc7c73e35913',1,'Rigidbody']]],
+  ['setgravity_129',['SetGravity',['../class_physics_scene.html#ad96cea0d7617d8332f7a9801f3066b44',1,'PhysicsScene']]],
+  ['setkinematic_130',['SetKinematic',['../class_rigidbody.html#a66edffd623756c7fa0afa9b07fb812f4',1,'Rigidbody']]],
+  ['setposition_131',['SetPosition',['../class_rigidbody.html#a7b3f4a8d0951c995ab95405c1ad1c73c',1,'Rigidbody']]],
+  ['settimestep_132',['SetTimeStep',['../class_physics_scene.html#ab29d083734aefca5d590c7113e28b1fc',1,'PhysicsScene']]],
+  ['setvelocity_133',['SetVelocity',['../class_rigidbody.html#ae60f0129bc21ee431699e18552c6799f',1,'Rigidbody']]],
+  ['shape_5fcount_134',['SHAPE_COUNT',['../_physics_object_8h.html#a5a4538eeab397888d88a4eefcc5a1345a6888478d4853f837f2de7fd1cf9fbfa6',1,'PhysicsObject.h']]],
+  ['shapetype_135',['ShapeType',['../_physics_object_8h.html#a5a4538eeab397888d88a4eefcc5a1345',1,'PhysicsObject.h']]],
+  ['shutdown_136',['shutdown',['../class_physics_app.html#a92ddd4498dae080e7c1dfad07db5596e',1,'PhysicsApp']]],
+  ['softbody_137',['Softbody',['../class_softbody.html',1,'']]],
+  ['softbody_2ecpp_138',['Softbody.cpp',['../_softbody_8cpp.html',1,'']]],
+  ['softbody_2eh_139',['Softbody.h',['../_softbody_8h.html',1,'']]],
+  ['sphere_140',['Sphere',['../class_sphere.html',1,'Sphere'],['../class_sphere.html#aef1677cf3b2cfb63293bada30956819e',1,'Sphere::Sphere()']]],
+  ['sphere_141',['SPHERE',['../_physics_object_8h.html#a5a4538eeab397888d88a4eefcc5a1345a6f7cea7381e843e2ee0338b4a92b0d43',1,'PhysicsObject.h']]],
+  ['sphere_2ecpp_142',['Sphere.cpp',['../_sphere_8cpp.html',1,'']]],
+  ['sphere_2eh_143',['Sphere.h',['../_sphere_8h.html',1,'']]],
+  ['sphere2box_144',['Sphere2Box',['../class_physics_scene.html#a8fdc96dba781cfe34750ab75d41601d5',1,'PhysicsScene']]],
+  ['sphere2plane_145',['Sphere2Plane',['../class_physics_scene.html#a52698d4508f97950c6265a4e5fadcd42',1,'PhysicsScene']]],
+  ['sphere2sphere_146',['Sphere2Sphere',['../class_physics_scene.html#a71144b0a811d2f47e52a472414c7c8b4',1,'PhysicsScene']]],
+  ['spheretest_147',['SphereTest',['../class_physics_app.html#a7ba271fbd7ad86c179dbd138fcdffd83',1,'PhysicsApp']]],
+  ['spring_148',['Spring',['../class_spring.html',1,'Spring'],['../class_spring.html#adaee930f391056ee178e23839ef77494',1,'Spring::Spring(Rigidbody *body1, Rigidbody *body2, float restLength, glm::vec4 colour, float springCoefficient, float damping=0.1f, glm::vec2 body1Contact=glm::vec2(0, 0), glm::vec2 body2Contact=glm::vec2(0, 0))'],['../class_spring.html#aa20437518f30d9af7347a5b3c301c27f',1,'Spring::Spring(Rigidbody *body1, Rigidbody *body2, float damping, float springCoefficient)']]],
+  ['spring_149',['SPRING',['../_physics_object_8h.html#a5a4538eeab397888d88a4eefcc5a1345a2e2302818a996993c08f2f07c9606e79',1,'PhysicsObject.h']]],
+  ['spring_2ecpp_150',['Spring.cpp',['../_spring_8cpp.html',1,'']]],
+  ['spring_2eh_151',['Spring.h',['../_spring_8h.html',1,'']]],
+  ['startup_152',['startup',['../class_physics_app.html#adda7b4beb5986e036d360119a68dae0d',1,'PhysicsApp']]]
 ];
