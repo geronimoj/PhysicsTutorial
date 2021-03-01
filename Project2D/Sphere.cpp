@@ -7,6 +7,10 @@ Sphere::Sphere(glm::vec2 position, bool isKinematic, glm::vec2 velocity, float m
 	m_moment = 0.5f * m_mass * m_radius * m_radius;
 }
 
+Sphere::~Sphere()
+{
+}
+
 void Sphere::Draw()
 {	//Calculate a vector along the local X axis to the edge of the sphere
 	glm::vec2 end = glm::vec2(std::cos(m_orientation), std::sin(m_orientation)) * m_radius;

@@ -6,7 +6,7 @@
 #define DEBUG
 
 Plane::Plane(glm::vec2 normal, float distance, unsigned int layer, glm::vec4 colour, float elasticity, float staticFriction, float kineticFriction)
-	: PhysicsObject(ShapeType::PLANE, elasticity, staticFriction, kineticFriction, layer), m_normal(glm::normalize(normal)), m_distanceToOrigin(distance), m_colour(colour)
+	: PhysicsObject(ShapeType::PLANE, layer, elasticity, staticFriction, kineticFriction), m_normal(glm::normalize(normal)), m_distanceToOrigin(distance), m_colour(colour)
 {
 }
 
