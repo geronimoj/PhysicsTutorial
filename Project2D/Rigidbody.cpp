@@ -86,7 +86,7 @@ void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2
 		ac += glm::dot(relVel2 + actor2->GetMass() * PhysicsScene::GetGravity(), normal);
 		//Calculate the normal force. The only difference is the mass of the two objects
 		glm::vec2 nForce1 = -normal * (GetMass() * ac);
-		glm::vec2 nForce2 = normal * (GetMass() * ac);
+		glm::vec2 nForce2 = normal * (actor2->GetMass() * ac);
 		//Calculate the maximum friction for both points
 		float fMax1 = friction * glm::length(nForce1);
 		float fMax2 = friction * glm::length(nForce2);
@@ -95,7 +95,8 @@ void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2
 		//If the mass is INT_MAX, it should take no friction force and instead, the other object should take all the friction force.
 		//For equal masses, force should be equal
 		//The force it takes should be determined by the difference in mass.
-		float fForce = glm::dot(relVelT, perp);
+		//Make sure the direction of the force is not affecting the final force results
+		float fForce = glm::abs(perpChange / 2);
 		float force1 = 0;
 		float force2 = 0;
 		//The ratio cannot be above 1 so we need to make sure the larger mass is on the right
@@ -121,8 +122,15 @@ void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2
 		force2 *= mass2;
 
 		float dot = glm::dot(relVelT, perp);
+
+		//If dot > 0, that means the relative velocity and perp vector and parallel which means perp needs to be inverted
+		//If dot < 0, the relative velocity and perp vector are already pointing in opposite directions so perp is already correct
 		//relVelT is a vector from actor1 to actor2's velocity
-		glm::vec2 dir = dot != 0 ? glm::normalize(dot * perp) : glm::vec2(0);
+		glm::vec2 dir = glm::vec2(0);
+		if (dot > 0)
+			dir = -perp;
+		else if (dot < 0)
+			dir = perp;
 
 		//Apply velocity of CoM as force assuming the point of contact is the CoM
 		//Reguardless as to whether the point of contact is stationary, it cannot go down and thus, will act as the pivot point instead of the CoM
@@ -148,9 +156,9 @@ void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2
 			actor2->SetVelocity((torque / pointMoment) * glm::vec2(lC2.y, -lC2.x));
 
 		//Calculate the direction the force should be applied
-		ApplyForce(force1 * dir, lC1);
+		ApplyForce(force1 * -dir, lC1);
 		//Apply their force in the opposite direction
-		actor2->ApplyForce(force2 * -dir, lC1);
+		actor2->ApplyForce(force2 * dir, lC2);
 
 		//Elasticity
 		r1 = glm::dot(lC1, -perp);
