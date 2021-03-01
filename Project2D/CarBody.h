@@ -1,7 +1,9 @@
 #pragma once
 #include "Box.h"
 #include "Wheel.h"
-
+/// <summary>
+/// Creates and controls a car
+/// </summary>
 class CarBody : public Box
 {
 public:
@@ -13,5 +15,8 @@ public:
 protected:
 	Wheel* m_backWheel;
 	Wheel* m_frontWheel;
+
+	glm::vec2 m_frontOrigin;
+	glm::vec2 m_backOrigin;
 };
 

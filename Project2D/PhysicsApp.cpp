@@ -208,4 +208,14 @@ void PhysicsApp::BounceHouse()
 	m_physicsScene->AddActor(plane1);
 	m_physicsScene->AddActor(plane2);
 	m_physicsScene->AddActor(plane3);
+	//Create a kinematic box and sphere
+	//I should really create a constructor for creating kinematic boxes and spheres
+	m_physicsScene->AddActor(new Box(glm::vec2(-75, -25), true, glm::vec2(0), 0, glm::vec4(1, 0, 1, 1), glm::vec2(25, 5), 0, 0, 0, 0, 0, 0.5f));
+	m_physicsScene->AddActor(new Sphere(glm::vec2(50, 15), true, glm::vec2(0), 0, 15, glm::vec4(1, 0, 1, 1), 0, 0, 0, 0, 0.5f));
+	//Create non kinematic objects
+	//Two boxes, each above the edge of the kinematic objects
+	m_physicsScene->AddActor(new Box(glm::vec2(-25, 0), false, glm::vec2(0), 3, glm::vec4(1, 1, 1, 1), glm::vec2(10, 10), 0, 0));
+	m_physicsScene->AddActor(new Box(glm::vec2(30, 50), false, glm::vec2(0), 3, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 10, 1));
+	//Two spheres, close to the ground with a bit of rotation to make things interesting
+	m_physicsScene->AddActor(new Sphere(glm::vec2(30, 0), false, glm::vec2(-20, 20), 3, 10, glm::vec4(0, 1, 1, 1), 1));
 }
