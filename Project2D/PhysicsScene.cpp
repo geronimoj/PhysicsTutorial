@@ -51,8 +51,7 @@ PhysicsScene::PhysicsScene()
 
 PhysicsScene::~PhysicsScene()
 {	//Call delete on all the actors in this scene
-	for (int i = 0; i < m_actors.size(); i++)
-		RemoveActor(m_actors[i], true);
+	RemoveAllActors();
 }
 
 void PhysicsScene::AddActor(PhysicsObject* actor)
@@ -74,6 +73,12 @@ void PhysicsScene::RemoveActor(PhysicsObject* actor, bool doDelete)
 	//Check if we want to delete the actor as well
 	if (doDelete)
 		delete actor;
+}
+
+void PhysicsScene::RemoveAllActors()
+{
+	for (int i = 0; i < m_actors.size(); i++)
+		RemoveActor(m_actors[i], true);
 }
 
 void PhysicsScene::Update(float dt)

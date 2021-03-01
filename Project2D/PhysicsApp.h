@@ -33,6 +33,22 @@ public:
 	/// Spawns two spheres with different properties
 	/// </summary>
 	void SphereTest();
+	/// <summary>
+	/// Spawns a rolling sphere
+	/// </summary>
+	void RollingSphere();
+	/// <summary>
+	/// Spawns a falling box at an angle
+	/// </summary>
+	void FallingBox();
+	/// <summary>
+	/// Spawns a rotating box
+	/// </summary>
+	void RotatingBox();
+	/// <summary>
+	/// Spawns a varienty of physics objects and kinematic objcets
+	/// </summary>
+	void BounceHouse();
 
 protected:
 	/// <summary>

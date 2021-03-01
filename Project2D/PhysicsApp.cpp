@@ -33,19 +33,9 @@ bool PhysicsApp::startup() {
 	m_physicsScene = new PhysicsScene();
 	m_physicsScene->SetGravity(glm::vec2(0, -100));
 	m_physicsScene->SetTimeStep(0.01f);
-	//Create the walls and floor
-	Plane* plane1 = new Plane(glm::vec2(0, 1), -50, 0, glm::vec4(0, 0, 1, 1));
-	Plane* plane2 = new Plane(glm::vec2(1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
-	Plane* plane3 = new Plane(glm::vec2(-1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
-	m_physicsScene->AddActor(plane1);
-	m_physicsScene->AddActor(plane2);
-	m_physicsScene->AddActor(plane3);
 
 	//SphereTest();
-
-	m_physicsScene->AddActor(new Box(glm::vec2(-20, 100), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 0, 1, 1), glm::vec2(20, 10), 45, 0, 0, 0, 1));
-	m_physicsScene->AddActor(new Box(glm::vec2(30, 20), false, glm::vec2(-10, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 10, 0, 0, 0, 0, 1));
-
+	RotatingBox();
 	//m_physicsScene->AddActor(new Wheel(glm::vec2(0), 3.0f, 10, 30, 10, glm::vec4(0, 1, 1, 1), 0, 0, 0, 0, 1, 1));
 	//m_physicsScene->AddActor(new Sphere(glm::vec2(0, 30), false, glm::vec2(20, 0), 3.0f, 15, glm::vec4(0, 1, 0, 1),0,0));
 	std::vector<std::string> sb;
@@ -120,6 +110,63 @@ void PhysicsApp::draw() {
 
 void PhysicsApp::SphereTest()
 {
+	//Create the walls and floor
+	Plane* plane1 = new Plane(glm::vec2(0, 1), -50, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane2 = new Plane(glm::vec2(1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane3 = new Plane(glm::vec2(-1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	m_physicsScene->AddActor(plane1);
+	m_physicsScene->AddActor(plane2);
+	m_physicsScene->AddActor(plane3);
+	//Generates two spheres
 	m_physicsScene->AddActor(new Sphere(glm::vec2(0, 30), false, glm::vec2(20, 0), 3.0f, 15, glm::vec4(0, 1, 0, 1)));
 	m_physicsScene->AddActor(new Sphere(glm::vec2(0, 0), false, glm::vec2(0, 0), 3.0f, 15, glm::vec4(0, 1, 0, 1), 30, 0, 0, 1));
+}
+
+void PhysicsApp::RollingSphere()
+{
+	//Create the walls and floor
+	Plane* plane1 = new Plane(glm::vec2(0, 1), -50, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane2 = new Plane(glm::vec2(1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane3 = new Plane(glm::vec2(-1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	m_physicsScene->AddActor(plane1);
+	m_physicsScene->AddActor(plane2);
+	m_physicsScene->AddActor(plane3);
+}
+
+void PhysicsApp::FallingBox()
+{
+	//Create the walls and floor
+	Plane* plane1 = new Plane(glm::vec2(0, 1), -50, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane2 = new Plane(glm::vec2(1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane3 = new Plane(glm::vec2(-1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	m_physicsScene->AddActor(plane1);
+	m_physicsScene->AddActor(plane2);
+	m_physicsScene->AddActor(plane3);
+	//Creates a box on an angle
+	m_physicsScene->AddActor(new Box(glm::vec2(-20, 100), false, glm::vec2(0, 0), 3.0f, glm::vec4(1, 0, 1, 1), glm::vec2(20, 10), 45, 0, 0, 0, 1));
+}
+
+void PhysicsApp::RotatingBox()
+{
+	//Create the walls and floor
+	Plane* plane1 = new Plane(glm::vec2(0, 1), -50, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane2 = new Plane(glm::vec2(1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane3 = new Plane(glm::vec2(-1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	m_physicsScene->AddActor(plane1);
+	m_physicsScene->AddActor(plane2);
+	m_physicsScene->AddActor(plane3);
+	//Creates a rotating box
+	m_physicsScene->AddActor(new Box(glm::vec2(30, 20), false, glm::vec2(-10, 0), 3.0f, glm::vec4(1, 1, 1, 1), glm::vec2(20, 10), 0, 10, 0, 0, 0, 0, 1));
+
+}
+
+void PhysicsApp::BounceHouse()
+{
+	//Create the walls and floor
+	Plane* plane1 = new Plane(glm::vec2(0, 1), -50, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane2 = new Plane(glm::vec2(1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane3 = new Plane(glm::vec2(-1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	m_physicsScene->AddActor(plane1);
+	m_physicsScene->AddActor(plane2);
+	m_physicsScene->AddActor(plane3);
 }

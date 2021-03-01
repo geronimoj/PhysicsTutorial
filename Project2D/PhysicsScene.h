@@ -25,6 +25,10 @@ public:
 	/// <param name="doDelete">Should the actor also be deleted?</param>
 	void RemoveActor(PhysicsObject* actor, bool doDelete = false);
 	/// <summary>
+	/// Deletes all the actors in the scene.
+	/// </summary>
+	void RemoveAllActors();
+	/// <summary>
 	/// Simulates the physics simulation
 	/// </summary>
 	/// <param name="dt">Delta time</param>
