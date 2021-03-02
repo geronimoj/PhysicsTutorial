@@ -13,26 +13,35 @@ CarBody::CarBody(PhysicsScene* scene, unsigned int layer, glm::vec2 position, gl
 
 void CarBody::FixedUpdate(glm::vec2 gravity, float timeStep)
 {
-	glm::vec2 frontRelVel = GetRelativeVelocity(m_frontOrigin);
-	glm::vec2 backRelVel = GetRelativeVelocity(m_backOrigin);
-	//Get the velocity of the wheel.
-	//Get the relative velocity of the point the wheel is attached to
-	glm::vec2 relVel = m_backWheel->GetVelocity();
-	//Get the change in velocity from its velocity to the relative velocity
-	relVel -= backRelVel;
-	//Apply the change to the point of connection of the wheel and the car body as a force
-	float mass0 = PhysicsScene::GetMass0(*this, glm::dot(m_backOrigin, glm::normalize(glm::vec2(relVel.y, -relVel.x))));
-	//Apply the force
-	ApplyForce(relVel * mass0, m_backOrigin);
+	//Determine if we need to teleport the body of the car or if the wheels are the ones that should be teleported
+	//If the body collided this update, don't fix the body to avoid clipping issues
+	bool fixForBody = m_frontWheel->CollidedThisUpdate() || m_backWheel->CollidedThisUpdate();
+	bool bodyCollided = CollidedThisUpdate();
+	//Calculate the change in velocity from the expected velocity to their actual velocity
+	//This determines how much force needs to be applied to the car
+	glm::vec2 relVel1 = m_backWheel->GetVelocity();
+	relVel1 -= GetRelativeVelocity(m_backOrigin);
 
 	//Repeat for front wheel
-	relVel = m_frontWheel->GetVelocity();
-	relVel -= frontRelVel;
-	mass0 = PhysicsScene::GetMass0(*this, glm::dot(m_frontOrigin, glm::normalize(glm::vec2(relVel.y, -relVel.x))));
+	glm::vec2 relVel2 = m_frontWheel->GetVelocity();
+	relVel2 -= GetRelativeVelocity(m_frontOrigin);
+	//Calculate the point that the force needs to be applied to. This is a ratio between the two wheels equal to the ratio between each of their forces
+	glm::vec2 pointToApply = glm::length(relVel1) * m_backOrigin + glm::length(relVel2) * m_frontOrigin;
+	float totalApplied = glm::length(relVel1) + glm::length(relVel2);
+	pointToApply /= totalApplied;
 
-	ApplyForce(relVel * mass0, m_frontOrigin);
-
-	bool fixForBody = m_frontWheel->CollidedThisUpdate() || m_backWheel->CollidedThisUpdate();
+	//Get the average relative velocity that we want to apply to the calculated point
+	relVel1 += relVel2;
+	relVel1 /= 2;
+	//Make sure we have relative velocity to apply. Necessary because of glm::normalize
+	if (relVel1 != glm::vec2(0, 0))
+	{
+		float mass0 = PhysicsScene::GetMass0(*this, glm::dot(m_frontOrigin, glm::normalize(glm::vec2(relVel1.y, -relVel1.x))));
+		//Apply the force
+		ApplyForce(relVel1 * mass0, pointToApply);
+		//Undo our changes to colliderThisUpdate
+		m_collidedThisUpdate = bodyCollided;
+	}
 	//Do other stuff
 	Box::FixedUpdate(gravity, timeStep);
 
@@ -40,10 +49,22 @@ void CarBody::FixedUpdate(glm::vec2 gravity, float timeStep)
 	m_backWheel->SetVelocity(GetRelativeVelocity(m_backOrigin));
 	m_frontWheel->SetVelocity(GetRelativeVelocity(m_frontOrigin));
 
-	//If its the box that's too close
+	//If its the box that's too close to the wheels. Teleport it away but only if it didn't collide with anything
 	if (fixForBody)
-		m_position = m_frontWheel->GetPosition() + m_localX * -m_frontOrigin.x + m_localY * -m_frontOrigin.y;
-	//Reset the positions of the wheels to be the correct point
-	m_backWheel->SetPosition(ToWorld(m_backOrigin));
-	m_frontWheel->SetPosition(ToWorld(m_frontOrigin));
+	{
+		glm::vec2 averagePoint = (m_frontOrigin + m_backOrigin) / 2.0f;
+		glm::vec2 averageWorldPoint = (m_frontWheel->GetPosition() + m_backWheel->GetPosition()) / 2.0f;
+		m_position = averageWorldPoint + m_localX * -averagePoint.x + m_localY * -averagePoint.y;
+		//We still redo the wheels but only if they, themself are not colliding with anything
+		if (!(bodyCollided && m_backWheel->CollidedThisUpdate()))
+			m_backWheel->SetPosition(ToWorld(m_backOrigin));
+		if (!(bodyCollided && m_frontWheel->CollidedThisUpdate()))
+			m_frontWheel->SetPosition(ToWorld(m_frontOrigin));
+	}
+	else
+	{
+		//Reset the positions of the wheels to be the correct point but only if they didn't collide with anything
+		m_backWheel->SetPosition(ToWorld(m_backOrigin));
+		m_frontWheel->SetPosition(ToWorld(m_frontOrigin));
+	}
 }
