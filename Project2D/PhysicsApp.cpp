@@ -227,12 +227,12 @@ void PhysicsApp::Car()
 {
 	//Create the walls and floor
 	Plane* plane1 = new Plane(glm::vec2(0, 1), -50, 0, glm::vec4(0, 0, 1, 1));
-	Plane* plane2 = new Plane(glm::vec2(1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane2 = new Plane(glm::vec2(0.5, 0.866025404), -50, 0, glm::vec4(0, 0, 1, 1));
 	Plane* plane3 = new Plane(glm::vec2(-1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
 	m_physicsScene->AddActor(plane1);
 	m_physicsScene->AddActor(plane2);
 	m_physicsScene->AddActor(plane3);
 	//Add a car to the scene
 	m_physicsScene->AddActor(new CarBody(m_physicsScene, 2, glm::vec2(0), glm::vec2(15, 7), glm::vec2(10, -7), glm::vec2(-10, -7), 3, glm::vec4(0, 1, 1, 1), glm::vec4(1, 1, 1, 1),
-		1, 3, 5, 10, 0.1f, 0.1f, 0.1f));
+		1, 3, 200, 1000, 0.1f, 0.1f, 0.1f));
 }
