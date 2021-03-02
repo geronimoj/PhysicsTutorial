@@ -9,6 +9,10 @@ Box::Box(glm::vec2 position, bool isKinematic, glm::vec2 velocity, float mass, g
 	m_moment = 1.0f / 12.0f * m_mass * GetWidth() * GetHeight();
 }
 
+Box::~Box()
+{
+}
+
 void Box::FixedUpdate(glm::vec2 gravity, float timeStep)
 {	//Call the bases Fixed Update
 	Rigidbody::FixedUpdate(gravity, timeStep);

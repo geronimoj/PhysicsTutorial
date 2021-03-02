@@ -53,6 +53,10 @@ public:
 	/// Spawns a varienty of physics objects and kinematic objcets
 	/// </summary>
 	void BounceHouse();
+	/// <summary>
+	/// Spawns a car and a level for it
+	/// </summary>
+	void Car();
 
 protected:
 	/// <summary>

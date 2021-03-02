@@ -24,8 +24,8 @@ static fn collisionFunctionArray[] =
 static bool layerCollision[] =
 {/*		0		1		2		*/
 /*0*/	true,	true,	true,
-/*1*/	true,	true,	false,
-/*2*/	true,	false,	true
+/*1*/	true,	true,	true,
+/*2*/	true,	true,	false
 };
 /// <summary>
 /// The number of layers in the scene

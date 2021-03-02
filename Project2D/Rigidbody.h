@@ -113,6 +113,11 @@ public:
 	/// <returns>Returns true if the rigidbody is kinematic</returns>
 	bool IsKinematic() { return m_isKinematic; }
 	/// <summary>
+	/// Returns if we collided with something this update. This is determined if ApplyForce was called
+	/// </summary>
+	/// <returns>Returns true if something was collided with</returns>
+	bool CollidedThisUpdate() { return m_collidedThisUpdate || m_collidedPreviousUpdate; }
+	/// <summary>
 	/// Returns the total energy of the physics object
 	/// </summary>
 	/// <returns>
@@ -173,5 +178,14 @@ protected:
 	/// Should the Physics Object be simulated by the physics
 	/// </summary>
 	bool m_isKinematic;
+	/// <summary>
+	/// Stores if this body collided with something this update.
+	/// </summary>
+	bool m_collidedThisUpdate;
+private:
+	/// <summary>
+	/// Stores if this body collided with something the previous update
+	/// </summary>
+	bool m_collidedPreviousUpdate;
 };
 

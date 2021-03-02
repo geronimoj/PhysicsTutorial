@@ -3,7 +3,7 @@
 #include "PhysicsScene.h"
 
 Rigidbody::Rigidbody(ShapeType shapeID, glm::vec2 position, bool isKinematic, glm::vec2 velocity, unsigned int layer, float orientation, float mass, float elasticity, float angularVelocity, float linearDrag, float angularDrag, float staticFriction, float kineticFriction)
-	: PhysicsObject(shapeID, layer, elasticity, staticFriction, kineticFriction), m_position(position), m_isKinematic(isKinematic), m_velocity(velocity), m_orientation(glm::radians(orientation)), m_mass(mass), m_angularVelocity(angularVelocity), m_moment(0), m_linearDrag(linearDrag), m_angularDrag(angularDrag)
+	: PhysicsObject(shapeID, layer, elasticity, staticFriction, kineticFriction), m_position(position), m_isKinematic(isKinematic), m_velocity(velocity), m_orientation(glm::radians(orientation)), m_mass(mass), m_angularVelocity(angularVelocity), m_moment(0), m_linearDrag(linearDrag), m_angularDrag(angularDrag), m_collidedThisUpdate(false), m_collidedPreviousUpdate(false)
 {
 }
 
@@ -13,6 +13,8 @@ Rigidbody::~Rigidbody()
 
 void Rigidbody::FixedUpdate(glm::vec2 gravity, float timeStep)
 {
+	m_collidedPreviousUpdate = m_collidedThisUpdate;
+
 	if (m_isKinematic)
 	{
 		m_velocity = glm::vec2(0, 0);
@@ -38,6 +40,8 @@ void Rigidbody::FixedUpdate(glm::vec2 gravity, float timeStep)
 
 
 	m_orientation += m_angularVelocity * timeStep;
+	//We reset this to false after the loop to avoid gravity being counted as a collision
+	m_collidedThisUpdate = false;
 }
 
 void Rigidbody::ApplyForce(glm::vec2 force, glm::vec2 pos)
@@ -45,6 +49,8 @@ void Rigidbody::ApplyForce(glm::vec2 force, glm::vec2 pos)
 	m_velocity += force / GetMass();
 
 	m_angularVelocity += (force.y * pos.x - force.x * pos.y) / GetMoment();
+
+	m_collidedThisUpdate = true;
 }
 
 void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2* collisionNormal, float pen)

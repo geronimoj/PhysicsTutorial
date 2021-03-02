@@ -12,6 +12,7 @@
 #include "Spring.h"
 #include "Wheel.h"
 #include "Softbody.h"
+#include "CarBody.h"
 
 PhysicsApp::PhysicsApp()  : m_physicsScene(nullptr), m_2dRenderer(nullptr), m_font(nullptr), m_timer(0), m_currentScene(0)
 {
@@ -121,6 +122,7 @@ void PhysicsApp::LoadScene()
 		//If there is no case, eg m_currentScene is not a valid scene, default to scene 0. This in turn allows us to clamp the default scene as well
 	default:
 	case 0:
+		Car();
 		//Set current scene to be this scene just in case of default
 		m_currentScene = 0;
 		break;
@@ -219,4 +221,18 @@ void PhysicsApp::BounceHouse()
 	//Two spheres, close to the ground with a bit of rotation to make things interesting
 	m_physicsScene->AddActor(new Sphere(glm::vec2(70, -20), false, glm::vec2(-40, 60), 6, 10, glm::vec4(0, 1, 1, 1), 10));
 	m_physicsScene->AddActor(new Sphere(glm::vec2(-70, 20), false, glm::vec2(0, 20), 6, 10, glm::vec4(0, 1, 1, 1), 10));
+}
+
+void PhysicsApp::Car()
+{
+	//Create the walls and floor
+	Plane* plane1 = new Plane(glm::vec2(0, 1), -50, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane2 = new Plane(glm::vec2(1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane3 = new Plane(glm::vec2(-1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	m_physicsScene->AddActor(plane1);
+	m_physicsScene->AddActor(plane2);
+	m_physicsScene->AddActor(plane3);
+	//Add a car to the scene
+	m_physicsScene->AddActor(new CarBody(m_physicsScene, 2, glm::vec2(0), glm::vec2(15, 7), glm::vec2(10, -7), glm::vec2(-10, -7), 3, glm::vec4(0, 1, 1, 1), glm::vec4(1, 1, 1, 1),
+		1, 3, 5, 10, 0.1f, 0.1f, 0.1f));
 }

@@ -2,7 +2,7 @@
 #include "Sphere.h"
 
 Sphere::Sphere(glm::vec2 position, bool isKinematic, glm::vec2 velocity, float mass, float radius, glm::vec4 colour, float angularVelocity, unsigned int layer, float linearDrag, float angularDrag, float elasticity, float staticFriction, float kineticFriction)
-	: Rigidbody(ShapeType::SPHERE, position, isKinematic, velocity, 0, 0, mass, elasticity, angularVelocity, linearDrag, angularDrag, staticFriction, kineticFriction), m_radius(radius), m_colour(colour)
+	: Rigidbody(ShapeType::SPHERE, position, isKinematic, velocity, layer, 0, mass, elasticity, angularVelocity, linearDrag, angularDrag, staticFriction, kineticFriction), m_radius(radius), m_colour(colour)
 {	//Calculate the moment = 1/2mr^2
 	m_moment = 0.5f * m_mass * m_radius * m_radius;
 }
