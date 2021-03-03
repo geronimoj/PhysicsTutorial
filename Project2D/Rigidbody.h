@@ -46,10 +46,10 @@ public:
 	/// <param name="pen">How much the two objects are penetrating each other. Defaults to 0</param>
 	void ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2 * collisionNormal = nullptr, float pen = 0);
 	/// <summary>
-	/// Sets the position
+	/// Sets the position if the object is not static and kinematic
 	/// </summary>
 	/// <param name="position">The position to be set to</param>
-	void SetPosition(glm::vec2 position) { m_position = position; }
+	void SetPosition(glm::vec2 position) { if (!(m_isKinematic && m_isStatic)) m_position = position; }
 	/// <summary>
 	/// Sets the kinematic state of the rigidbody
 	/// </summary>
@@ -65,6 +65,11 @@ public:
 	/// </summary>
 	/// <param name="velocity">The velocity to be set to</param>
 	void SetVelocity(glm::vec2 velocity) { m_velocity = velocity; }
+	/// <summary>
+	/// Sets the static state of the body. Will only affect anything on kinematic bodies
+	/// </summary>
+	/// <param name="state">The state to set isStatic to</param>
+	void SetStatic(bool state) { m_isStatic = state; }
 	/// <summary>
 	/// Returns the velocity of a point on the object
 	/// </summary>
@@ -178,6 +183,10 @@ protected:
 	/// Should the Physics Object be simulated by the physics
 	/// </summary>
 	bool m_isKinematic;
+	/// <summary>
+	/// Determines if the object can be moved. isKinematic must also be true for this to come into affect
+	/// </summary>
+	bool m_isStatic;
 	/// <summary>
 	/// Stores if this body collided with something this update.
 	/// </summary>

@@ -104,6 +104,9 @@ void PhysicsApp::draw() {
 	m_2dRenderer->drawText(m_font, fps, 0, 720 - 32);
 	m_2dRenderer->drawText(m_font, "Press Up or Down arrows to change scene!", 0, 720 - 64);
 	m_2dRenderer->drawText(m_font, "Press ESC to quit!", 0, 720 - 96);
+	//If we are in the car scene, write the controls
+	if (m_currentScene == 0)
+		m_2dRenderer->drawText(m_font, "Press W or S to move forward or backwards!", 0, 720 - 128);
 
 	// done drawing sprites
 	m_2dRenderer->end();
@@ -229,10 +232,16 @@ void PhysicsApp::Car()
 	Plane* plane1 = new Plane(glm::vec2(0, 1), -50, 0, glm::vec4(0, 0, 1, 1));
 	Plane* plane2 = new Plane(glm::vec2(0.5, 0.866025404), -50, 0, glm::vec4(0, 0, 1, 1));
 	Plane* plane3 = new Plane(glm::vec2(-1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane4 = new Plane(glm::vec2(1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
 	m_physicsScene->AddActor(plane1);
 	m_physicsScene->AddActor(plane2);
 	m_physicsScene->AddActor(plane3);
+	m_physicsScene->AddActor(plane4);
 	//Add a car to the scene
 	m_physicsScene->AddActor(new CarBody(m_physicsScene, 2, glm::vec2(0), glm::vec2(15, 7), glm::vec2(10, -7), glm::vec2(-10, -7), 3, glm::vec4(0, 1, 1, 1), glm::vec4(1, 1, 1, 1),
 		1, 3, 200, 1000, 0.1f, 0.1f, 0.1f));
+
+	Box* kinematicBox = new Box(glm::vec2(50, -50), true, glm::vec2(0), 0, glm::vec4(1, 1, 0, 1), glm::vec2(100, 5), 20, 0);
+	kinematicBox->SetStatic(true);
+	m_physicsScene->AddActor(kinematicBox);
 }

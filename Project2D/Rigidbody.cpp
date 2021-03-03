@@ -3,7 +3,7 @@
 #include "PhysicsScene.h"
 
 Rigidbody::Rigidbody(ShapeType shapeID, glm::vec2 position, bool isKinematic, glm::vec2 velocity, unsigned int layer, float orientation, float mass, float elasticity, float angularVelocity, float linearDrag, float angularDrag, float staticFriction, float kineticFriction)
-	: PhysicsObject(shapeID, layer, elasticity, staticFriction, kineticFriction), m_position(position), m_isKinematic(isKinematic), m_velocity(velocity), m_orientation(glm::radians(orientation)), m_mass(mass), m_angularVelocity(angularVelocity), m_moment(0), m_linearDrag(linearDrag), m_angularDrag(angularDrag), m_collidedThisUpdate(false), m_collidedPreviousUpdate(false)
+	: PhysicsObject(shapeID, layer, elasticity, staticFriction, kineticFriction), m_position(position), m_isKinematic(isKinematic), m_velocity(velocity), m_orientation(glm::radians(orientation)), m_mass(mass), m_angularVelocity(angularVelocity), m_moment(0), m_linearDrag(linearDrag), m_angularDrag(angularDrag), m_collidedThisUpdate(false), m_collidedPreviousUpdate(false), m_isStatic(false)
 {
 }
 
