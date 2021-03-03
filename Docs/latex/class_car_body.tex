@@ -23,7 +23,7 @@ Inheritance diagram for Car\+Body\+:\begin{figure}[H]
 \mbox{\hyperlink{class_car_body_a7cf1a39dbe8c31e68bb50de307a67fc3}{$\sim$\+Car\+Body}} ()
 \item 
 void \mbox{\hyperlink{class_car_body_a267ba734baa094f7c4e161c741b2f411}{Set\+Camera}} (aie\+::\+Renderer2D $\ast$renderer)
-\item 
+\begin{DoxyCompactList}\small\item\em Gives the car a reference to the camera \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_car_body_a24934b5590377d79982e944119a1ba5b}{Fixed\+Update}} (glm\+::vec2 gravity, float time\+Step)
 \begin{DoxyCompactList}\small\item\em Rotates, transforms and applys drag to the box. Also re-\/calculates local X and Y axis. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
@@ -90,6 +90,15 @@ Reimplemented from \mbox{\hyperlink{class_box_a9a66c0051d4109c8f05676d95ced3033}
 \doxysubsubsection{\texorpdfstring{SetCamera()}{SetCamera()}}
 {\footnotesize\ttfamily void Car\+Body\+::\+Set\+Camera (\begin{DoxyParamCaption}\item[{aie\+::\+Renderer2D $\ast$}]{renderer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Gives the car a reference to the camera 
+
+
+\begin{DoxyParams}{Parameters}
+{\em renderer} & A pointer to the camera\\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Member Data Documentation}
