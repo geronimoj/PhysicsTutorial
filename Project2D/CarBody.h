@@ -2,6 +2,7 @@
 #include "Box.h"
 #include "Wheel.h"
 #include "PhysicsScene.h"
+#include "Renderer2D.h"
 /// <summary>
 /// Creates and controls a car
 /// </summary>
@@ -12,11 +13,15 @@ public:
 	//Since we add the wheels to the scenes actors, we don't have to deal with cleaning them up :D
 	~CarBody();
 
+	void SetCamera(aie::Renderer2D* renderer) { m_renderer = renderer; }
+
 	virtual void FixedUpdate(glm::vec2 gravity, float timeStep);
 
 protected:
 	Wheel* m_backWheel;
 	Wheel* m_frontWheel;
+
+	aie::Renderer2D* m_renderer;
 
 	glm::vec2 m_frontOrigin;
 	glm::vec2 m_backOrigin;

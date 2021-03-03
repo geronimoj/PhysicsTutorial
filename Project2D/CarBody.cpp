@@ -2,7 +2,7 @@
 #include "Box.h"
 
 CarBody::CarBody(PhysicsScene* scene, unsigned int layer, glm::vec2 position, glm::vec2 bodyExtents, glm::vec2 frontWheel, glm::vec2 backWheel, float mass, glm::vec4 bodyColour, glm::vec4 wheelColour, float wheelMass, float wheelRadius, float wheelAngAccel, float wheelAngVelLimit, float linearDrag, float angularDrag, float wheelElasticity)
-	: Box(position, false, glm::vec2(0), mass, bodyColour, bodyExtents, 0, 0, layer, linearDrag, angularDrag, 0.3f, 0.5f, 0.5f), m_frontOrigin(frontWheel), m_backOrigin(backWheel)
+	: Box(position, false, glm::vec2(0), mass, bodyColour, bodyExtents, 0, 0, layer, linearDrag, angularDrag, 0.3f, 0.5f, 0.5f), m_frontOrigin(frontWheel), m_backOrigin(backWheel), m_renderer(nullptr)
 {	//Since we add the wheels to the scenes actors, we don't have to deal with cleaning them up :D
 	m_backWheel = new Wheel(ToWorld(m_backOrigin), wheelMass, wheelRadius, wheelAngAccel, wheelAngVelLimit, wheelColour, layer, 0, angularDrag / 2, wheelElasticity, 1, 1);
 	m_frontWheel = new Wheel(ToWorld(m_frontOrigin), wheelMass, wheelRadius, wheelAngAccel, wheelAngVelLimit, wheelColour, layer, 0, angularDrag / 2, wheelElasticity, 1, 1);
@@ -34,7 +34,11 @@ void CarBody::FixedUpdate(glm::vec2 gravity, float timeStep)
 	relVel1 += relVel2;
 	relVel1 /= 2;
 	//Make sure we have relative velocity to apply. Necessary because of glm::normalize
-	if (relVel1 != glm::vec2(0, 0))
+	//We also make sure the body isn't currently colliding with something. This results in:
+	//If the car is on its wheels, act like a car
+	//Otherwise, act like a box
+	//Its a bit weird but I don't have the time to do a propper implementation of a car
+	if (relVel1 != glm::vec2(0, 0) && !bodyCollided)
 	{
 		float mass0 = PhysicsScene::GetMass0(*this, glm::dot(m_frontOrigin, glm::normalize(glm::vec2(relVel1.y, -relVel1.x))));
 		//Apply the force
@@ -67,4 +71,7 @@ void CarBody::FixedUpdate(glm::vec2 gravity, float timeStep)
 		m_backWheel->SetPosition(ToWorld(m_backOrigin));
 		m_frontWheel->SetPosition(ToWorld(m_frontOrigin));
 	}
+	//If we have a renderer, set the cameras position to be on the car
+	if (m_renderer != nullptr)
+		m_renderer->setCameraPos(m_position.x, m_position.y);
 }

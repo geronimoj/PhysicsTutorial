@@ -238,8 +238,12 @@ void PhysicsApp::Car()
 	m_physicsScene->AddActor(plane3);
 	m_physicsScene->AddActor(plane4);
 	//Add a car to the scene
-	m_physicsScene->AddActor(new CarBody(m_physicsScene, 2, glm::vec2(0), glm::vec2(15, 7), glm::vec2(10, -7), glm::vec2(-10, -7), 3, glm::vec4(0, 1, 1, 1), glm::vec4(1, 1, 1, 1),
-		1, 3, 200, 1000, 0.1f, 0.1f, 0.1f));
+	CarBody* car = new CarBody(m_physicsScene, 2, glm::vec2(0), glm::vec2(15, 7), glm::vec2(10, -7), glm::vec2(-10, -7), 3, glm::vec4(0, 1, 1, 1), glm::vec4(1, 1, 1, 1),
+		1, 3, 200, 1000, 0.1f, 0.1f, 0.1f);
+
+	car->SetCamera(m_2dRenderer);
+
+	m_physicsScene->AddActor(car);
 
 	Box* kinematicBox = new Box(glm::vec2(50, -50), true, glm::vec2(0), 0, glm::vec4(1, 1, 0, 1), glm::vec2(100, 5), 20, 0);
 	kinematicBox->SetStatic(true);
