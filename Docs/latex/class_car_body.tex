@@ -2,6 +2,11 @@
 \label{class_car_body}\index{CarBody@{CarBody}}
 
 
+Creates and controls a car  
+
+
+
+
 {\ttfamily \#include $<$Car\+Body.\+h$>$}
 
 Inheritance diagram for Car\+Body\+:\begin{figure}[H]
@@ -13,9 +18,11 @@ Inheritance diagram for Car\+Body\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_car_body_ad9b02bbebc757662830370f1d49ca963}{Car\+Body}} ()
+\mbox{\hyperlink{class_car_body_abd3e5bfbcc11330e75b1cac647c71060}{Car\+Body}} (\mbox{\hyperlink{class_physics_scene}{Physics\+Scene}} $\ast$scene, unsigned int layer, glm\+::vec2 position, glm\+::vec2 body\+Extents, glm\+::vec2 front\+Wheel, glm\+::vec2 back\+Wheel, float mass, glm\+::vec4 body\+Colour, glm\+::vec4 wheel\+Colour, float wheel\+Mass, float wheel\+Radius, float wheel\+Ang\+Accel, float wheel\+Ang\+Vel\+Limit, float linear\+Drag, float angular\+Drag, float wheel\+Elasticity)
 \item 
 \mbox{\hyperlink{class_car_body_a7cf1a39dbe8c31e68bb50de307a67fc3}{$\sim$\+Car\+Body}} ()
+\item 
+void \mbox{\hyperlink{class_car_body_a267ba734baa094f7c4e161c741b2f411}{Set\+Camera}} (aie\+::\+Renderer2D $\ast$renderer)
 \item 
 virtual void \mbox{\hyperlink{class_car_body_a24934b5590377d79982e944119a1ba5b}{Fixed\+Update}} (glm\+::vec2 gravity, float time\+Step)
 \begin{DoxyCompactList}\small\item\em Rotates, transforms and applys drag to the box. Also re-\/calculates local X and Y axis. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -25,16 +32,27 @@ virtual void \mbox{\hyperlink{class_car_body_a24934b5590377d79982e944119a1ba5b}{
 \mbox{\hyperlink{class_wheel}{Wheel}} $\ast$ \mbox{\hyperlink{class_car_body_afd12f79a5d9f211030082dd4736d9810}{m\+\_\+back\+Wheel}}
 \item 
 \mbox{\hyperlink{class_wheel}{Wheel}} $\ast$ \mbox{\hyperlink{class_car_body_a88131eef4c973492745a6ab9a3f84e7f}{m\+\_\+front\+Wheel}}
+\item 
+aie\+::\+Renderer2D $\ast$ \mbox{\hyperlink{class_car_body_adb276a6971ac36c8fab1c9b510c3873f}{m\+\_\+renderer}}
+\item 
+glm\+::vec2 \mbox{\hyperlink{class_car_body_a41625b7ed7e352b71a60de4dddc1e5d4}{m\+\_\+front\+Origin}}
+\item 
+glm\+::vec2 \mbox{\hyperlink{class_car_body_a4bc9e6b56a7a03b265ae77531a52040e}{m\+\_\+back\+Origin}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
+\doxysubsection{Detailed Description}
+Creates and controls a car 
+
+
+
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_car_body_ad9b02bbebc757662830370f1d49ca963}\label{class_car_body_ad9b02bbebc757662830370f1d49ca963}} 
+\mbox{\Hypertarget{class_car_body_abd3e5bfbcc11330e75b1cac647c71060}\label{class_car_body_abd3e5bfbcc11330e75b1cac647c71060}} 
 \index{CarBody@{CarBody}!CarBody@{CarBody}}
 \index{CarBody@{CarBody}!CarBody@{CarBody}}
 \doxysubsubsection{\texorpdfstring{CarBody()}{CarBody()}}
-{\footnotesize\ttfamily Car\+Body\+::\+Car\+Body (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Car\+Body\+::\+Car\+Body (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_physics_scene}{Physics\+Scene}} $\ast$}]{scene,  }\item[{unsigned int}]{layer,  }\item[{glm\+::vec2}]{position,  }\item[{glm\+::vec2}]{body\+Extents,  }\item[{glm\+::vec2}]{front\+Wheel,  }\item[{glm\+::vec2}]{back\+Wheel,  }\item[{float}]{mass,  }\item[{glm\+::vec4}]{body\+Colour,  }\item[{glm\+::vec4}]{wheel\+Colour,  }\item[{float}]{wheel\+Mass,  }\item[{float}]{wheel\+Radius,  }\item[{float}]{wheel\+Ang\+Accel,  }\item[{float}]{wheel\+Ang\+Vel\+Limit,  }\item[{float}]{linear\+Drag,  }\item[{float}]{angular\+Drag,  }\item[{float}]{wheel\+Elasticity }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{class_car_body_a7cf1a39dbe8c31e68bb50de307a67fc3}\label{class_car_body_a7cf1a39dbe8c31e68bb50de307a67fc3}} 
 \index{CarBody@{CarBody}!````~CarBody@{$\sim$CarBody}}
@@ -66,20 +84,44 @@ Rotates, transforms and applys drag to the box. Also re-\/calculates local X and
 
 Reimplemented from \mbox{\hyperlink{class_box_a9a66c0051d4109c8f05676d95ced3033}{Box}}.
 
+\mbox{\Hypertarget{class_car_body_a267ba734baa094f7c4e161c741b2f411}\label{class_car_body_a267ba734baa094f7c4e161c741b2f411}} 
+\index{CarBody@{CarBody}!SetCamera@{SetCamera}}
+\index{SetCamera@{SetCamera}!CarBody@{CarBody}}
+\doxysubsubsection{\texorpdfstring{SetCamera()}{SetCamera()}}
+{\footnotesize\ttfamily void Car\+Body\+::\+Set\+Camera (\begin{DoxyParamCaption}\item[{aie\+::\+Renderer2D $\ast$}]{renderer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 \doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_car_body_a4bc9e6b56a7a03b265ae77531a52040e}\label{class_car_body_a4bc9e6b56a7a03b265ae77531a52040e}} 
+\index{CarBody@{CarBody}!m\_backOrigin@{m\_backOrigin}}
+\index{m\_backOrigin@{m\_backOrigin}!CarBody@{CarBody}}
+\doxysubsubsection{\texorpdfstring{m\_backOrigin}{m\_backOrigin}}
+{\footnotesize\ttfamily glm\+::vec2 Car\+Body\+::m\+\_\+back\+Origin\hspace{0.3cm}{\ttfamily [protected]}}
+
 \mbox{\Hypertarget{class_car_body_afd12f79a5d9f211030082dd4736d9810}\label{class_car_body_afd12f79a5d9f211030082dd4736d9810}} 
 \index{CarBody@{CarBody}!m\_backWheel@{m\_backWheel}}
 \index{m\_backWheel@{m\_backWheel}!CarBody@{CarBody}}
 \doxysubsubsection{\texorpdfstring{m\_backWheel}{m\_backWheel}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_wheel}{Wheel}}$\ast$ Car\+Body\+::m\+\_\+back\+Wheel\hspace{0.3cm}{\ttfamily [protected]}}
 
+\mbox{\Hypertarget{class_car_body_a41625b7ed7e352b71a60de4dddc1e5d4}\label{class_car_body_a41625b7ed7e352b71a60de4dddc1e5d4}} 
+\index{CarBody@{CarBody}!m\_frontOrigin@{m\_frontOrigin}}
+\index{m\_frontOrigin@{m\_frontOrigin}!CarBody@{CarBody}}
+\doxysubsubsection{\texorpdfstring{m\_frontOrigin}{m\_frontOrigin}}
+{\footnotesize\ttfamily glm\+::vec2 Car\+Body\+::m\+\_\+front\+Origin\hspace{0.3cm}{\ttfamily [protected]}}
+
 \mbox{\Hypertarget{class_car_body_a88131eef4c973492745a6ab9a3f84e7f}\label{class_car_body_a88131eef4c973492745a6ab9a3f84e7f}} 
 \index{CarBody@{CarBody}!m\_frontWheel@{m\_frontWheel}}
 \index{m\_frontWheel@{m\_frontWheel}!CarBody@{CarBody}}
 \doxysubsubsection{\texorpdfstring{m\_frontWheel}{m\_frontWheel}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_wheel}{Wheel}}$\ast$ Car\+Body\+::m\+\_\+front\+Wheel\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_car_body_adb276a6971ac36c8fab1c9b510c3873f}\label{class_car_body_adb276a6971ac36c8fab1c9b510c3873f}} 
+\index{CarBody@{CarBody}!m\_renderer@{m\_renderer}}
+\index{m\_renderer@{m\_renderer}!CarBody@{CarBody}}
+\doxysubsubsection{\texorpdfstring{m\_renderer}{m\_renderer}}
+{\footnotesize\ttfamily aie\+::\+Renderer2D$\ast$ Car\+Body\+::m\+\_\+renderer\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
