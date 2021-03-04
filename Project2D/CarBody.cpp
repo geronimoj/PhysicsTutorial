@@ -73,5 +73,5 @@ void CarBody::FixedUpdate(glm::vec2 gravity, float timeStep)
 	}
 	//If we have a renderer, set the cameras position to be on the car
 	if (m_renderer != nullptr)
-		m_renderer->setCameraPos(m_position.x, m_position.y);
+		m_renderer->setCameraPos(-m_position.x, -m_position.y);
 }
