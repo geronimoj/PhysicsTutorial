@@ -119,6 +119,8 @@ void PhysicsApp::LoadScene()
 	//If there are actors still in the scene, delete them
 	if (m_physicsScene->HasActors())
 		m_physicsScene->RemoveAllActors();
+
+	m_2dRenderer->setCameraPos(0, 0);
 	//Load the correct scene
 	switch (m_currentScene)
 	{
