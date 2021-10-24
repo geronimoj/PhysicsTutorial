@@ -197,6 +197,6 @@ void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2
 }
 
 float Rigidbody::GetPotentialEnergy()
-{
-	return GetMass() * glm::length(PhysicsScene::GetGravity()) * m_position.y;
+{	//If we are kinematic, we don't have potential energy
+	return m_isKinematic ? 0 : GetMass() * glm::length(PhysicsScene::GetGravity()) * m_position.y;
 }
