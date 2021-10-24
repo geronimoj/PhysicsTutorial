@@ -238,10 +238,10 @@ void PhysicsApp::BounceHouse()
 void PhysicsApp::Car()
 {
 	//Create the walls and floor
-	Plane* plane1 = new Plane(glm::vec2(0, 1), -50, 0, glm::vec4(0, 0, 1, 1));
-	Plane* plane2 = new Plane(glm::vec2(0.5, 0.866025404), -50, 0, glm::vec4(0, 0, 1, 1));
-	Plane* plane3 = new Plane(glm::vec2(-1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
-	Plane* plane4 = new Plane(glm::vec2(1, 0), -100, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane1 = new Plane(glm::vec2(0, 1), -50, 0, glm::vec4(0, 0, 1, 1), 0);
+	Plane* plane2 = new Plane(glm::vec2(0.5, 0.866025404), -50, 0, glm::vec4(0, 0, 1, 1), 0);
+	Plane* plane3 = new Plane(glm::vec2(-1, 0), -650 - 200, 0, glm::vec4(0, 0, 1, 1));
+	Plane* plane4 = new Plane(glm::vec2(1, 0), -100, 0, glm::vec4(0, 0, 1, 1), 0);
 	m_physicsScene->AddActor(plane1);
 	m_physicsScene->AddActor(plane2);
 	m_physicsScene->AddActor(plane3);
@@ -254,7 +254,34 @@ void PhysicsApp::Car()
 
 	m_physicsScene->AddActor(car);
 
-	Box* kinematicBox = new Box(glm::vec2(50, -50), true, glm::vec2(0), 0, glm::vec4(1, 1, 0, 1), glm::vec2(100, 5), 20, 0);
-	kinematicBox->SetStatic(true);
-	m_physicsScene->AddActor(kinematicBox);
+	Box* ramp1 = new Box(glm::vec2(50, -50), true, glm::vec2(0), 0, glm::vec4(1, 1, 0, 1), glm::vec2(100, 5), 20, 0, 0,0,0,0);
+	Box* floor1 = new Box(glm::vec2(193.97 , -15.8), true, glm::vec2(0), 0, glm::vec4(1, 1, 0, 1), glm::vec2(50, 5), 0, 0, 0, 0, 0, 0);
+	Box* ramp2 = new Box(glm::vec2(243.97, -15.8), true, glm::vec2(0), 0, glm::vec4(1, 1, 0, 1), glm::vec2(5, 5), 10, 0, 0, 0, 0, 0);
+	Box* ramp3 = new Box(glm::vec2(250.97, -13.8), true, glm::vec2(0), 0, glm::vec4(1, 1, 0, 1), glm::vec2(5, 5), 30, 0, 0, 0, 0, 0);
+	Box* ramp4 = new Box(glm::vec2(400 + 200, -50), true, glm::vec2(0), 0, glm::vec4(1, 1, 0, 1), glm::vec2(100, 5), 20, 0, 0, 0, 0, 0);
+	Box* ramp5 = new Box(glm::vec2(470 + 200, -20), true, glm::vec2(0), 0, glm::vec4(1, 1, 0, 1), glm::vec2(100, 5), 30, 0, 0, 0, 0, 0);
+	Box* ramp6 = new Box(glm::vec2(500 + 200, 0), true, glm::vec2(0), 0, glm::vec4(1, 1, 0, 1), glm::vec2(100, 5), 40, 0, 0, 0, 0, 0);
+	Box* ramp7 = new Box(glm::vec2(510 + 200, 20), true, glm::vec2(0), 0, glm::vec4(1, 1, 0, 1), glm::vec2(100, 5), 50, 0, 0, 0, 0, 0);
+	Box* floor2 = new Box(glm::vec2(610 + 200, 94), true, glm::vec2(0), 0, glm::vec4(1, 1, 0, 1), glm::vec2(40, 5), 0, 0, 0, 0, 0, 0);
+	Box* bouncy1 = new Box(glm::vec2(300, -50), true, glm::vec2(0), 0, glm::vec4(0, 1, 0, 1), glm::vec2(50, 10), 0, 0, 0, 0, 0, 2);
+	ramp1->SetStatic(true);
+	floor1->SetStatic(true);
+	floor2->SetStatic(true);
+	ramp2->SetStatic(true);
+	ramp3->SetStatic(true);
+	ramp4->SetStatic(true);
+	ramp5->SetStatic(true);
+	ramp6->SetStatic(true);
+	ramp7->SetStatic(true);
+	bouncy1->SetStatic(true);
+	m_physicsScene->AddActor(ramp1);
+	m_physicsScene->AddActor(floor1);
+	m_physicsScene->AddActor(floor2);
+	m_physicsScene->AddActor(ramp2);
+	m_physicsScene->AddActor(ramp3);
+	m_physicsScene->AddActor(ramp4);
+	m_physicsScene->AddActor(ramp5);
+	m_physicsScene->AddActor(ramp6);
+	m_physicsScene->AddActor(ramp7);
+	m_physicsScene->AddActor(bouncy1);
 }

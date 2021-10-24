@@ -15,7 +15,7 @@ void Plane::Draw(aie::Renderer2D* rend)
 	float x, y;
 	rend->getCameraPos(x, y);
 	glm::vec2 pos = glm::vec2(x, y);
-	float lineSegmentLength = 300;
+	float lineSegmentLength = 3000;
 	glm::vec2 centerPoint = m_normal * m_distanceToOrigin + pos;
 	//Get a parallel vector against the normal, the direction of the plane
 	glm::vec2 parallel(m_normal.y, -m_normal.x);
