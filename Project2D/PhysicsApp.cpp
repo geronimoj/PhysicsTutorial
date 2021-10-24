@@ -111,7 +111,7 @@ void PhysicsApp::draw() {
 	m_2dRenderer->drawText(m_font, "Press ESC to quit!", 0, 720 - 96);
 	//If we are in the car scene, write the controls
 	if (m_currentScene == 0)
-		m_2dRenderer->drawText(m_font, "Press W or S to move forward or backwards!", 0, 720 - 128);
+		m_2dRenderer->drawText(m_font, "Press A or D to move forward or backwards!", 0, 720 - 128);
 
 	// done drawing sprites
 	m_2dRenderer->end();
