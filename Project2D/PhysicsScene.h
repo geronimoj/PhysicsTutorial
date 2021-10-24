@@ -2,6 +2,7 @@
 
 #include <glm/glm.hpp>
 #include <vector>
+#include "Renderer2D.h"
 #include "PhysicsObject.h"
 #include "Rigidbody.h"
 /// <summary>
@@ -36,7 +37,7 @@ public:
 	/// <summary>
 	/// Draws the scene
 	/// </summary>
-	void Draw();
+	void Draw(aie::Renderer2D* rend);
 	/// <summary>
 	/// Sets the direction and magnitude of gravity
 	/// </summary>

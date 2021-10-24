@@ -27,7 +27,7 @@ public:
 	/// <summary>
 	/// Draws the sphere with a line to indicate orientation.
 	/// </summary>
-	virtual void Draw();
+	virtual void Draw(aie::Renderer2D* rend);
 	/// <summary>
 	/// Returns the radius
 	/// </summary>

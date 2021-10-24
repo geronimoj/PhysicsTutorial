@@ -38,9 +38,14 @@ void Spring::FixedUpdate(glm::vec2 gravity, float timeStep)
 	m_body2->ApplyForce(force * timeStep, p2 - m_body2->GetPosition());
 }
 
-void Spring::Draw()
-{	//Draw a line from the contact point to the other one.
-	glm::vec2 start = m_body1->ToWorld(m_contact1);
-	glm::vec2 end = m_body2->ToWorld(m_contact2) - start;
+void Spring::Draw(aie::Renderer2D* rend)
+{	
+
+	float x, y;
+	rend->getCameraPos(x, y);
+	glm::vec2 pos = glm::vec2(x,y);
+	//Draw a line from the contact point to the other one.
+	glm::vec2 start = m_body1->ToWorld(m_contact1) + pos;
+	glm::vec2 end = m_body2->ToWorld(m_contact2) - start + pos;
 	aie::Gizmos::add2DLine(start, start + end, m_colour);
 }

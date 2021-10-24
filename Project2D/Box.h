@@ -34,7 +34,7 @@ public:
 	/// <summary>
 	/// Draws the box
 	/// </summary>
-	virtual void Draw();
+	virtual void Draw(aie::Renderer2D* rend);
 	/// <summary>
 	/// Determines if this box is intersecting with the given box and returns information about the contact point.
 	/// </summary>

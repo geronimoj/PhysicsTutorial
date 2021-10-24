@@ -11,11 +11,18 @@ Sphere::~Sphere()
 {
 }
 
-void Sphere::Draw()
-{	//Calculate a vector along the local X axis to the edge of the sphere
+void Sphere::Draw(aie::Renderer2D* rend)
+{	
+	float x, y;
+	rend->getCameraPos(x, y);
+	glm::vec2 pos = m_position;
+	pos.x += x;
+	pos.y += y;
+
+	//Calculate a vector along the local X axis to the edge of the sphere
 	glm::vec2 end = glm::vec2(std::cos(m_orientation), std::sin(m_orientation)) * m_radius;
 	//Draw the circle
-	aie::Gizmos::add2DCircle(m_position, m_radius, 24, m_colour);
+	aie::Gizmos::add2DCircle(pos, m_radius, 24, m_colour);
 	//Draw a line from the center of the sphere to the edge of the sphere along its local X axis.
-	aie::Gizmos::add2DLine(m_position, m_position + end, glm::vec4(1, 1, 1, 1));
+	aie::Gizmos::add2DLine(pos, pos + end, glm::vec4(1, 1, 1, 1));
 }

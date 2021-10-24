@@ -81,7 +81,7 @@ void PhysicsApp::update(float deltaTime) {
 	aie::Gizmos::clear();
 	//Let the PhysicsScene do its thing
 	m_physicsScene->Update(deltaTime);
-	m_physicsScene->Draw();
+	m_physicsScene->Draw(m_2dRenderer);
 
 	// exit the application
 	if (input->isKeyDown(aie::INPUT_KEY_ESCAPE))
@@ -92,6 +92,11 @@ void PhysicsApp::draw() {
 
 	// wipe the screen to the background colour
 	clearScreen();
+	//Store the original camera position (to avoid moving UI)
+	float x, y;
+	m_2dRenderer->getCameraPos(x, y);
+	//Reset the camera so the UI is correct
+	m_2dRenderer->setCameraPos(0, 0);
 
 	// begin drawing sprites
 	m_2dRenderer->begin();
@@ -110,6 +115,8 @@ void PhysicsApp::draw() {
 
 	// done drawing sprites
 	m_2dRenderer->end();
+	//Reset the camera position for object rendering
+	m_2dRenderer->setCameraPos(x, y);
 }
 
 void PhysicsApp::LoadScene()

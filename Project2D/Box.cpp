@@ -23,16 +23,21 @@ void Box::FixedUpdate(glm::vec2 gravity, float timeStep)
 	m_localY = glm::normalize(glm::vec2(-sn, cs));
 }
 
-void Box::Draw()
+void Box::Draw(aie::Renderer2D* rend)
 {
-	glm::vec2 p1 = m_position - m_localX * m_extents.x - m_localY * m_extents.y;
-	glm::vec2 p2 = m_position + m_localX * m_extents.x - m_localY * m_extents.y;
-	glm::vec2 p3 = m_position - m_localX * m_extents.x + m_localY * m_extents.y;
-	glm::vec2 p4 = m_position + m_localX * m_extents.x + m_localY * m_extents.y;
+	float x, y;
+	rend->getCameraPos(x, y);
+	glm::vec2 pos = m_position;
+	pos.x += x;
+	pos.y += y;
+	glm::vec2 p1 = pos - m_localX * m_extents.x - m_localY * m_extents.y;
+	glm::vec2 p2 = pos + m_localX * m_extents.x - m_localY * m_extents.y;
+	glm::vec2 p3 = pos - m_localX * m_extents.x + m_localY * m_extents.y;
+	glm::vec2 p4 = pos + m_localX * m_extents.x + m_localY * m_extents.y;
 
 	aie::Gizmos::add2DTri(p1, p2, p4, m_colour);
 	aie::Gizmos::add2DTri(p1, p4, p3, m_colour);
-	aie::Gizmos::add2DCircle(m_position, 1, 8, glm::vec4(0, 0, 0, 1));
+	aie::Gizmos::add2DCircle(pos, 1, 8, glm::vec4(0, 0, 0, 1));
 }
 
 bool Box::CheckBoxCorners(const Box& box, glm::vec2& contact, int& numContacts, float& pen, glm::vec2& edgeNormal)

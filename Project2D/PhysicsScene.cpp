@@ -100,10 +100,10 @@ void PhysicsScene::Update(float dt)
 	}
 }
 
-void PhysicsScene::Draw()
+void PhysicsScene::Draw(aie::Renderer2D* rend)
 {	//Loop through the actors and call their draw function
 	for (int i = 0; i < m_actors.size(); i++)
-		m_actors[i]->Draw();
+		m_actors[i]->Draw(rend);
 }
 
 void PhysicsScene::CheckForCollision()

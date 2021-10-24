@@ -29,7 +29,7 @@ public:
 	/// <summary>
 	/// Draws the plane
 	/// </summary>
-	virtual void Draw();
+	virtual void Draw(aie::Renderer2D* rend);
 	/// <summary>
 	/// Does nothing
 	/// </summary>

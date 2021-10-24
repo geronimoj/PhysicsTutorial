@@ -38,7 +38,7 @@ public:
 	/// <summary>
 	/// Draws the spring
 	/// </summary>
-	virtual void Draw();
+	virtual void Draw(aie::Renderer2D* rend);
 
 protected:
 	/// <summary>

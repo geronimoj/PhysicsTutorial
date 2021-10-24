@@ -1,5 +1,6 @@
 #pragma once
 #include <glm/glm.hpp>
+#include "Renderer2D.h"
 /// <summary>
 /// Used to determine what type of shape/objcet each PhysicsObject is
 /// </summary>
@@ -37,7 +38,7 @@ public:
 	/// <summary>
 	/// Is a pure virtual function. Draws the PhysicsObject
 	/// </summary>
-	virtual void Draw() = 0;
+	virtual void Draw(aie::Renderer2D* rend) = 0;
 	/// <summary>
 	/// Empty function for derived classes
 	/// </summary>
