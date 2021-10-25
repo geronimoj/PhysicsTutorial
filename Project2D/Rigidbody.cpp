@@ -151,15 +151,31 @@ void Rigidbody::ResolveCollision(Rigidbody* actor2, glm::vec2 contact, glm::vec2
 		float torque = coMForce.y * -lC1.x - coMForce.x * -lC1.y;
 		//If we don't have any torque, there is no point in continuing
 		if (torque != 0)
-			//4. Calculate the resultant relative velocity and set the velocity of the CoM to be that.
-			SetVelocity((torque / pointMoment) * glm::vec2(lC1.y, -lC1.x));
+		{	//4. Calculate the resultant relative velocity and set the velocity of the CoM to be that.
+			//Get the final velocity
+			glm::vec2 finalVel = (torque / pointMoment) * glm::vec2(lC1.y, -lC1.x);
+			//Get the difference between current and final
+			finalVel -= GetVelocity();
+			//Scale final by friction factor
+			finalVel *= friction;
+			//Apply the dif to velocity
+			SetVelocity(GetVelocity() + finalVel);
+		}
 		//Repeat for actor2
 		coMForce = actor2->GetVelocity() * actor2->GetMass();
 		pointMoment = actor2->GetMass() * (r2 * r2);
 		torque = coMForce.y * -lC2.x - coMForce.x * -lC2.y;
 
 		if (torque != 0)
-			actor2->SetVelocity((torque / pointMoment) * glm::vec2(lC2.y, -lC2.x));
+		{	//Get the final velocity
+			glm::vec2 finalVel = (torque / pointMoment) * glm::vec2(lC2.y, -lC2.x);
+			//Get the difference between current and final
+			finalVel -= actor2->GetVelocity();
+			//Scale final by friction factor
+			finalVel *= friction;
+			//Apply the dif to velocity
+			actor2->SetVelocity(actor2->GetVelocity() + finalVel);
+		}
 
 		//Calculate the direction the force should be applied
 		ApplyForce(force1 * -dir, lC1);

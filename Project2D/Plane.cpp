@@ -90,7 +90,7 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 	//Calculate the final linear velocity and thus, final linear kinetic energy. And then get the change in energy and done
 	linearVelocity = actor2->GetVelocity() + linearVelocity;
 	lossToFriction += lKePre - (0.5f * actor2->GetMass() * glm::dot(linearVelocity, linearVelocity));
-
+	//
 	//Apply velocity of CoM as force assuming the point of contact is the CoM
 	//Reguardless as to whether the point of contact is stationary, it cannot go down and thus, will act as the pivot point instead of the CoM
 	//1. Get velocity of CoM as force
@@ -107,7 +107,9 @@ void Plane::ResolveCollision(Rigidbody* actor2, glm::vec2 contact)
 		//4. Calculate the resultant relative velocity and set the velocity of the CoM to be that.
 		angularAcceleration = torque / pointMoment;
 		linearVelocity = angularAcceleration * glm::vec2(localContact.y, -localContact.x);
-		actor2->SetVelocity(linearVelocity);
+		glm::vec2 dif = linearVelocity - actor2->GetVelocity();
+		dif *= friction;
+		actor2->SetVelocity(actor2->GetVelocity() + dif);
 	}
 	//Apply the force now we have the force of the CoM
 	actor2->ApplyForce(force, localContact);
